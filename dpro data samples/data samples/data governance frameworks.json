@@ -1,0 +1,60 @@
+{
+    "frameworks": [
+        {
+            "frameworkId": "Data-Governance-BMBOK-January-2025",
+            "name": "Data Management Body of Knowledge (BMBOK)",
+            "description": "Data management framework for data governance created by the Data Management Association (DAMA International).",
+            "frameworkType": "data governance",
+            "createdDate": "D20250101T11:00:00AM PST",
+            "isActive": "true"
+        },
+        {
+            "frameworkId": "Data-Governance-DCAM-2.2-January-2025",
+            "name": "Data Management Capabilities Assessment Model 2.2 (DCAM 2.2)",
+            "description": "The DCAM framework was created by the EDM Council formed by the Global Financial Industry and assesses current data management capabilities using a scoring model.",
+            "frameworkType": "gata governance",
+            "createdDate": "D20250101T11:00:00AM PST",
+            "isActive": "true"
+        },
+        {
+            "frameworkId": "Data-Governance-TOGAF-January-2025",
+            "name": "The Open Group Architecture Framework (TOGAF)",
+            "description": "",
+            "frameworkType": "data governance",
+            "createdDate": "D20250101T11:00:00AM PST",
+            "isActive": "false"
+        },
+        {
+            "frameworkId": "Data-Goverance-COBIT-January-2025",
+            "name": "Control Objectives for Information and Related Technologies (COBIT)",
+            "description": "Data management framework for data governance created by Information Systems Audit and Control Association (ISACA).",
+            "frameworkType": "data governance",
+            "createdDate": "D20250101T11:00:00AM PST",
+            "isActive": "false"
+        },
+        {
+            "frameworkId": "Data-Governance-ISO-8000-January-2025",
+            "name": "International Standards Organization (ISO/IEC) 8000",
+            "description": "",
+            "frameworkType": "data governance",
+            "createdDate": "D20250101T11:00:00AM PST",
+            "isActive": "false"
+        },
+        {
+            "frameworkId": "Data-Governance-ISO-385051-January-2025",
+            "name": "International Standards Organization (ISO/IEC) 38505-1",
+            "description": "",
+            "frameworkType": "data governance",
+            "createdDate": "D20250101T11:00:00AM PST",
+            "isActive": "false"
+        },
+        {
+            "frameworkId": "Data-Governance-DMM-Model-January-2025",
+            "name": "Data Management Maturity (DMM) Model",
+            "description": "Data management framework with maturity levels for data governance created by Carnegie Mellon Universiy's CMMI Institute.",
+            "frameworkType": "data governance",
+            "createdDate": "D20250101T11:00:00AM PST",
+            "isActive": "false"
+        }
+    ]
+}

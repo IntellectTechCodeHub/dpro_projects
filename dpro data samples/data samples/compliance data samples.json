@@ -1,0 +1,784 @@
+{
+    "businesses": [
+      {
+        "businessId": "Dental-Clinic-TX-January",
+        "name": "Austin Regional Dental Orthodontics",
+        "description": "Public dental clinic specializing in orthodontics, surgery, and dentures.",
+        "createdDate": "D20250101T10:00:00AM PST",
+        "isActive": "true",
+        "industries":[
+            {
+                "industryId": "Dental-Orthodontics-Surgery-Dentures-DO1-January",
+                "name": "Dental Orthodontics, Surgery and Dentures",
+                "description": "Provides specialized orthodontics examinations with surgerical or denture procedures.",
+                "createdDate": "D20250101T10:00:00AM PST",
+                "isActive": "true"
+            }
+        ],
+        "workflows": [
+            {
+                "workflowId": "Patient-Records-Import-Export-January",
+                "name": "Dental Patient Record History Import Export",
+                "description": "Exchange patient history from previous clinic and send to images to equipment manufacture.",
+                "createdDate": "D20250101T10:00:00AM PST",
+                "isActive": "true",
+                "processes": [
+                    {
+                        "processId": "Retrieve-Dental-History-From-Clinic-January",
+                        "name": "Retrieve Dental History From Clinic",
+                        "description": "Retrieve records from previous clinic and import records.",
+                        "actors": [
+                            {
+                                "actorId": "Participant-Sender-Clinical-Analyst-January",
+                                "type": "participant",
+                                "userId": "",
+                                "employer": "dental clinic",
+                                "group": "patient records"
+                            },
+                            {
+                                "actorId": "Reviewer-Administrator-Data-Quality-January",
+                                "type": "reviewer",
+                                "userId": "",
+                                "employer": "ortho clinic",
+                                "group": "information technology services"
+                            }
+                        ],
+                        "createdDate": "D20250101T10:00:00AM PST",
+                        "isActive": "true"
+                    },
+                    {
+                        "processId": "Send-Dental-XRays-To-Manufacture-January",
+                        "name": "Send Dental XRays To Manufacture",
+                        "description": "Schedule and send x-rays to equipment manufacture.",
+                        "actors": [
+                            {
+                                "actorId": "Participant-Sender-Clinical-Analyst-January",
+                                "type": "participant",
+                                "userId": "",
+                                "employer": "ortho clinic",
+                                "group": "patient records"
+                            },
+                            {
+                                "actorId": "Participant-Reciever-Production-Design-January",
+                                "type": "participant",
+                                "userId": "",
+                                "employer": "equipment manufacture",
+                                "group": "production"
+                            },
+                            {
+                                "actorId": "Reviewer-Administrator-Data-Quality-January",
+                                "type": "reviewer",
+                                "userId": "",
+                                "employer": "ortho clinic",
+                                "group": "information technology services"
+                            }
+                        ],
+                        "createdDate": "D20250101T10:00:00AM PST",
+                        "isActive": "true"
+                    }
+                ],
+                "analyses":[
+                    {
+                        "analysisId": "Initial-Patient-Records-Workflow-Analysis",
+                        "name": "Initial Patient Records Workflow Analysis",
+                        "requestorId": "Business-User-IdNumber-Initials-January",
+                        "analystId":"Business-Analyst-IdNumber-Initials-January",
+                        "scheduledDate": "D20250101T10:00:00AM PST",
+                        "createdDate": "D20250101T10:00:00AM PST",
+                        "completedDate": "D20250101T10:00:00AM PST",
+                        "status": "new",
+                        "isActive": "true",
+                        "problems": [
+                            {
+                                "problemId": "Patient-History-Retrieval-Import-Export-January",
+                                "name": "Patient History Retrieval, Import and Export",
+                                "description": "There is a need to create a system to retrieve, import and export patient records.",
+                                "suggestions": [ 
+                                    "sending via fax", 
+                                    "sending via email", 
+                                    "import", 
+                                    "export", 
+                                    "API integrations", 
+                                    "web hosting" 
+                                ],
+                                "createdDate": "D20250101T10:00:00AM PST",
+                                "isResolved": "false",
+                                "isActive": "true",
+                                "solutions": [
+                                    {
+                                        "solutionId": "Retrieve-Import-January",
+                                        "name": "Retrieve Patient History Import",
+                                        "description": "The request for patient dental records is sent to the dental clinic from the ortho clinic. The request is received by the clinical analyst within patient records group at the dental clinic. Then the records are prepared, reviewed and approved for sending. The records are received via the patient history retrieval API. The system administrator within the information technology group at the ortho clinic reviews the records and imports the data for system usage.",
+                                        "items": [
+                                            {
+                                                "itemId": "Business-Goal-Software-API-Service-January",
+                                                "name": "Design and develop a software service with custom UI, data porting via web services, storage, reviews and approvals for the patient history retrievel workflow.",
+                                                "type": "business goal",
+                                                "relatedItemIds": []
+                                            },
+                                            {
+                                                "itemId": "Business-Need-Software-API-Service-January",
+                                                "name": "A software service supporting data transfer APIs, third-party integrations, privacy and quality reviews.",
+                                                "type": "business need",
+                                                "relatedItemIds": [ "Business-Goal-Software-API-Service-January", "Business-Need-Software-API-Service-January" ]
+                                            },
+                                            {
+                                                "itemId": "Requirement-Data-Transfer-January",
+                                                "name": "Build a secure data transer API supporting multiple data types and sources.",
+                                                "type": "requirement",
+                                                "relatedItemIds": [ "Business-Goal-Software-API-Service-January", "Business-Need-Software-API-Service-January" ]
+                                            },
+                                            {
+                                                "itemId": "Requirement-Integrations-January",
+                                                "name": "Build a secure integration UI for managing data downloads.",
+                                                "type": "requirement",
+                                                "relatedItemIds": [ "Business-Goal-Software-API-Service-January", "Business-Need-Software-API-Service-January" ]
+                                            },
+                                            {
+                                                "itemId": "Requirement-Testing-CI-January",
+                                                "name": "Develop a testing plan and continuous integration pipeline including artifacts.",
+                                                "type": "requirement",
+                                                "relatedItemIds": [ "Business-Goal-Software-API-Service-January", "Business-Need-Software-API-Service-January" ]
+                                            },
+                                            {
+                                                "itemId": "Requirement-Data-Reviews-January",
+                                                "name": "Design the data privacy, security, and quality review processes within the data transfer service and user experience.",
+                                                "type": "requirement",
+                                                "relatedItemIds": [ "Business-Goal-Software-API-Service-January", "Business-Need-Software-API-Service-January" ]
+                                            },
+                                            {
+                                                "itemId": "Requirement-Hosting-January",
+                                                "name": "Develop a web-hosting strategy for deploying the test and production APIs.",
+                                                "type": "requirement",
+                                                "relatedItemIds": [ "Business-Goal-Software-API-Service-January", "Business-Need-Software-API-Service-January" ]
+                                            },
+                                            {
+                                                "itemId": "Requirement-Web-App-January",
+                                                "name": "Develop a web app with web hosting for serving the client UI.",
+                                                "type": "requirement",
+                                                "relatedItemIds": [ "Business-Goal-Software-API-Service-January", "Business-Need-Software-API-Service-January" ]
+                                            },
+                                            {
+                                                "itemId": "Requirement-Data-Storage-January",
+                                                "name": "Design and implement a data storage environment with support for documents, images, and text records.",
+                                                "type": "requirement",
+                                                "relatedItemIds": [ "Business-Goal-Software-API-Service-January", "Business-Need-Software-API-Service-January" ]
+                                            }
+                                        ],
+                                        "createdDate": "D20250101T10:00:00AM PST",
+                                        "completedDate": "D20250101T10:00:00AM PST",
+                                        "isComplete": "false",
+                                        "isActive": "true"
+                                    }
+                                ]
+                            }
+                        ],
+                        "interviews": [
+                            {
+                                "interviewId": "Intake-Analysis-Customer-Interview-January",
+                                "name": "Intake Analsysis Customer Interview",
+                                "description": "The intake interview is scheduled to begin the business process analysis research.",
+                                "attendeeIds": [],
+                                "createdDate": "D20250101T10:00:00AM PST",
+                                "completedDate": "D20250101T10:00:00AM PST",
+                                "isComplete": "false",
+                                "isActive": "true",
+                                "assessments": [
+                                    {
+                                        "assessmentId": "Intake-Business-Process-Analysis-Assessment-January-2025",
+                                        "name": "Intake Customer Business Process Analysis Questionaire",
+                                        "description": "Marketing, Communications, and Development groups collaborate to publish a quarterly update to the Customer Business Process Analysis Questionaire.",
+                                        "questions": [
+                                            "Instructions: Complete the questionnaire with answers about your businesses current processes and systems. If you are unsure about the question please skip the question and continue with the next question. A manager or information technology professional in your company may be able to provide answers. If there are any questions or concerns please email admin@TheIntellectTech.com.",
+                                            "Does your team use a website or app to register customer information?",
+                                            "Is the customer information stored in a system that allows updates to the information or system?",
+                                            "Are there any processes that require sending digital information to customers or business systems?",
+                                            "Does your business or team receive digital information from external business systems?",
+                                            "Does your business have manual processes for information sharing (i.e. production of good and services, manufacturing, or health diagnosis and treatments)?",
+                                            "Would you like to explore how to update legacy business infrastructure?",
+                                            "Would you like to explore how to integrate business processes to simplify workflows?",
+                                            "Would you like to explore innovative solutions for unique business models?",
+                                            "Would you like to explore reducing friction for accessing digital resources?"
+                                        ],
+                                        "createdDate": "D20250101T11:00:00AM PST",
+                                        "status": "new",
+                                        "isActive": "true"
+                                    },
+                                    {
+                                        "assessmentId": "Data-DMBOK2-Maturity-Assessment-January-2025",
+                                        "name": "Data Management Body of Knowledge 2.0 (DMBOK2) Maturity Assessment Questionaire",
+                                        "description": "The Data Management, Governance, Compliance or Security teams provide professional expertise on procedures, standards, and rules for managing business data throughout the lifecycle (from creation to disposal). This document is the Data Management Body of Knowledge 2.0 (DMBOK2) Maturity Assessment Questionnaire is updated annually by the governance committee. The purpose of the document is to assess a business’s data strategy and implementation levels using the DMBOK2 framework. Data engineers or compliance leads are responsible for completing the questions in this assessment and determining the level of data maturity in order to determine where to begin with strategies for data compliance readiness. After completing the assessment the goal is to provide services to assist with data compliance readiness.",
+                                        "questions": [
+                                            "Instructions: Use the maturity level scale (1. No strategy, 2. Concepts are in exploration phase with sparse management or strategy conversations, 3. Data strategies are in progress and being developed in practice, 4. Data management and strategy is defined with implemented processes and tools, 5. Strategies are data-driven, appropriate policies, continuous updates) rate the investment in the given data strategy areas.",
+                                            "Does your business have one or more data architectures?",
+                                            "Does your data engineering processes include data modeling and design?",
+                                            "Does your business have data storage and management operations?",
+                                            "Are the data systems using data security and privacy tools to prevent unauthorized access, misuse, or breaches?",
+                                            "Does your business have data integration and interoperability processes?",
+                                            "Does your business have document and content management tools or systems?",
+                                            "Does your business have reference and master data models or databases?",
+                                            "Rate your business investment in data warehousing and business intelligence.",
+                                            "Does your business data include metadata for enhancing contextual meaning?",
+                                            "Rate your business investment in data quality management.",
+                                            "Rate your business investment in data classification.",
+                                            "Rate your business investment in a data management strategy.",
+                                            "Rate your business investment data valuation.",
+                                            "Rate your business investment principles and ethics.",
+                                            "Rate your business investment in data governance, and compliance strategy.",
+                                            "Rate your business investment in culture change.",
+                                            "Rate your business investment stewardship and ownership.",
+                                            "Rate your business investment data governance policies."
+                                        ],
+                                        "createdDate":"D20250101T11:00:00AM PST",
+                                        "status": "new",
+                                        "isActive": "true"
+                                    },
+                                    {
+                                        "assessmentId": "Data-DCAM2.2-Capability",
+                                        "name": "Data Management Capabilities Assessment Model v2.2 (DCAM 2.2) Questionnaire",
+                                        "description": "The Data Management Capabilities Assessment Model v2.2 (DCAM 2.2) Questionnaire is updated annually by the governance committee and provides a starting point for data management strategy and processes.",
+                                        "questions": [
+                                            "Instructions: Each question relates to a data management capability as defined in the DCAM 2.2 framework. Answer each question to the best of your knowledge.",
+                                            "Is the data management strategy specified?",
+                                            "Is the data management strategy shared with stakeholders and business groups?",
+                                            "Is the data management strategy developed, documented and consolidated?",
+                                            "Is the data management strategy aligned with high-level organizational objectives?",
+                                            "Does the data management strategy include an approval process?",
+                                            "Is the data management use case defined?",
+                                            "Are the data management business requirements documented?",
+                                            "Are the business requirements prioritized?",
+                                            "Are the business requirements approved?",
+                                            "Are the business requirements incorporated into the data management strategy?",
+                                            "Does the data management use case map to the data management strategy?",
+                                            "Does the data management use case align with the data management strategy?",
+                                            "Are the expected outcomes defined in sequence of occurrence?",
+                                            "Has the data management use case been reviewed by stakeholders?",
+                                            "Has the data management use case been validated by stakeholders?",
+                                            "Is the data management vision defined?",
+                                            "Has the data content strategy been defined?",
+                                            "Has the data usage strategy been defined?",
+                                            "Has the data management deployment strategy been communicated?",
+                                            "Is the data management program established?",
+                                            "Is the data management program strategy and approach defined?",
+                                            "Is the data management program strategy and approach adopted?",
+                                            "Are the data management program operations established?",
+                                            "Are the data management program operations roles and responsibilities defined?",
+                                            "Are the data management program operations roles and responsibilities implemented?",
+                                            "Are the data management program operations processes defined?",
+                                            "Are the data management program processes operational?",
+                                            "Does the data management program have the authority to enforce adherence and compliance?",
+                                            "Is the data management program included in the data management strategy?",
+                                            "Is the data management funding model established?",
+                                            "Has the data management funding model been approved?",
+                                            "Has the data management funding model been adopted?",
+                                            "Is the data management funding model matched to business requirements?",
+                                            "Is the data management funding model included in an implementation timeline?",
+                                            "Is the data management funding model mapped to operational capabilities?",
+                                            "Does the data management funding model align with the funding processes of the organization?",
+                                            "Is the data management funding model implemented?",
+                                            "Is the data management funding model implementation enforced?",
+                                            "Is the data management organizational structure defined?",
+                                            "Is the data management organizational structure implemented?",
+                                            "Is the Office of Data Management (ODM) created?",
+                                            "Does the ODM have an executive sponsor or lead?",
+                                            "Is the ODM funded?",
+                                            "Does the ODM have any staff?",
+                                            "Do the ODM staff have the required skills?",
+                                            "Are there data management program roadmaps?",
+                                            "Do the data management program roadmaps align with the data management strategy?",
+                                            "Are the data management program roadmaps shared with stakeholders and business groups?",
+                                            "Are the data management program roadmaps approved?",
+                                            "Have project plans with deliverables, timelines, and milestones been developed?",
+                                            "Has a data management process excellence program been established?",
+                                            "Are the data management process standards defined?",
+                                            "Are the data management process standards implemented through the organization?",
+                                            "Have the industry standards and best practices been considered in the data management process standards?",
+                                            "Are the data management process included in policies?",
+                                            "Are the data management processes auditable?",
+                                            "Has stakeholder engagement been established?",
+                                            "Is stakeholder engagement confirmed?",
+                                            "Have stakeholders approved and committed to the data management program deliverables?",
+                                            "Are the stakeholder accountable for the data management program deliverables?",
+                                            "Do stakeholders have resource allocation plans for the data management program deliverables?",
+                                            "Are the resource allocation plans aligned with project initiatives and requirements?",
+                                            "Are resources including funds allocated, aligned with roadmaps and segmented into work streams?",
+                                            "Are communications processes established?",
+                                            "Are internal communication plans defined?",
+                                            "Are internal communication plans approved?",
+                                            "Are communications processes operational?",
+                                            "Have external communications plans with regulatory bodies been defined?",
+                                            "Have external communications plans with regulatory bodies been approved?",
+                                            "Have training programs been designed and developed?",
+                                            "Are training programs operational?",
+                                            "Is the data management program measured for effectiveness?",
+                                            "Is the data management program evaluated against business objectives?",
+                                            "Have program metrics been defined?",
+                                            "Are program metrics used to track progress?",
+                                            "Have outcome metrics been defined?",
+                                            "Are outcome metrics associated with business objectives?",
+                                            "Have process metrics been defined?",
+                                            "Are process metrics used to drive continuous improvement?",
+                                            "Have financial metrics for costs versus benefits (ROI) been implemented?"
+                                        ],
+                                        "createdDate":"D20250101T11:00:00AM PST",
+                                        "status": "new",
+                                        "isActive": "true"
+                                    }
+                                ],
+                                "reviews": [
+                                    {
+                                        "reviewId": "Capability-",
+                                        "name": "",
+                                        "description": "",
+                                        "items": [],
+                                        "createdDate": "",
+                                        "status": "",
+                                        "isActive": ""
+                                    },
+                                    {
+                                        "reviewId": "Security-",
+                                        "name": "",
+                                        "description": "",
+                                        "items": [],
+                                        "createdDate": "",
+                                        "status": "",
+                                        "isActive": ""
+                                    },
+                                    {
+                                        "reviewId": "privacy",
+                                        "name": "",
+                                        "description": "",
+                                        "items": [],
+                                        "createdDate": "",
+                                        "status": "",
+                                        "isActive": ""
+                                    },
+                                    {
+                                        "reviewId": "Quality",
+                                        "name": "",
+                                        "description": "",
+                                        "items": [],
+                                        "createdDate": "",
+                                        "status": "",
+                                        "isActive": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "taxonomy": {
+            "taxonomyId": "",
+            "name": "",
+            "semantics": [],
+            "createdDate": "",
+            "isActive": ""
+        },
+        "architectures": [
+            {
+                "architectureId": "Architecture-UI-Web-API-Data-Stack-January",
+                "description": "Architecture stack options including cloud platform.",
+                "techStack": [ "MongoDB", "Express", "ReactJS", "NodeJS", ".NET Framework", "PHP", "Azure Cloud"],
+                "cloudPlatforms": [ 
+                    {
+                        "cloudAzure": ["Azure Web App", "Azure Storage"]
+                    } 
+                ],
+                "createdDate": "D20250101T10:00:00AM PST",
+                "isActive":"true",
+                "dataflows": [
+                    {
+                        "dataFlowId": "Dental-History-Xrays-January",
+                        "name": "Dental History and X-Rays",
+                        "decscription": "Dental history records and x-rays for orthodontics procedure.",
+                        "stages": [
+                                { 
+                                    "stage": "Retrieve", 
+                                    "description": "API call to retrieve patient history from family or primary dentist."
+                                },
+                                { 
+                                    "stage": "Import", 
+                                    "description": "Import dental history into system data store."
+                                },
+                                { 
+                                    "stage": "Export", 
+                                    "description": "API call to export x-rays over to dental equipment manurfactur."
+                                }
+                            ],
+                        "createdDate": "D20250101T10:00:00AM PST",
+                        "isActive":"true",
+                        "catalogs": [
+                            {
+                                "catalogId": "Data-Attributes-Definitions-Catalog-January",
+                                "name": "Data Attributes Definitions Catalog",
+                                "dictionaries": [
+                                    {
+                                        "dictionaryId": "Data-Dictionary-Dental-Definitions-January",
+                                        "name": "Data Dictionary Dental Definitions",
+                                        "definitions": [
+                                            {
+                                                "term": "",
+                                                "definition": "" 
+                                            }
+                                        ],
+                                        "createdDate": "D20250101T10:00:00AM PST",
+                                        "isActive": "true"
+                                    }
+                                ],
+                                "createdDate": "D20250101T10:00:00AM PST",
+                                "isActive": "true"
+                            }
+                        ],
+                        "sources": [
+                            {
+                                "dataSourceId": "Dental-Records-DB-January",
+                                "name": "DentalRecordsDB",
+                                "data lineage": "none",
+                                "data storage": "SQL",
+                                "file type": "none",
+                                "createdDate": "D20250101T10:00:00AM PST",
+                                "isActive": "true",
+                                "models": []
+                            },
+                            {
+                                "dataSourceId": "Dental-Patient-History-DB-January",
+                                "name": "DentalPatientHistoryDB",
+                                "data lineage": "Imported from DentalRecordsDB.",
+                                "data storage": "Oracle",
+                                "file type": "none",
+                                "createdDate": "D20250101T10:00:00AM PST",
+                                "isActive": "true",
+                                "models": []
+                            },
+                            {
+                                "dataSourceId": "Dental-Patient-Xrays-BLOB-January",
+                                "name": "DentalPatientXraysBlob",
+                                "data lineage": "none",
+                                "data storage": "BLOB",
+                                "file type": "image",
+                                "createdDate": "D20250101T10:00:00AM PST",
+                                "isActive": "true",
+                                "models": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "use cases": [
+            {
+                "useCaseId": "Dental-Records-January",
+                "name": "Dental Records Transfer",
+                "description": "Clinic receives patient profile, insurance, and previous visits info from family or primary dentist.",
+                "createdDate": "D20250101T10:00:00AM PST",
+                "isActive": "true",
+                "stakeholders": [
+                    {
+                        "stakeholderId": "Brendan-Jacobs-Admin-Manager-January ",
+                        "name": "Dr. Brendan Jacobs",
+                        "role": "Dental Administrative Manager",
+                        "group": "Records Management",
+                        "createdDate": "D20250101T10:00:00AM PST",
+                        "isActive": "true"
+                    }
+                ],
+                "governances": [
+                    {
+                        "governanceId": "General-Data-Protection-Regulation-GDPR-January",
+                        "name": "General Data Protection Regulation Policy",
+                        "country": "Belgium, United Kingdom",
+                        "state": "Brussel",
+                        "city": "Bruxelles",
+                        "createdDate":"D20250401T11:00:00AM PST",
+                        "isActive":"true",
+                        "policies": [
+                            {
+                                "policyId": "Data-Protection-January",
+                                "name": "Dental records protection required for patient's personal identifiable information.",
+                                "description": "Protection policy including data processing principles and protection rights (i.e. removal of all personally indentifiable information such as name, address, phone number, etc.)",
+                                "policyType": "privacy",
+                                "createdDate": "D20250101T10:00:00AM PST",
+                                "isActive": "true",
+                                "regulatingBody": {
+                                    "bodyId": "European-Commission-January",
+                                    "name": "European Commission",
+                                    "country": "Belgium, United Kingdom",
+                                    "state": "Brussel",
+                                    "city": "Bruxelles",
+                                    "createdDate": "D20250101T10:00:00AM PST",
+                                    "isActive":"true"
+                                },
+                                "regulation": {
+                                    "regulationId": "General-Data-Protection-Regulation",
+                                    "name": "General Data Protection Regulation",
+                                    "description": "European Commission regulates data protection as a fundamental right under law. Personal data processing principles include lawfulness, fairness, transparency, purpose limitation, data minimisation, storage limitation, accuracy, integrity, confidentiality, and accountability. Protection rights include right to be informed, right of access, right to rectification, right to erasure, right to restriction of processing, right to data portability, right to object, and rights in relation to automated decision-making and profiling.",
+                                    "createdDate": "D20250101T10:00:00AM PST",
+                                    "isActive":"true"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "governanceId": "Health-Level-Seven-HL7-January",
+                        "name": "Health-Level Seven Interoperability Policy",
+                        "country": "United States",
+                        "state": "D.C.",
+                        "city": "Washington",
+                        "createdDate": "D20250101T10:00:00AM PST",
+                        "isActive":"true",
+                        "policy": [
+                            {
+                                "policyId": "Health-Records-Interoperability-January",
+                                "name": "Health records transfer interoperability",
+                                "description": "Healthcare interoperability for health records data transfer protocols.",
+                                "policyType": "interoperability",
+                                "createdDate": "D20250101T10:00:00AM PST",
+                                "isActive": "true",
+                                "regulatingBody": {
+                                    "bodyId": "US-Health-Human-Services-January",
+                                    "name": "US Health and Human Services",
+                                    "country": "United States",
+                                    "state": "D.C.",
+                                    "city": "Washington",
+                                    "createdDate": "D20250101T10:00:00AM PST",
+                                    "isActive":"true"
+                                },
+                                "regulation": {
+                                    "regulationId": "Health-Level-Seven-January",
+                                    "name": "Health-Level Seven",
+                                    "description": "US Health and Human Services regulates the interoperability of health records data transfer protocols and standards.",
+                                    "createdDate": "D20250101T10:00:00AM PST",
+                                    "isActive":"true"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "compliances": [
+                    {
+                        "complianceId": "GDPR-Compliance-Requirements-January",
+                        "name": "GDPR Compliance Requirements",
+                        "country": "Belgium, United Kingdom",
+                        "state": "Brussel",
+                        "city": "Bruxelles",
+                        "createdDate": "D20250101T10:00:00AM PST",
+                        "completedDate": "",
+                        "status": "new",
+                        "isActive":"true",
+                        "framework": {
+                            "frameworkId": "Data-Governance-BMBOK-January-2025",
+                            "name": "Data Management Body of Knowledge (BMBOK)",
+                            "description": "Data management framework for data governance created by the Data Management Association (DAMA International).",
+                            "frameworkType": "data governance",
+                            "createdDate": "D20250101T11:00:00AM PST",
+                            "isActive": "true"
+                        },
+                        "checklists": [
+                            {
+                                "checklistId": "Governance-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            },
+                            {
+                                "checklistId": "Regulation-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            },
+                            {
+                                "checklistId": "Security-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            },
+                            {
+                                "checklistId": "Quality",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            },
+                            {
+                                "checklistId": "Final-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            }
+                        ],
+                        "reviews": [
+                            {
+                                "reviewId": "Implementation-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "status": "",
+                                "isActive": ""
+                            },
+                            {
+                                "reviewId": "Security-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "status": "",
+                                "isActive": ""
+                            },
+                            {
+                                "reviewId": "Privacy-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "status": "",
+                                "isActive": ""
+                            },
+                            {
+                                "reviewId": "Quality-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "status": "",
+                                "isActive": ""
+                            }
+                        ]
+                    },
+                    {
+                        "complianceId": "HL7-Compliance-Requirements-January",
+                        "name": "HL7 Compliance Requirements",
+                        "country": "United States",
+                        "state": "D.C.",
+                        "city": "Washington",
+                        "createdDate": "D20250101T10:00:00AM PST",
+                        "completedDate": "",
+                        "status": "new",
+                        "isActive":"true",
+                        "framework": 
+                        {
+                            "frameworkId": "Data-Governance-DCAM-2.2-January-2025",
+                            "name": "Data Management Capabilities Assessment Model 2.2 (DCAM 2.2)",
+                            "description": "The DCAM framework was created by the EDM Council formed by the Global Financial Industry and assesses current data management capabilities using a scoring model.",
+                            "frameworkType": "gata governance",
+                            "createdDate": "D20250101T11:00:00AM PST",
+                            "isActive": "true"
+                        },
+                        "checklists": [
+                            {
+                                "checklistId": "Governance-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            },
+                            {
+                                "checklistId": "Regulation-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            },
+                            {
+                                "checklistId": "Security-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            },
+                            {
+                                "checklistId": "Quality",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            },
+                            {
+                                "checklistId": "Final-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "completedDate": "",
+                                "status": "new",
+                                "isActive": ""
+                            }
+                        ],
+                        "reviews": [
+                            {
+                                "reviewId": "Implementation-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "status": "",
+                                "isActive": ""
+                            },
+                            {
+                                "reviewId": "Security-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "status": "",
+                                "isActive": ""
+                            },
+                            {
+                                "reviewId": "Privacy-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "status": "",
+                                "isActive": ""
+                            },
+                            {
+                                "reviewId": "Quality-",
+                                "name": "",
+                                "description": "",
+                                "items": [],
+                                "createdDate": "",
+                                "status": "",
+                                "isActive": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+      }
+    ]
+}
