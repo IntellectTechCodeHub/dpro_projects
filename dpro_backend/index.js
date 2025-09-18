@@ -6,8 +6,6 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 
-import User from './models/UserModel.js';
-import DbAuth from './dbauth/DbAuth_UserModel_Test.js';
 import UserRouter from './routers/UserRouter.js';
 
 async function main(){
@@ -25,8 +23,6 @@ async function main(){
     server.listen('3000', () => {
         console.log('server running on port 3000');
     });
-
-    //DbAuth();
     
 }
 
