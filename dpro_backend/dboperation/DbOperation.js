@@ -1,7 +1,6 @@
 // import library
 import mongoose from "mongoose";
 import fs from 'node:fs';
-import { ReadableStreamDefaultController } from "node:stream/web";
 
 const filePath = '../dpro data samples/data samples/model collection mapping.json';
 
@@ -16,10 +15,10 @@ const DbOperation = async (operation, db, model, schema, values) => {
     var returnValue;
 
     // connection string
-    const uri = 'mongodb+srv://oasisdbcluster.xg80xyk.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=OasisDBCluster';
+    const uri = '';
 
     // credentials (remove file path before check-in) consider MongoDB profile or Azure Key Vault for storing credentials.
-    const certPath = 'C:/certs/Analyst Goverance Test/X509-cert-8523298550705420936.pem';
+    const certPath = '';
 
     // connection options
     const options = {
