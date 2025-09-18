@@ -1,0 +1,6 @@
+{
+    "collection_mappings": [
+        {"model": "User", "collection": "users"},
+        {"model": "Business", "collection": "businesses"}
+    ]
+}
