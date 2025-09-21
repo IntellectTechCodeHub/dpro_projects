@@ -16,6 +16,7 @@ AnalysisRouter.post('/analysis', (req, res) => {
     var obj = { 
         "analysisId": req.query.analysisId,
         "name": req.query.name,
+        "workflowId": req.query.workflowDocumentId,
         "requestorId": req.query.requestorId,
         "analystId": req.query.analystId,
         "scheduledDate": req.query.scheduledDate,
@@ -57,7 +58,7 @@ AnalysisRouter.get('/analysis', (req, res) => {
 AnalysisRouter.patch('/analysis', (req, res) => {
 
     var obj = AnalysisController("Update Analysis", req.query);
-
+    console.log(obj);
     var analysis = DbOperation('Update By Value', dbName, "Analysis", schema, obj)
                                    .then(analysisUpdate => res.status(200).send({ "valid": true, "object": "analysis", "data":  JSON.stringify({analysisUpdate})}))
                                    .catch(e => res.status(400).send({ "valid": false, "object": "analysis", "data": e.toString() }));

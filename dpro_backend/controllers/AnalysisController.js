@@ -9,6 +9,7 @@ const AnalysisController = (operation, query, updateObject) => {
             
                 updateObj = {
                     "analysisId": query.analysisId,
+                    "workflowId": query.workflowDocumentId,
                     "name": query.name,
                     "requestor": query.requestorId,
                     "analystId": query.analystId,
@@ -22,6 +23,8 @@ const AnalysisController = (operation, query, updateObject) => {
             }
         
             if(query.analysisDocumentId && (query.problemDocumentId || query.problemId)){
+                console.log(typeof(query.problemId));
+               // searchRecordId = query.problemDocumentId === undefined ? searchRecordId : { "_id": query.analysisDocumentId, "problems._id": query.problemDocumentId };
                 updateObj = updateAnalysis_addProblem(query, updateObj);
             }
 

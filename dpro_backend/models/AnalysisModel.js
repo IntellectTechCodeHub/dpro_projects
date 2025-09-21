@@ -6,6 +6,11 @@ export const AnalysisSchema = mongoose.Schema({
         required: true,
         message: 'analysisId is required.'
     },
+    workflowId: {
+        type: String,
+        required: true,
+        message: 'workflowId is required.'
+    },
     name: {
         type: String,
         required: true,

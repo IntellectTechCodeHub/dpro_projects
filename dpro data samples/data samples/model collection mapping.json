@@ -1,9 +1,10 @@
 {
     "collection_mappings": [
-        {"model": "User", "collection": "users"},
-        {"model": "Business", "collection": "businesses"},
-        {"model": "Analysis", "collection": "analyses"},
-        {"model": "Problem", "collection": "problems" },
-        {"model": "Solution", "collection": "solutions" }
+        { "model": "User", "collection": "users" },
+        { "model": "Business", "collection": "businesses" },
+        { "model": "Workflow", "collection": "workflows" },
+        { "model": "Analysis", "collection": "analyses" },
+        { "model": "Problem", "collection": "problems" },
+        { "model": "Solution", "collection": "solutions" }
     ]
 }
