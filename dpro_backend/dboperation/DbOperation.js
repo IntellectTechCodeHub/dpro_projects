@@ -21,7 +21,7 @@ const DbOperation = async (operation, db, model, schema, values) => {
     const certPath = '';
 
     // connection options
-    const options = {
+    const optionsMongoDb = {
         tls: true,
         tlsCertificateKeyFile: certPath,
         serverApi: { version: '1', strict: true, depreciationErrors: true }
@@ -33,7 +33,7 @@ const DbOperation = async (operation, db, model, schema, values) => {
         mongoose.connection.on('disconnected', () => { console.log('Disconnected from MongoDB cluster.'); });
 
         // create Mongoose client connection with MongoDBClientOptions to set Stable API version.
-        await mongoose.connect(uri, options);
+        await mongoose.connect(uri, optionsMongoDb);
         
         mongoose.model(model, schema);
         
@@ -56,7 +56,7 @@ const DbOperation = async (operation, db, model, schema, values) => {
             }
         }
 
-    var collection = await dbConn.collection(collectionName);
+        var collection = await dbConn.collection(collectionName);
 
         if(!collection || collection == undefined)
             await dbModel.createCollection().then(console.log('Users collection created'));
@@ -114,9 +114,9 @@ const DbOperation = async (operation, db, model, schema, values) => {
             case "Update By Value":
                 try {
                     
-                    var filter = values.searchUserId.userId === undefined ? values.searchRecordId : values.searchUserId;
-
-                    var updateRecordByValue = dbModel.updateOne(filter, { $set: values.updateObj }).then(console.log('All records in ' + db + '.' + model + ' collection with values.'));
+                    var filter = values.searchRecordId;
+                    var optionsUpdate = { "upsert": true };
+                    var updateRecordByValue = dbModel.updateOne(filter, { $set: values.updateObj }, optionsUpdate).then(console.log('All records in ' + db + '.' + model + ' collection with values.'));
                     await updateRecordByValue;
                     console.log(updateRecordByValue);
                     updateRecordByValue.then(result => returnValue = JSON.stringify(result));

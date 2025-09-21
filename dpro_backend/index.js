@@ -7,6 +7,7 @@ import compression from 'compression';
 import cors from 'cors';
 
 import UserRouter from './routers/UserRouter.js';
+import AnalysisRouter from './routers/AnalysisRouter.js';
 
 async function main(){
 
@@ -17,6 +18,7 @@ async function main(){
     app.use(cookieParser());
     app.use(compression());
     app.use(UserRouter);
+    app.use(AnalysisRouter);
 
     const server = http.createServer(app);
 

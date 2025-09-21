@@ -1,53 +1,6 @@
 import mongoose from "mongoose";
 
-export const AnalysisSchema = mongoose.Schema({
-    analysisId: {
-        type: String,
-        required: true,
-        message: 'analysisId is required.'
-    },
-    name: {
-        type: String,
-        required: true,
-        message: 'name is required.'
-    },
-    requestorId: {
-        type: String,
-        required: true,
-        message: 'requestorId is required.'
-    },
-    analystId: {
-        type: String,
-        required: true,
-        message: 'analystId is required.'
-    },
-    scheduledDate: {
-        type: Date,
-        required: true,
-        message: 'scheduledDate is required.'
-    },
-    createdDate: {
-        type: Date,
-        required: true,
-        message: 'createdDate is required.'
-    },
-    completedDate: {
-        type: Date,
-        required: true,
-        message: 'completedDate is required.'
-    },
-    status: {
-        type: String,
-        required: true,
-        message: 'status is required.'
-    },
-    isActive: {
-        type: Boolean,
-        required: true,
-        message: 'isActive is required.'
-    },
-    problems: [ 
-        {
+export const ProblemSchema = mongoose.Schema({
             problemId: {
                 type: String,
                 required: true,
@@ -88,9 +41,8 @@ export const AnalysisSchema = mongoose.Schema({
                 required: true,
                 message: 'isActive is required.'
             }
-        }
-    ]
 });
 
-const Analysis = mongoose.model('Analysis', AnalysisSchema);
-export default Analysis;
+const Problem = mongoose.model('Problem', ProblemSchema);
+
+export default Problem;

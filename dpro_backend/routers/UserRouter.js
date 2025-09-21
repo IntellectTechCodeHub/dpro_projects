@@ -57,7 +57,6 @@ UserRouter.get('/userByName/:name', (req, res) => {
 
 UserRouter.patch('/userUpdateById', (req, res) => {
     var obj = {
-        searchUserId: { "userId": req.params.userId },
         searchRecordId: { "_id": req.query.id},
         updateObj: {
             "name": req.query.name,
