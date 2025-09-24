@@ -1,8 +1,8 @@
 import express from 'express';
 import DbOperation from '../dboperation/DbOperation.js';
-import { AnalysisSchema } from '../models/AnalysisModel.js';
-import { ProblemSchema } from '../models/ProblemModel.js';
-import { SolutionSchema } from '../models/SolutionModel.js';
+import { AnalysisSchema } from '../models/analysis/AnalysisModel.js';
+import { ProblemSchema } from '../models/analysis/ProblemModel.js';
+import { SolutionSchema } from '../models/analysis/SolutionModel.js';
 import AnalysisController from '../controllers/AnalysisController.js';
 
 const AnalysisRouter = express.Router();

@@ -1,8 +1,8 @@
 import express from 'express';
 import DbOperation from '../dboperation/DbOperation.js';
-import { InterviewSchema } from '../models/InterviewModel.js';
-import { AssessmentSchema } from '../models/AssessmentModel.js';
-import { ReviewSchema } from '../models/ReviewModel.js';
+import { InterviewSchema } from '../models/interview/InterviewModel.js';
+import { AssessmentSchema } from '../models/interview/AssessmentModel.js';
+import { ReviewSchema } from '../models/interview/ReviewModel.js';
 
 var dbName = 'AGTest';
 var modelName = 'Interview';

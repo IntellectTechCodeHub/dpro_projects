@@ -11,6 +11,11 @@ import BusinessRouter from './routers/BusinessRouter.js';
 import WorkflowRouter from './routers/WorkflowRouter.js';
 import AnalysisRouter from './routers/AnalysisRouter.js';
 import InterviewRouter from './routers/InterviewRouter.js';
+import ArchitectureRouter from './routers/ArchitectureRouter.js';
+import UseCaseRouter from './routers/UseCaseRouter.js';
+import GovernanceRouter from './routers/GovernanceRouter.js';
+import ComplianceRouter from './routers/ComplianceRouter.js';
+
 
 async function main(){
 
@@ -26,6 +31,10 @@ async function main(){
     app.use(WorkflowRouter);
     app.use(AnalysisRouter);
     app.use(InterviewRouter);
+    app.use(ArchitectureRouter);
+    app.use(UseCaseRouter);
+    app.use(GovernanceRouter);
+    app.use(ComplianceRouter);
     
 
     const server = http.createServer(app);

@@ -30,7 +30,11 @@ export const BusinessSchema = mongoose.Schema({
         type: Array,
         required: true,
         message: 'industries is required.'
-    }
+    },
+    workflows: Array,
+    taxonomy: Object,
+    architectures: Array,
+    useCases: Array,
 });
 
 const Business = mongoose.model('Business', BusinessSchema);

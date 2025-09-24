@@ -5,6 +5,24 @@
         { "model": "Workflow", "collection": "workflows" },
         { "model": "Analysis", "collection": "analyses" },
         { "model": "Problem", "collection": "problems" },
-        { "model": "Solution", "collection": "solutions" }
+        { "model": "Solution", "collection": "solutions" },
+        { "model": "Interview", "collection": "interviews" },
+        { "model": "Assessment", "collection": "assessments" },
+        { "model": "Review", "collection": "reviews" },
+        { "model": "Taxonomy", "colection": "taxonomies" },
+        { "model": "Architecture", "collection": "architectures" },
+        { "model": "Data Flow", "collection": "dataflows" },
+        { "model": "Data Catalog", "collection": "datacatalogs" },
+        { "model": "Data Source", "collection": "datasources" },
+        { "model": "Use Case", "collection": "use cases" },
+        { "model": "Governance", "collection": "governances" },
+        { "model": "Policy", "collection": "policy" },
+        { "model": "Regulating Body", "collection": "regulatingbodies" },
+        { "model": "Regulation", "collection": "regulations" },
+        { "model": "Compliance", "collection": "compliances" },
+        { "model": "Framework", "collection": "frameworks" },
+        { "model": "Checklist", "collection": "checklists" },
+        { "model": "Review", "collection": "reviews" },
+
     ]
 }
