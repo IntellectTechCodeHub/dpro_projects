@@ -6,14 +6,18 @@ import Section from "./components/elements/section.js"
 import Footer from "./components/footer.js";
 import DataValues from "./components/data retrieval/datavalues.js";
 import SaveDataValues from "./components/data save/savedatavalues.js";
+import Analysis from "./components/features/analysis/analysis.js";
 
 export default function Home() {
+
+  //const userPriviledges = {userId: "000-000", role: "analyst", processes: ["analysis", "architecture"] };
 
   let user = 1;
   let intake = null;
   let review = null;
   let dataRetrieval = null;
-  let dataSave = 1;
+  let dataSave = null;
+  let analysis = 1;
   let pageContent, footerContent;
 
   // User types represent three roles: business analyst (reviewer, interviewer), requestor (team member or lead), workflow designer (process diagram creator)  
@@ -45,11 +49,15 @@ export default function Home() {
     pageContent = <SaveDataValues />;
     footerContent = <Footer />;
   }
+  else if (analysis != null) {
+    pageContent = <Analysis />;
+    footerContent = <Footer />;
+  }
 
   return (
     <div className="block flex-col">
       <Header></Header>
-      <div className="flex flex-col mt-[25] w-full h-screen items-center justify-evenly">      
+      <div className="flex flex-col mt-[60] w-full h-screen items-center justify-evenly">      
             {
               pageContent
             }

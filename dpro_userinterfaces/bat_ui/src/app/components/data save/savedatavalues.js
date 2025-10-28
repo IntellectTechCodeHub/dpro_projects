@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { formatUrl } from '../../helpers/httputility.js';
 
-export default function SaveDataValues(url, data) {
+export default function SaveDataValues(type, url, data) {
     const [saveDataValues, setSaveDataValues] = useState();
     const [saveDataError, setSaveDataError] = useState();
     const [saveHasData, setSaveHasData] = useState(false);
@@ -14,15 +15,10 @@ export default function SaveDataValues(url, data) {
 
     let dataObject = data;
 
-    function formatUrl() {
-        let urlString = url + "?" +
-            "businessId=" + dataObject.businessId + "&" +
-            "businessName=" + dataObject.name + "&" +
-            "businessDescription=" + dataObject.description + "&" +
-            "businessCreatedDate=" + dataObject.createdDate + "&" +
-            "businessIsActive=" + dataObject.isActive;
-
-            return urlString;    
+    function formatUrlString() {
+        let urlString = formatUrl(type, url, dataObject);
+        console.log("Formatter: " + urlString);
+        return urlString;    
     }
 
     async function saveData(apiUrl, dataObject) {
@@ -50,10 +46,10 @@ export default function SaveDataValues(url, data) {
         }
     }
 
-    url = formatUrl();
+    var serviceUrl = formatUrlString();
 
     useEffect(() => {
-        dataResults = saveData(url, dataObject);
+        dataResults = saveData(serviceUrl, dataObject);
     }), ([!hasSent]);
 
     function SaveData() {
