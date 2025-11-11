@@ -1,16 +1,32 @@
 const HttpUtility = (urlDomainsList) => {
-    let urlDomains;
-}
 
-function getBusinessHttpUrl(domainUrlString, dataObject){
-    let urlString = domainUrlString + "?" +
+    let urlDomains;
+
+    function getBusinessHttpUrl(domainUrlString, dataObject){
+
+        let urlString = domainUrlString + "?" +
             "businessId=" + dataObject.businessId + "&" +
             "businessName=" + dataObject.name + "&" +
             "businessDescription=" + dataObject.description + "&" +
             "businessCreatedDate=" + dataObject.createdDate + "&" +
             "businessIsActive=" + dataObject.isActive;
+
             return urlString;  
     }
+
+    function getArchitectureHttpUrl(domainString){
+
+    }
+    
+    function getGoveranceHttpUrl(domainString){
+
+    }
+
+    function getComplianceHttpUrl(domainString){
+
+    }
+
+}
 
 function getProblemUrlString(domainUrlString, dataObject){
     let urlString = domainUrlString + "&" + 
@@ -24,9 +40,9 @@ function getProblemUrlString(domainUrlString, dataObject){
 }
 
 function getSolutionUrlString(domainUrlString, dataObject){
-        let urlString = domainUrlString + "&" + 
+        let urlString = "&" + 
             "solutionId=" + dataObject.solutionId + "&" +
-            "solutionName" + dataObject.name + "&" +
+            "solutionName=" + dataObject.name + "&" +
             "solutionDescription=" + dataObject.description + "&" +
             "analysisDocumentId=" + dataObject.analysisDocumentId + "&" +
             "problemDocumentId=" + dataObject.problemDocumentId + "&" +        
@@ -34,8 +50,9 @@ function getSolutionUrlString(domainUrlString, dataObject){
             "solutionCompletedDate=" + dataObject.solutionCompletedDate + "&" +
             "solutionIsComplete=" + dataObject.solutionIsComplete + "&" +
             "solutionIsActive=" + dataObject.isActive;
+
             return urlString;
-}
+    }
 
 function getAnalysisHttpUrl(domainUrlString, dataObject){
         let urlString = domainUrlString + "?" +
@@ -54,12 +71,14 @@ function getAnalysisHttpUrl(domainUrlString, dataObject){
                 urlString = getProblemUrlString(urlString, dataObject);
 
             if(dataObject.solutionId !== undefined)
-                urlString = getSolutionUrlString(urlString, dataObject);
+                    urlString = getSolutionUrlString(urlString, dataObject);
 
             return urlString;
-}
+    }
 
 export function formatUrl(domainObjectType, url, dataObject) {
+        console.log(domainObjectType);
+
         let httpUrl;
         switch(domainObjectType.type){
             case 'Business':
@@ -68,8 +87,19 @@ export function formatUrl(domainObjectType, url, dataObject) {
                 return httpUrl;
                 break;
             case 'Analysis':
+                var urls = [];
                 if(domainObjectType.data.analysisId !== undefined)
-                    httpUrl = getAnalysisHttpUrl(domainObjectType.url, domainObjectType.data);
+                    urls.push(getAnalysisHttpUrl(domainObjectType.url, domainObjectType.data));
+                return urls;
+                break;
+            case 'Problem':
+                if(domainObjectType.data.problemId !== undefined)
+                    httpUrl = this.getProblemUrlString(url, dataObject);
+                return httpUrl;
+                break;
+            case 'Solution':
+                if(domainObjectType.data.solutionId)
+                    httpUrl = this.getSolutionUrlString(url, dataObject);
                 return httpUrl;
                 break;
             default:

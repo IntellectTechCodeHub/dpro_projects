@@ -4,14 +4,20 @@ import { ArchitectureSchema } from '../models/architecture/ArchitectureModel.js'
 import { DataFlowSchema } from '../models/architecture/DataFlowModel.js';
 import { DataCatalogSchema } from '../models/architecture/DataCatalogModel.js';
 import { DataSourceSchema } from '../models/architecture/DataSourceModel.js';
- 
-var dbName = 'AGTest';
+import { LogEvent } from '../helpers/api/logger/logEvent.js';
+import { testDbName, telemetryEvent, logArchitectureAPIPostRequest, logArchitectureAPIGetRequest } from '../config/constants.js';
+import { logArchitectureDataFlowAPIPostRequest, logArchitectureDataFlowAPIGetRequest, logArchitectureDataCatalogAPIPostRequest, logArchitectureDataCatalogAPIGetRequest } from '../config/constants.js';
+import { logArchitectureDataSourceAPIPostRequest, logArchitectureDataSourceAPIGetRequest } from '../config/constants.js'; 
+
+var dbName = testDbName;
 var modelName = 'Architecture';
 var schema = ArchitectureSchema;
 
 const ArchitectureRouter = express.Router();
 
 ArchitectureRouter.post('/architecture', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logArchitectureAPIPostRequest);
+
     var obj = {
         "architectureId": req.query.architectureId,
         "businessId": req.query.businessDocumentId,
@@ -23,11 +29,23 @@ ArchitectureRouter.post('/architecture', (req, res) => {
     };
 
     var architecture = DbOperation('New', dbName, modelName, schema, obj)
-                            .then(newArchitecture => res.status(200).send({ "valid": true, "object": "data source", "data": JSON.stringify(newArchitecture) }))
-                            .catch(e => res.send(400).send({ "valid": false, "object": "data source", "data": e.toString() }));
+                            .then(newArchitecture => res.status(200).send({ "valid": true, "object": "architecture", "data": JSON.stringify(newArchitecture) }))
+                            .catch(e => res.send(400).send({ "valid": false, "object": "architecture", "data": e.toString() }));
+});
+
+ArchitectureRouter.get('/architecture', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logArchitectureAPIGetRequest);
+
+    var obj = { "isActive": true };
+
+    var architectures = DbOperation('Get All', dbName, dbModel, schema, obj)
+                        .then(architectures => res.status(200).send({ "valid": true, "object": "architecture", "data": JSON.stringify(architectures)} ))
+                        .catch(e => res.status(400).send({ "valid": false, "object": "data architecture", "data": e.toString()} ));
 });
 
 ArchitectureRouter.post('/architecture/dataflow', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, DataFlowSchema, logArchitectureDataFlowAPIPostRequest);
+
     var obj = {
         "dataflowId": req.query.dataflowId,
         "architectureId": req.query.architectureDocumentId,
@@ -45,7 +63,19 @@ ArchitectureRouter.post('/architecture/dataflow', (req, res) => {
                             .catch(e => res.send(400).send({ "valid": false, "object": "data flow", "data": e.toString() }));
 });
 
+ArchitectureRouter.get('/architecture/dataflow', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, DataFlowSchema, logArchitectureDataFlowAPIGetRequest);
+
+    var obj = { "isActive": true };
+
+    var dataflows = DbOperation('Get All', dbName, 'Data Flow', DataFlowSchema, obj)
+                        .then(dataflows => res.status(200).send({ "valid": true, "object": "data flow", "data": JSON.stringify(dataflows)} ))
+                        .catch(e => res.status(400).send({ "valid": false, "object": "data flow", "data": e.toString()} ));
+});
+
 ArchitectureRouter.post('/architecture/dataflow/datacatalog', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, DataCatalogSchema, logArchitectureDataCatalogAPIPostRequest);
+
     var obj = {
         "catalogId": req.query.catalogId,
         "name": req.query.catalogName,
@@ -59,7 +89,19 @@ ArchitectureRouter.post('/architecture/dataflow/datacatalog', (req, res) => {
                             .catch(e => res.send(400).send({ "valid": false, "object": "data catalog", "data": e.toString() }));
 });
 
+ArchitectureRouter.get('/architecture/datacatalog', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, DataCatalogSchema, logArchitectureDataCatalogAPIGetRequest);
+
+    var obj = { "isActive": true };
+
+    var datacatalogs = DbOperation('Get All', dbName, 'Data Catalog', DataCatalogSchema, obj)
+                        .then(datacatalogs => res.status(200).send({ "valid": true, "object": "data catalog", "data": JSON.stringify(datacatalogs)} ))
+                        .catch(e => res.status(400).send({ "valid": false, "object": "data catalog", "data": e.toString()} ));
+});
+
 ArchitectureRouter.post('/architecture/dataflow/datasource', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, DataSourceSchema, logArchitectureDataSourceAPIPostRequest);
+
     var obj = {
         "dataSourceId": req.query.dataSourceId,
         "name": req.query.dataSource.dataSourceName,
@@ -75,6 +117,16 @@ ArchitectureRouter.post('/architecture/dataflow/datasource', (req, res) => {
     var source = DbOperation('New', dbName, 'Data Source', DataSourceSchema, obj)
                             .then(newDataSource => res.status(200).send({ "valid": true, "object": "data source", "data": JSON.stringify(newDataSource) }))
                             .catch(e => res.send(400).send({ "valid": false, "object": "data source", "data": e.toString() }));
+});
+
+ArchitectureRouter.get('/architecture/datasource', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, DataSourceSchema, logArchitectureDataSourceAPIGetRequest);
+
+    var obj = { "isActive": true };
+
+    var dataflows = DbOperation('Get All', dbName, 'Data Source', DataSourceSchema, obj)
+                        .then(datasources => res.status(200).send({ "valid": true, "object": "data source", "data": JSON.stringify(datasources)} ))
+                        .catch(e => res.status(400).send({ "valid": false, "object": "data source", "data": e.toString()} ));
 });
 
 export default ArchitectureRouter;

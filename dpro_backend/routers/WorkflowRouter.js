@@ -1,14 +1,18 @@
 import express from 'express';
 import DbOperation from '../dboperation/DbOperation.js';
 import { WorkflowSchema } from '../models/WorkflowModel.js';
+import { LogEvent } from '../helpers/api/logger/logEvent.js';
+import { testDbName, telemetryEvent, logWorkflowAPIPostRequest, logWorkflowAPIGetRequest, logWorkflowAPIPatchRequest } from '../config/constants.js';
 
 const WorkflowRouter = express.Router();
 
-var dbName = 'AGTest';
+var dbName = testDbName;
 var modelName = 'Workflow';
 var schema = WorkflowSchema;
 
 WorkflowRouter.post('/workflow', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logWorkflowAPIPostRequest);
+
     var obj = {
         "workflowId": req.query.workflowId,
         "businessId": req.query.businessDocumentId,
@@ -25,6 +29,7 @@ WorkflowRouter.post('/workflow', (req, res) => {
 });
 
 WorkflowRouter.get('/workflow', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logWorkflowAPIGetRequest);
 
     var obj = { "isValid": true };
 
@@ -36,6 +41,8 @@ WorkflowRouter.get('/workflow', (req, res) => {
 });
 
 WorkflowRouter.patch('/workflow', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logWorkflowAPIPatchRequest);
+
     var obj = {
         searchRecordId: { "_id": req.query.workflowDocumentId },
         updateObj: {

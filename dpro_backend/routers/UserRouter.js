@@ -1,14 +1,17 @@
 import express from 'express';
 import DbOperation from '../dboperation/DbOperation.js';
 import { UserSchema } from '../models/UserModel.js';
+import { LogEvent } from '../helpers/api/logger/logEvent.js';
+import { testDbName, telemetryEvent, logUserAPIPostRequest, logUserAPIGetRequest, logUserAPIPatchRequest, logUserByValueAPIGetRequest, logUserAPIDeleteRequest } from '../config/constants.js';
 
 const UserRouter = express.Router();
 
-var dbName = 'AGTest';
+var dbName = testDbName;
 var modelName = 'User';
 var schema = UserSchema;
 
 UserRouter.post('/users/:userId/:name/:email/:password/:phone/:isValid', (req, res) => { 
+    let log = LogEvent(dbName, telemetryEvent, schema, logUserAPIPostRequest);
     
     var obj = {
             "userId": req.params.userId,
@@ -25,14 +28,18 @@ UserRouter.post('/users/:userId/:name/:email/:password/:phone/:isValid', (req, r
 });
 
 UserRouter.get('/users', (req, res) => { 
+    let log = LogEvent(dbName, telemetryEvent, schema, logUserAPIGetRequest);
+
     var obj = { "isValid": true };
 
     var result = DbOperation('Get All', dbName, modelName, schema, obj)
                             .then(users => res.status(200).send({ 'valid': true, 'object': 'user', 'data': JSON.stringify({users})}))
-                                .catch(e => res.status(400).send({ 'valid': false, 'object': "user", 'data': e.toString()}));
+                            .catch(e => res.status(400).send({ 'valid': false, 'object': "user", 'data': e.toString()}));
 });
 
 UserRouter.get('/userByEmail/:email', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logUserByValueAPIGetRequest);
+
     var obj = { 
         "email": req.params.email,
         "isValid": true
@@ -44,7 +51,9 @@ UserRouter.get('/userByEmail/:email', (req, res) => {
 
 });
 
-UserRouter.get('/userByName/:name', (req, res) => { 
+UserRouter.get('/userByName/:name', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logUserByValueAPIGetRequest);
+
     var obj = { 
         "name": req.params.name,
         "isValid": true
@@ -56,6 +65,8 @@ UserRouter.get('/userByName/:name', (req, res) => {
 });
 
 UserRouter.patch('/userUpdateById', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logUserAPIPatchRequest);
+
     var obj = {
         searchRecordId: { "_id": req.query.id},
         updateObj: {
@@ -73,6 +84,8 @@ UserRouter.patch('/userUpdateById', (req, res) => {
 });
 
 UserRouter.delete('/userDeleteById', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logUserAPIDeleteRequest);
+
     var obj = {
         searchUserId: { "userId": req.query.userId },
         searchRecordId: { "_id": req.query.id}

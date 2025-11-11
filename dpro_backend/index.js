@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import express from 'express';
 import http from 'http'; //consider secure https
 import bodyParser from 'body-parser';
@@ -15,7 +14,10 @@ import ArchitectureRouter from './routers/ArchitectureRouter.js';
 import UseCaseRouter from './routers/UseCaseRouter.js';
 import GovernanceRouter from './routers/GovernanceRouter.js';
 import ComplianceRouter from './routers/ComplianceRouter.js';
-
+import TelemetryRouter from './routers/telemetry/TelemetryEventRouter.js';
+import { logWebAPIServerAppStart, telemetryEvent, testDbName, testServerPort } from './config/constants.js';
+import { LogEvent } from './helpers/api/logger/logEvent.js';
+import { TelemetryEventSchema } from './models/telemetry/TelemetryEventModel.js';
 
 async function main(){
 
@@ -35,14 +37,17 @@ async function main(){
     app.use(UseCaseRouter);
     app.use(GovernanceRouter);
     app.use(ComplianceRouter);
+    app.use(TelemetryRouter);
     
 
     const server = http.createServer(app);
 
-    server.listen('3000', () => {
-        console.log('server running on port 3000');
+    server.listen(testServerPort, () => {
+        console.log(logWebAPIServerAppStart.process);
     });
-    
+
+    console.log(logWebAPIServerAppStart);
+    let log = LogEvent(testDbName, telemetryEvent, TelemetryEventSchema, logWebAPIServerAppStart);
 }
 
 main().catch(console.dir);

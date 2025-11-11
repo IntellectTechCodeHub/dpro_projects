@@ -3,14 +3,20 @@ import DbOperation from '../dboperation/DbOperation.js';
 import { InterviewSchema } from '../models/interview/InterviewModel.js';
 import { AssessmentSchema } from '../models/interview/AssessmentModel.js';
 import { ReviewSchema } from '../models/interview/ReviewModel.js';
+import { LogEvent } from '../helpers/api/logger/logEvent.js';
+import { testDbName, telemetryEvent, logInterviewAPIPostRequest, logInterviewAPIGetRequest, logInterviewAPIPatchRequest } from '../config/constants.js';
+import { logAssessmentAPIPostRequest, logAssessmentAPIGetRequest, logAssessmentAPIPatchRequest } from '../config/constants.js';
+import { logInterviewReviewAPIPostRequest, logInterviewReviewAPIGetRequest, logInterviewReviewAPIPatchRequest } from '../config/constants.js';
 
-var dbName = 'AGTest';
+var dbName = testDbName;
 var modelName = 'Interview';
 var schema = InterviewSchema;
 
 const InterviewRouter = express.Router();
 
 InterviewRouter.post('/interview', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logInterviewAPIPostRequest);
+
     var obj = {
         "interviewId": req.query.interviewId,
         "analysisId": req.query.analysisDocumentId,
@@ -33,6 +39,8 @@ InterviewRouter.post('/interview', (req, res) => {
 });
 
 InterviewRouter.get('/interview', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logInterviewAPIGetRequest);
+
     var obj = { "isValid": true };
 
     var interviews = DbOperation('Get All', dbName, modelName, schema, obj)
@@ -41,6 +49,8 @@ InterviewRouter.get('/interview', (req, res) => {
 });
 
 InterviewRouter.patch('/interview', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, schema, logInterviewAPIPatchRequest);
+
     var obj = {
         searchRecordId: { "_id": req.query.interviewDocumentId },
         updateObj: {
@@ -65,6 +75,8 @@ InterviewRouter.patch('/interview', (req, res) => {
 });
 
 InterviewRouter.post('/interview/assessment', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, AssessmentSchema, logAssessmentAPIPostRequest);
+
     var obj = {
         "assessmentId": req.query.assessmentId,
         "interviewId": req.query.interviewDocumentId,
@@ -85,6 +97,8 @@ InterviewRouter.post('/interview/assessment', (req, res) => {
 });
 
 InterviewRouter.get('/interview/assessment', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, AssessmentSchema, logAssessmentAPIGetRequest);
+
     var obj = { "isValid": true };
 
     var assessments = DbOperation('Get All', dbName, "Assessment", AssessmentSchema, obj)
@@ -93,6 +107,8 @@ InterviewRouter.get('/interview/assessment', (req, res) => {
 });
 
 InterviewRouter.patch('/interview/assessment', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, AssessmentSchema, logAssessmentAPIPatchRequest);
+
     var obj = {
         searchRecordId: { "_id": req.query.assessmentDocumentId },
         updateObj: {
@@ -115,6 +131,8 @@ InterviewRouter.patch('/interview/assessment', (req, res) => {
 });
 
 InterviewRouter.post('/interview/review', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, ReviewSchema, logInterviewReviewAPIPostRequest);
+
     var obj = { 
         "reviewId": req.query.reviewId,
         "interviewId": req.query.interviewDocumentId,
@@ -134,6 +152,8 @@ InterviewRouter.post('/interview/review', (req, res) => {
 });
 
 InterviewRouter.get('/interview/review', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, ReviewSchema, logInterviewReviewAPIGetRequest);
+
     var obj = { "isValid": true };
 
     var reviews = DbOperation('Get All', dbName, "Review", ReviewSchema, obj)
@@ -142,6 +162,8 @@ InterviewRouter.get('/interview/review', (req, res) => {
 });
 
 InterviewRouter.patch('/interview/review', (req, res) => {
+    let log = LogEvent(dbName, telemetryEvent, ReviewSchema, logInterviewReviewAPIPatchRequest);
+
     var obj = {
         searchRecordId: { "_id": req.query.reviewDocumentId },
         updateObj: {
