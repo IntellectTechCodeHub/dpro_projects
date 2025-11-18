@@ -7,6 +7,7 @@ import Footer from "./components/footer.js";
 import DataValues from "./components/data retrieval/datavalues.js";
 import SaveDataValues from "./components/data save/savedatavalues.js";
 import Analysis from "./components/features/analysis/analysis.js";
+import InterviewModule from "./components/features/analysis/interview/interviewModule.js";
 
 export default function Home() {
 
@@ -17,7 +18,8 @@ export default function Home() {
   let review = null;
   let dataRetrieval = null;
   let dataSave = null;
-  let analysis = 1;
+  let analysis = null;
+  let analysisInterview = 1;
   let pageContent, footerContent;
 
   // User types represent three roles: business analyst (reviewer, interviewer), requestor (team member or lead), workflow designer (process diagram creator)  
@@ -51,6 +53,10 @@ export default function Home() {
   }
   else if (analysis != null) {
     pageContent = <Analysis />;
+    footerContent = <Footer />;
+  }
+  else if (analysisInterview != null) {
+    pageContent = <InterviewModule />;
     footerContent = <Footer />;
   }
 

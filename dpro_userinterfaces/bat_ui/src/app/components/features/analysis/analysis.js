@@ -1,25 +1,34 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Problem from "./problem.js";
-import InterviewModule from "./interview/interviewModule.js";
+import Solution from "./solution.js";
+import InterviewScheduler from "./interview/interviewScheduler.js";
 import Button from "../../elements/button.js";
 import { MdTipsAndUpdates } from "react-icons/md";
 import SaveDataValues from "../../data save/savedatavalues.js";
 
-var serviceUrl = '';
+let serviceUrl = "http://localhost:3000/analysis";
 
 const Analysis = () => {
+    var httpReturnValue;
+    var hasSent, saveInProgress, saveComplete = false;
     var saveTypes = ["Analysis"];
 
+    const [pageContentAnalysis, setPageContentAnalysis] = useState(<div></div>);
+    const [hasUpcomingInterviews, setHasUpcomingInterviews] = useState(false);
+    const [existingInterviews, setExistingInterviews]  = useState([]);
+    const [userPriviledges, setUserPriviledges] = useState();
     const [analysisFormData, setAnalysisFormData] = useState();
     const [isFormComplete, setIsFormComplete] = useState(false);
 
     const handleComplete = (e) => {
+        //e.preventDefault();
         alert('form info complete');
         const form = e.target;
         const formData = new FormData(form);
         const dataJson = Object.fromEntries(formData);
+        console.log(dataJson);
         const dataObj = {
             analysisId: dataJson["Analysis"] + "-" + crypto.randomUUID(),
             workflowId: dataJson["Workflow Document Id"],
@@ -40,12 +49,25 @@ const Analysis = () => {
             suggestions: dataJson["Suggestion4"],
             problemCreatedDate: '01012025',
             problemIsResolved: false,
-            problemIsActive: true
+            problemIsActive: true,
+            solutionId: dataJson["Solution Name"] + "-" + crypto.randomUUID(),
+            solutionName: dataJson["Solution Name"],
+            solutionDescription: dataJson["Solution Description"],
+            analysisDocumentId: dataJson["Analysis Document Id"],
+            problemDocumentId: dataJson["Problem Document Id"],
+            solutionCreatedDate: '01-01-2025',
+            solutionCompletedDate: '01-01-2025',
+            solutionIsComplete: false,
+            solutionIsActive: true
         }
 
         setAnalysisFormData(dataObj);
-        
+        console.log(dataObj);
         setIsFormComplete(true);
+    }
+
+    const buttonClick = () => {
+        alert('analysis form complete');
     }
 
     var contentForm =  
@@ -66,10 +88,13 @@ const Analysis = () => {
                 <input name="Analysis Description" type="text" placeholder="Analysis Description" className="w-full h-[50] mr-[10%] text-gray hover:bg-blue-200 rounded-sm" />
             </div>
             <div className="w-full">
-                <InterviewModule />
+                <InterviewScheduler />
             </div>
             <div className="bg-slate-400 m-[2.5%] w-full flex items-center">
                 <Problem />
+            </div>
+            <div className="bg-slate-600 m-[2.5%] w-full flex items-center">
+                <Solution />
             </div>
             <div className="bg-slate-100 m-[2.5%] w-full flex items-center">
                 <Button type="submit" onClick={ buttonClick } className="w-full h-[50] m-[2.5%] font-bold items-center justify-center rounded-sm"> Create Analysis </Button>

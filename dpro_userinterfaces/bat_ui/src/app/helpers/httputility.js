@@ -28,6 +28,22 @@ const HttpUtility = (urlDomainsList) => {
 
 }
 
+function getInterviewHttpUrl(domainUrlString, dataObject){
+    console.log(domainUrlString);
+    console.log(dataObject);
+    let urlString = domainUrlString + "?" +
+        "interviewId=" + dataObject.interviewId + "&" +
+        "analysisDocumentId=" + dataObject.analysisDocumentId + "&" +
+        "interviewName=" + dataObject.interviewName + "&" +
+        "interviewDescription=" + dataObject.interviewDescription + "&" +
+        "interviewAttendeeId=" + dataObject.interviewAttendeeId + "&" +
+        "interviewScheduledDate=" + dataObject.interviewScheduledDate + "&" +
+        "interviewCompletedDate=" + dataObject.interviewCompletedDate + "&" +
+        "interviewIsCompleted=" + dataObject.interviewIsCompleted + "&" +
+        "interviewIsActive=" + dataObject.interviewIsActive;
+    return urlString; 
+}
+
 function getProblemUrlString(domainUrlString, dataObject){
     let urlString = domainUrlString + "&" + 
         "problemId=" + dataObject.problemId + "&" + 
@@ -100,6 +116,11 @@ export function formatUrl(domainObjectType, url, dataObject) {
             case 'Solution':
                 if(domainObjectType.data.solutionId)
                     httpUrl = this.getSolutionUrlString(url, dataObject);
+                return httpUrl;
+                break;
+            case 'Interview':
+                if(domainObjectType.data.interviewId !== undefined)
+                    httpUrl = getInterviewHttpUrl(domainObjectType.url, domainObjectType.data);
                 return httpUrl;
                 break;
             default:

@@ -8,7 +8,7 @@ import { LogEvent } from '../helpers/api/logger/logEvent.js';
 import { testDbName, telemetryEvent, logAnalysisAPIPostRequest, logAnalysisAPIGetRequest, logAnalysisAPIPatchRequest } from '../config/constants.js';
 import { logAnalysisProblemAPIPostRequest, logAnalysisProblemAPIGetRequest, logAnalysisProblemAPIPatchRequest } from '../config/constants.js';
 import { logAnalysisSolutionAPIPostRequest, logAnalysisSolutionAPIGetRequest, logAnalysisSolutionAPIPatchRequest } from '../config/constants.js';
-
+import { logAnalysisAPIPostRequestValue } from '../config/constants.js';
 const AnalysisRouter = express.Router();
 
 var dbName = testDbName;
@@ -60,8 +60,10 @@ AnalysisRouter.post('/analysis', (req, res) => {
     var analysis = DbOperation('New', dbName, modelName, schema, obj)
                                 .then(newAnalysis => res.status(200).send({ "valid": true, "object": "analysis", "data": JSON.stringify({newAnalysis}) }))
                                 .catch(e => res.status(400).send({ "valid": false, "object": "analysis", "data": e.toString() }));
-    });
 
+    //let logDbOperation = LogEvent(dbName, telemetryEvent, schema, logAnalysisAPIPostRequestValue(analysis));
+    });
+ 
 AnalysisRouter.get('/analysis', (req, res) => {
     let log = LogEvent(dbName, telemetryEvent, schema, logAnalysisAPIGetRequest);
 
