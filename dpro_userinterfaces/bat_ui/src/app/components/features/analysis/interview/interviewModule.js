@@ -13,7 +13,7 @@ let serviceUrl = 'http://localhost:3000/interview';
 const InterviewModule = () => {
 
     let interviewContent = <div></div>;
-    let analysisInterviewStatus = 0;
+    let analysisInterviewStatus = 1;
     let interviewPageType = '';
 
     var [pageContentInterviewModule, setPageContentInterviewModule] = useState(<div></div>);
@@ -96,7 +96,7 @@ const InterviewModule = () => {
                     </div>
                     
                     <div className="m-[2.5%] bg-slate-500"> 
-                        <div className="m-[2.5%]"><Workspace /></div>
+                        <div className="w-full m-[2.5%]"><Workspace /></div>
                     </div>
             </div>;
     }
