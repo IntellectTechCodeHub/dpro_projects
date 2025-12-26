@@ -1,13 +1,13 @@
-import Header from "./components/header.js";
-import Register from "./components/register.js";
-import Intake from "./components/intake.js";
-import Review from "./components/review.js";
-import Section from "./components/elements/section.js"
-import Footer from "./components/footer.js";
-import DataValues from "./components/data retrieval/datavalues.js";
-import SaveDataValues from "./components/data save/savedatavalues.js";
-import Analysis from "./components/features/analysis/analysis.js";
-import InterviewModule from "./components/features/analysis/interview/interviewModule.js";
+import Header from "../pages/components/header.js";
+import Register from "../pages/components/register.js";
+import Intake from "../pages/components/intake.js";
+import Review from "../pages/components/review.js";
+import Section from "../pages/components/elements/section.js"
+import Footer from "../pages/components/footer.js";
+import DataValues from "../pages/components/data retrieval/datavalues.js";
+import SaveDataValues from "../pages/components/data save/savedatavalues.js";
+import Analysis from "../pages/components/features/analysis/analysis.js";
+import InterviewModule from "../pages/components/features/analysis/interview/interviewModule.js";
 
 export default function Home() {
 
@@ -61,18 +61,22 @@ export default function Home() {
   }
 
   return (
-    <div className="block flex-col">
-      <Header></Header>
-      <div className="flex flex-col mt-[60] w-full h-screen items-center justify-evenly">      
+    <div className="block flex flex-col">
+      <div className="flex flex-col w-full">
+        <Header></Header>
+        <div className="flex flex-col mt-[60] w-full items-center justify-evenly">      
             {
               pageContent
             }
-        <footer className="gap-[1px] items-center justify-center">
-          <Section className="m-[10%] opacity-50 shadow-cyan-600" ></Section>
-            {
-              footerContent
-            }
-        </footer>
+        </div>
+      </div>
+      <div className="flex flex-col w-full"> 
+        <footer className="flex flex-col w-full my-[2.5%] gap-[1px] text-xs font-bold items-center justify-center">
+            <Section className="m-[2.5%] opacity-50 shadow-cyan-600" ></Section>
+              {
+                footerContent
+              }
+          </footer>
       </div>
     </div>
   );

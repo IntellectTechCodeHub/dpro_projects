@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { formatUrl } from '../../helpers/httputility.js';
+import { formatUrl } from '../../../app/helpers/httputility.js';
 
 export default function SaveDataValues(type, url, data) {
     const [saveDataValues, setSaveDataValues] = useState();
@@ -17,7 +17,7 @@ export default function SaveDataValues(type, url, data) {
 
     function formatUrlString() {
         let urlString = formatUrl(type, url, dataObject);
-        console.log("Formatter: " + urlString);
+        console.log("Formatter: " +  urlString);
         return urlString;    
     }
 

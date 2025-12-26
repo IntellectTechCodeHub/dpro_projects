@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Problem from "./problem.js";
 import Solution from "./solution.js";
-import InterviewScheduler from "./interview/interviewScheduler.js";
 import Button from "../../elements/button.js";
 import { MdTipsAndUpdates } from "react-icons/md";
 import SaveDataValues from "../../data save/savedatavalues.js";
@@ -60,7 +59,7 @@ const Analysis = () => {
             solutionIsComplete: false,
             solutionIsActive: true
         }
-
+        
         setAnalysisFormData(dataObj);
         console.log(dataObj);
         setIsFormComplete(true);
@@ -87,27 +86,24 @@ const Analysis = () => {
             <div className="bg-slate-100 m-[2.5%] w-full flex items-center">
                 <input name="Analysis Description" type="text" placeholder="Analysis Description" className="w-full h-[50] mr-[10%] text-gray hover:bg-blue-200 rounded-sm" />
             </div>
-            <div className="w-full">
-                <InterviewScheduler />
-            </div>
             <div className="bg-slate-400 m-[2.5%] w-full flex items-center">
                 <Problem />
             </div>
             <div className="bg-slate-600 m-[2.5%] w-full flex items-center">
                 <Solution />
             </div>
-            <div className="bg-slate-100 m-[2.5%] w-full flex items-center">
-                <Button type="submit" onClick={ buttonClick } className="w-full h-[50] m-[2.5%] font-bold items-center justify-center rounded-sm"> Create Analysis </Button>
+            <div className="buttonDiv">
+                <button type="submit" onClick={ buttonClick } className="button"> Create Analysis </button>
             </div>
         </form>;
 
     return(
         <div className="bg-slate-100 m-[2.5%] w-full flex flex-col items-center justify-evenly">
-            <div className="w-full">
-                <div className="bg-slate-100 m-[2.5%] w-full flex flex-col items-center justify-evenly">
+            <div className="bg-slate-100 m-[2.5%] w-full flex flex-col items-center justify-evenly">
                     <MdTipsAndUpdates className="color-gray-400 c w-[20%] h-[20%]"/>
                     <h1 className="text-2xl items-center"> Welcome to the Business Analysis Process. </h1>
-                </div>
+            </div>
+            <div className="w-full">
                 {
                     !isFormComplete ? contentForm : <SaveDataValues type={saveTypes[0]} url={serviceUrl} data={analysisFormData} />
                 }
