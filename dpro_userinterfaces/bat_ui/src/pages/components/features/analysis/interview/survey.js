@@ -24,6 +24,7 @@ const Survey = () => {
                 </div>
             </div>;
     
+    if (surveyArray){
         const surveys = surveyArray.map(survey => <li key={survey.id} className="tableListItem"> { survey.name + ' | ' + survey.date + ' | ' + <a href={survey.actionLink}> survey.action </a> + ' | ' + survey.status }  </li>)
         
         content = 

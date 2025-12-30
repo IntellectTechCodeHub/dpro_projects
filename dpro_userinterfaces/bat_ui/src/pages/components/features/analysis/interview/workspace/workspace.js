@@ -7,7 +7,7 @@ import InterviewScheduler from "../interviewScheduler.js";
 import InterviewForm from "../interviewForm.js";
 import Review from "../../../../review.js";
 import { IoMdCreate, IoMdInformation, IoMdCalendar, IoMdGlasses, IoMdPersonAdd } from "react-icons/io";
-import { ButtonGroup, ButtonGroupItem } from "../../../../../../app/components//button-group/button-group.tsx";
+import { ButtonGroup, ButtonGroupItem } from "../../../../../../app/components/ui/button-group/button-group.tsx";
 import Analysis from "../../analysis.js";
 
 

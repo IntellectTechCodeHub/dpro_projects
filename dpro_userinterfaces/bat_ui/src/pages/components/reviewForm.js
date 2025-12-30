@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdCheck } from "react-icons/md";
 import SaveDataValues from "./data save/savedatavalues.js";
 
-let serviceUrl = "http://localhost:3000/InterviewReview";
+let serviceUrl = "http://localhost:3000/interview/review";
 
 export default function ReviewForm() {
     

@@ -31,17 +31,22 @@ const HttpUtility = (urlDomainsList) => {
     function getAnalystHttpUrl(domainUrlString, dataObject){
         console.log(domainUrlString);
         console.log(dataObject);
+
+        let availabilityString = "";
+
+        for (let index = 0; index < dataObject.analystAvailability.length; index++) {
+            availabilityString += "analystAvailability=" + dataObject.analystAvailability[index] + "&";
+        }
+
         let urlString = domainUrlString + "?" +
             "analystId=" + dataObject.analystId + "&" +
-            "analystUserDocumentId" + dataObject.analystUserDocumentId + "&" +
+            "analystUserDocumentId=" + dataObject.analystUserDocumentId + "&" +
             "analysisDocumentId=" + dataObject.analysisDocumentId + "&" +
-            "analystName" + dataObject.analystName + "&" +
-            "analystEmail" + dataObject.analystEmail + "&" +
-            "analystPhone" + dataObject.analystPhone + "&" + 
-            "analystRole" + dataObject.analystRole + "&" +
-            "analystAvailibility" + dataObject.analystAvailibility + "&" +
-            "analystIndustry" + dataObject.analystIndustry + "&" +
-            "analysisInterviewDocumentId=" + dataObject.analysisInterviewDocumentId + "&" +
+            "analystName=" + dataObject.analystName + "&" +
+            "analystEmail=" + dataObject.analystEmail + "&" +
+            "analystPhone=" + dataObject.analystPhone + "&" + 
+            "analystRole=" + dataObject.analystRole + "&" +
+            availabilityString +
             "analystIndustry=" + dataObject.analystIndustry + "&" +
             "analystDateAdded=" + dataObject.analystDateAdded + "&" +
             "analystIsActive=" + dataObject.analystIsActive;
@@ -51,10 +56,17 @@ const HttpUtility = (urlDomainsList) => {
     function getInterviewScheduleUrlString(domainUrlString, dataObject){
         console.log(domainUrlString);
         console.log(dataObject);
+
+        let schedulesString = "";
+
+        for (let index = 0; index < dataObject.interviewSchedules.length; index++) {
+             schedulesString += "interviewSchedules=" + dataObject.interviewSchedules[index] + "&";
+        }
+
         let urlString = domainUrlString + "?" + 
             "interviewScheduleId=" + dataObject.interviewScheduleId + "&" +
             "interviewDocumentId=" + dataObject.interviewDocumentId + "&" +
-            "interviewSchedules=" + dataObject.interviewSchedules[0].schedule + "&" +
+            schedulesString +
             "interviewScheduleIsActive=" + dataObject.interviewScheduleIsActive;
         return urlString;
     }
@@ -119,7 +131,7 @@ const HttpUtility = (urlDomainsList) => {
     }
 
     function getIntakeRequestHttpUrl(domainUrlString, dataObject){
-        console.log(domainUrlSting);
+        console.log(domainUrlString);
         console.log(dataObject);
         let urlString = domainUrlString + "?" +
             "intakeRequestId=" + dataObject.intakeRequestId + "&" +
@@ -127,7 +139,7 @@ const HttpUtility = (urlDomainsList) => {
             "intakeMeetings=" + dataObject.intakeMeetings + "&" +
             "intakeContact=" + dataObject.intakeContact + "&" +
             "intakePhone=" + dataObject.intakePhone + "&" +
-            "intakeScheduleAvailibility=" + dataObject.intakeScheduleAvailibility + "&" +
+            "intakeAvailability=" + dataObject.intakeAvailability + "&" +
             "intakePrivacy=" + dataObject.intakePrivacy + "&" +
             "intakeCreatedDate=" + dataObject.intakeCreatedDate + "&" +
             "intakeCompletedDate=" + dataObject.intakeCompletedDate + "&" +  

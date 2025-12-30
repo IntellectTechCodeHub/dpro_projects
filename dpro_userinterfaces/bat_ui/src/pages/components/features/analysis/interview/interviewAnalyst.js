@@ -34,7 +34,14 @@ const InterviewAnalyst = () => {
             analystEmail: dataJson['Attendee Contact'],
             analystPhone: dataJson['Attendee Phone'],
             analystRole: dataJson['Attendee Role'],
-            analystAvailability: dataJson['Discovery Interview Availability'],
+            analystAvailability: [
+                dataJson['Analysis Interview Availability'],
+                dataJson['Discovery Interview Availability'],
+                dataJson['Review Interview Availability'],
+                dataJson['Solutions Interview Availability'],
+                dataJson['Requirements Interview Availability'],
+                dataJson['Retrospective Interview Availability']
+            ],
             analystIndustry: dataJson['Domain'],
             analystDateAdded: '01-01-2025',
             analystIsActive: true

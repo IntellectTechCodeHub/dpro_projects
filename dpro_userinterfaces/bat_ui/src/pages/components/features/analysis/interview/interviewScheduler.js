@@ -7,7 +7,7 @@ import SaveDataValues from "../../../data save/savedatavalues.js";
 import { MdCalendarToday } from "react-icons/md";
 import { IoIosCalendar } from "react-icons/io";
 
-let serviceUrl = "http:/localhost:3000/interview/schedule";
+let serviceUrl = "http://localhost:3000/interview/schedule";
 
 const InterviewScheduler = () => {
 
@@ -68,23 +68,23 @@ const InterviewScheduler = () => {
         console.log(dataJson);
 
         let schedules = [];
-        let hasSchedules = dataJson["Analysis Schedule Date"] && dataJson["Discovery Schedule Date"] && dataJson["Review Schedule Date"]
-                                && dataJson["Solution Schedule Date"] && dataJson["Requirements Schedule Date"] && dataJson["Retrospective Schedule Date"];
+        let hasSchedules = dataJson["Analysis Interview Availability"] && dataJson["Discovery Interview Availability"] && dataJson["Review Interview Availability"]
+                                && dataJson["Solutions Interview Availability"] && dataJson["Requirements Interview Availability"] && dataJson["Retrospective Interview Availability"];
 
         console.log("hasSchedules: " + hasSchedules);
         if(hasSchedules){
-            schedules.push({ 'type': 'Analysis', 'schedule': dataJson["Analysis Schedule Date"] }),
-            schedules.push({ 'type': 'Discovery', 'schedule': dataJson["Discovery Schedule Date"] }),
-            schedules.push({ 'type': 'Review', 'schedule': dataJson["Review Schedule Date"] }),
-            schedules.push({ 'type': 'Solutions', 'schedule': dataJson["Solution Schedule Date"] }),
-            schedules.push({ 'type': 'Requirements', 'schedule': dataJson["Requirements Schedule Date"] }),
-            schedules.push({ 'type': 'Retrospective', 'schedule': dataJson["Retrospective Schedule Date"] })
+            schedules.push({ 'type': 'Analysis', 'schedule': dataJson["Analysis Interview Availability"] }),
+            schedules.push({ 'type': 'Discovery', 'schedule': dataJson["Discovery Interview Availability"] }),
+            schedules.push({ 'type': 'Review', 'schedule': dataJson["Review Interview Availability"] }),
+            schedules.push({ 'type': 'Solutions', 'schedule': dataJson["Solutions Interview Availability"] }),
+            schedules.push({ 'type': 'Requirements', 'schedule': dataJson["Requirements Interview Availability"] }),
+            schedules.push({ 'type': 'Retrospective', 'schedule': dataJson["Retrospective Interview Availability"] })
         }
 
         const dataObj = {
             interviewScheduleId: "InterviewSchedule-" + crypto.randomUUID(),
             interviewDocumentId: interviewId[0],
-            interviewSchedules: hasSchedules ? schedules : [dataJson["Schedule Date"]],
+            interviewSchedules: hasSchedules ? schedules : [dataJson["Interview Availability"]],
             interviewScheduleIsActive: true
         }
 
@@ -101,16 +101,16 @@ const InterviewScheduler = () => {
     let schedule = 
             <div className="bg-slate-100 m-[2.5%] w-full flex items-center shadow-10 text-gray-700 rounded-sm">
                 <IoIosCalendar className="textInputImage" />
-                <label for="Schedule Date" className="m-[2.5%] font-bold"> Schedule Interview </label>
-                <input name="Schedule Date"  type="datetime-local" placeholder="Interview date" className="w-full h-[50] mr-[10%] text-gray hover:bg-blue-200 rounded-sm" />
+                <label for="Interview Availability" className="m-[2.5%] font-bold"> Schedule Interview </label>
+                <input name="Interview Availability"  type="datetime-local" placeholder="Interview date" className="w-full h-[50] mr-[10%] text-gray hover:bg-blue-200 rounded-sm" />
             </div>;
 
     function meetingScheduleElement(meetingName){
         return(
             <div className="bg-slate-100 m-[2.5%] w-full flex items-center shadow-10 text-gray-700 rounded-sm">
                 <IoIosCalendar className="textInputImage" />
-                <label for={meetingName + " Schedule Date"} className="m-[2.5%] font-bold"> Schedule Interview {meetingName} </label>
-                <input name={meetingName + " Schedule Date"}  type="datetime-local" placeholder="Interview date" className="w-full h-[50] mr-[10%] text-gray hover:bg-blue-200 rounded-sm" />
+                <label for={meetingName + " Interview Availability"} className="m-[2.5%] font-bold"> Schedule Interview {meetingName} </label>
+                <input name={meetingName + " Interview Availability"}  type="datetime-local" placeholder="Interview date" className="w-full h-[50] mr-[10%] text-gray hover:bg-blue-200 rounded-sm" />
             </div>
         );
     }

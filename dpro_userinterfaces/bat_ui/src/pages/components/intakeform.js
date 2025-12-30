@@ -28,7 +28,7 @@ export default function IntakeForm() {
             intakeMeetings: dataJson["Meetings"],
             intakeContact: dataJson["Contact Name"],
             intakePhone: dataJson["Contact Phone"],
-            intakeAvailibility: dataJson["Interview Availability"],
+            intakeAvailability: dataJson["Interview Availability"],
             intakePrivacy: dataJson["Privacy"] == "on" ? true : false,
             intakeCreatedDate: '01-01-2025',
             intakeCompletedDate: '01-01-2025',
@@ -36,7 +36,7 @@ export default function IntakeForm() {
             intakeIsActive: true
         };
 
-        setIntakeFormData(dataJson);
+        setIntakeFormData(dataObj);
         console.log(dataObj);
         setIsFormComplete(true);
     }
