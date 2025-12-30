@@ -1,14 +1,14 @@
 import express from 'express';
-import DbOperation from '../dboperation/DbOperation.js';
-import { AnalysisSchema } from '../models/analysis/AnalysisModel.js';
-import { ProblemSchema } from '../models/analysis/ProblemModel.js';
-import { SolutionSchema } from '../models/analysis/SolutionModel.js';
-import AnalysisController from '../controllers/AnalysisController.js';
-import { LogEvent } from '../helpers/api/logger/logEvent.js';
-import { testDbName, telemetryEvent, logAnalysisAPIPostRequest, logAnalysisAPIGetRequest, logAnalysisAPIPatchRequest } from '../config/constants.js';
-import { logAnalysisProblemAPIPostRequest, logAnalysisProblemAPIGetRequest, logAnalysisProblemAPIPatchRequest } from '../config/constants.js';
-import { logAnalysisSolutionAPIPostRequest, logAnalysisSolutionAPIGetRequest, logAnalysisSolutionAPIPatchRequest } from '../config/constants.js';
-import { logAnalysisAPIPostRequestValue } from '../config/constants.js';
+import DbOperation from '../../dboperation/DbOperation.js';
+import { AnalysisSchema } from '../../models/analysis/AnalysisModel.js';
+import { ProblemSchema } from '../../models/analysis/ProblemModel.js';
+import { SolutionSchema } from '../../models/analysis/SolutionModel.js';
+import AnalysisController from '../../controllers/AnalysisController.js';
+import { LogEvent } from '../../helpers/api/logger/logEvent.js';
+import { testDbName, telemetryEvent, logAnalysisAPIPostRequest, logAnalysisAPIGetRequest, logAnalysisAPIPatchRequest } from '../../config/constants.js';
+import { logAnalysisProblemAPIPostRequest, logAnalysisProblemAPIGetRequest, logAnalysisProblemAPIPatchRequest } from '../../config/constants.js';
+import { logAnalysisSolutionAPIPostRequest, logAnalysisSolutionAPIGetRequest, logAnalysisSolutionAPIPatchRequest } from '../../config/constants.js';
+import { logAnalysisAPIPostRequestValue } from '../../config/constants.js';
 const AnalysisRouter = express.Router();
 
 var dbName = testDbName;

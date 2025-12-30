@@ -94,6 +94,60 @@ export const AnalysisSchema = mongoose.Schema({
                 message: 'isActive is required.'
             }
         }
+    ],
+    solutions: [ 
+        {
+            solutionId: {
+                type: String,
+                required: true,
+                message: 'solutionId is required.'
+            },
+            problemId: {
+                type: String,
+                required: true,
+                message: 'problemId is required.'
+            },
+            analysisId: {
+                type: String,
+                required: true,
+                message: 'analysisId is required.' 
+            },
+            name: {
+                type: String,
+                required: true,
+                message: 'name is required.'
+            },
+            description: {
+                type: String,
+                required: true,
+                message: 'description is required.'
+            },
+            items: {
+                type: Array,
+                required: true,
+                message: 'suggestions is required.'
+            },
+            createdDate: {
+                type: Date,
+                required: true,
+                message: 'createdDate is required.'
+            },
+            completedDate: {
+                type: String,
+                required: true,
+                message: 'completedDate is required.'
+            },
+            isComplete: {
+                type: Boolean,
+                required: true,
+                message: 'isComplete is required.'
+            },
+            isActive: {
+                type: Boolean,
+                required: true,
+                message: 'isActive is required.'
+            }
+        }
     ]
 });
 

@@ -341,6 +341,87 @@ export const logGovernanceRegulationAPIPatchRequest = {
     "logTime": Date.now().toString(),
     "process": 'Governance regulation application interface received a PATCH request.'
 };
+export const logInterviewIntakeAPIPostRequest = {
+    "logId": 'Interview-Intake-Router-POST-Request-' + crypto.randomUUID(),
+    "name": 'interview intake application interface',
+    "type": 'feature',
+    "subType": 'intake API router',
+    "eventDate": Date.now().toString(),
+    "logTime":  Date.now().toString(),
+    "process": 'Interview intake application interface received a POST request.'
+}
+export const logInterviewIntakeAPIGetRequest = {
+    "logId": 'Interview-Intake-Router-GET-Request-' + crypto.randomUUID(),
+    "name": 'interview intake application interface',
+    "type": 'feature',
+    "subType": 'intake API router',
+    "eventDate": Date.now().toString(),
+    "logTime":  Date.now().toString(),
+    "process": 'Interview intake application interface received a GET request.'
+}
+export const logInterviewIntakeAPIPatchRequest = {
+    "logId": 'Interview-Intake-Router-PATCH-Request-' + crypto.randomUUID(),
+    "name": 'interview intake application interface',
+    "type": 'feature',
+    "subType": 'intake API router',
+    "eventDate": Date.now().toString(),
+    "logTime":  Date.now().toString(),
+    "process": 'Interview intake application interface received a PATCH request.'
+}
+export const logInterviewAnalystAPIPostRequest = {
+    "logId": 'Interview-Analyst-Router-POST-Request-' + crypto.randomUUID(),
+    "name": 'interview analyst application interface',
+    "type": 'feature',
+    "subType": 'analyst API router',
+    "eventDate": Date.now().toString(),
+    "logTime": Date.now().toString(),
+    "process": 'Interview analyst application interface received a POST request.'
+};
+export const logInterviewAnalystAPIGetRequest = {
+    "logId": 'Interview-Analyst-Router-GET-Request-' + crypto.randomUUID(),
+    "name": 'interview analyst application interface',
+    "type": 'feature',
+    "subType": 'analyst API router',
+    "eventDate": Date.now().toString(),
+    "logTime": Date.now().toString(),
+    "process": 'Interview analyst application interface received a GET request.'
+};
+export const logInterviewAnalystAPIPatchRequest = {
+    "logId": 'Interview-Analyst-Router-PATCH-Request-' + crypto.randomUUID(),
+    "name": 'interview analyst application interface',
+    "type": 'feature',
+    "subType": 'analyst API router',
+    "eventDate": Date.now().toString(),
+    "logTime": Date.now().toString(),
+    "process": 'Interview analyst application interface received a PATCH request.'
+};
+export const logInterviewScheduleAPIPostRequest = {
+    "logId": 'Interview-Schedule-Router-POST-Request-' + crypto.randomUUID(),
+    "name": 'interview schedule application interface',
+    "type": 'feature',
+    "subType": 'schedule API router',
+    "eventDate": Date.now().toString(),
+    "logTime": Date.now().toString(),
+    "process": 'Interview schedule application interface received a POST request.'
+};
+export const logInterviewScheduleAPIGetRequest = {
+    "logId": 'Interview-Schedule-Router-GET-Request-' + crypto.randomUUID(),
+    "name": 'interview schedule application interface',
+    "type": 'feature',
+    "subType": 'schedule API router',
+    "eventDate": Date.now().toString(),
+    "logTime": Date.now().toString(),
+    "process": 'Interview schedule application interface received a GET request.'
+};
+export const logInterviewScheduleAPIPatchRequest = {
+    "logId": 'Interview-Schedule-Router-PATCH-Request-' + crypto.randomUUID(),
+    "name": 'interview schedule application interface',
+    "type": 'feature',
+    "subType": 'schedule API router',
+    "eventDate": Date.now().toString(),
+    "logTime": Date.now().toString(),
+    "process": 'Interview schedule application interface received a PATCH request.'
+};
 export const logInterviewAPIPostRequest = {
     "logId": 'Interview-Router-POST-Request-' + crypto.randomUUID(),
     "name": 'intervew application interface',
@@ -521,6 +602,20 @@ export const logWorkflowAPIPatchRequest = {
     "logTime": Date.now().toString(),
     "process": 'Workflow application interface received a PATCH request.'
 };
+
+export const logAnalysisAPIPostRequestValue = (returnVal) => {
+
+    return {
+        "logId": "Analysis-Router-POST-Request-Value-" + crypto.randomUUID(),
+        "name": 'analysis application interface',
+        "type": 'feature',
+        "subType": 'analysis API router',
+        "eventDate": Date.now().toString(),
+        "logTime": Date.now().toString(),
+        "process": 'Analysis application interface received a POST request.',
+        "value": returnVal
+    };
+}
 
 // Log data objects for specific server actions
 

@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-export const InterviewSchema = mongoose.Schema({
-    interviewId: {
+export const ReviewSchema = mongoose.Schema({
+    reviewId: {
+        type: String,
+        required: true,
+        message: "reviewId is required."
+    },
+    interviewDocumentId: {
         type: String,
         required: true,
         message: "interviewId is required."
-    },
-    analysisId: {
-        type: String,
-        required: true,
-        message: "analysisId is required."
     },
     name: {
         type: String,
@@ -21,35 +21,34 @@ export const InterviewSchema = mongoose.Schema({
         required: true,
         message: "description is required."
     },
-    attendeeIds: {
-        type: Array,
+    items: Array,
+    decision: {
+        type: String,
         required: true,
-        message: "attendees is required."
-    }, 
+        message: "reviewDecision is required."
+    },
     createdDate: {
         type: Date,
         required: true,
-        message: "createdDate is required."
+        message: "reviewCreatedDate is required."
     },
     completedDate: {
         type: Date,
         required: true,
-        message: "completedDate is required."
+        message: "reviewCompletedDate is required."
     },
-    isComplete: {
-        type: Boolean,
+    status: {
+        type: String,
         required: true,
-        message: "isComplete is required."
+        message: "reviewStatus is required."
     },
     isActive: {
         type: Boolean,
         required: true,
-        message: "isActive is required."
-    },
-    assessments: Array,
-    reviews: Array
+        message: "reviewIsActive is required."
+    }
 });
 
-const Interview = mongoose.model('Interview', InterviewSchema);
+const Review = mongoose.model('Review', ReviewSchema);
 
-export default Interview;
+export default Review;

@@ -15,10 +15,10 @@ const DbOperation = async (operation, db, model, schema, values) => {
     var returnValue;
 
     // connection string
-    const uri = '';
+    const uri = 'mongodb+srv://oasisdbcluster.xg80xyk.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=OasisDBCluster';
 
     // credentials (remove file path before check-in) consider MongoDB profile or Azure Key Vault for storing credentials.
-    const certPath = '';
+    const certPath = 'C:/certs/Analyst Goverance Test/X509-cert-6439372758547648614.pem';
 
     // connection options
     const optionsMongoDb = {
