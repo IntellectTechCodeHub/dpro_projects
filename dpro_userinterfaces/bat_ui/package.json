@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "next": "^15.5.7",
-    "node": "^25.1.0",
+    "node": "^24.12.0",
     "react": "19.1.0",
     "react-aria-components": "^1.13.0",
     "react-dom": "19.1.0",
@@ -20,13 +20,14 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4",
     "@tanstack/eslint-plugin-query": "^5.91.0",
     "@tanstack/react-query": "^5.90.2",
     "@types/node": "24.10.2",
     "@types/react": "19.2.7",
-    "eslint": "^9",
-    "eslint-config-next": "15.4.5",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.1",
     "tailwindcss": "^4"
   }
 }
