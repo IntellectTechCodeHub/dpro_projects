@@ -29,7 +29,7 @@ async function main(){
     app.use(compression());
 
     app.use('/', (req, res) => {
-        res.send(<p>DiscoverPRO Web Services by Intellect Tech, LLC</p>);
+        res.send('<p>DiscoverPRO Web Services by Intellect Tech, LLC</p>');
     });
     app.use(UserRouter);
     app.use(BusinessRouter);
