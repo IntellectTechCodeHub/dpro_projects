@@ -6,7 +6,7 @@ import Discovery from "../../../../components/features/analysis/interview/worksp
 import SaveDataValues from "../../../data save/savedatavalues.js";
 import { IoMdContact, IoIosAnalytics, IoMdInformation } from "react-icons/io";
 
-let serviceUrl = "http://localhost:3000/interview";
+let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'interview';
 
 const InterviewForm = () => {
 

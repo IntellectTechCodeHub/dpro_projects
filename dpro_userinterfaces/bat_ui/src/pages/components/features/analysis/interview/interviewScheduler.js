@@ -7,7 +7,7 @@ import SaveDataValues from "../../../data save/savedatavalues.js";
 import { MdCalendarToday } from "react-icons/md";
 import { IoIosCalendar } from "react-icons/io";
 
-let serviceUrl = "http://localhost:3000/interview/schedule";
+let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'interview/schedule';
 
 const InterviewScheduler = () => {
 

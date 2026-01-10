@@ -6,7 +6,7 @@ import { IoMdContact, IoMdMail, IoIosPhonePortrait, IoMdCloudOutline, IoMdTrendi
 import MeetingSelector from "../../../../../app/components/features/analysis/interview/workspace/workspace features/meetingselector.js";
 
 let infoPanelName = 'Information gathering';
-let serviceUrl = 'http://localhost:3000/interview/analyst';
+let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'interview/analyst';
 
 const InterviewAnalyst = () => {
 

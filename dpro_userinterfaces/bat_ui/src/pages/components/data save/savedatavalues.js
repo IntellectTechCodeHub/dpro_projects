@@ -17,7 +17,7 @@ export default function SaveDataValues(type, url, data) {
 
     function formatUrlString() {
         let urlString = formatUrl(type, url, dataObject);
-        console.log("Formatter: " +  urlString);
+        console.log("Formatter: " + urlString);
         return urlString;    
     }
 

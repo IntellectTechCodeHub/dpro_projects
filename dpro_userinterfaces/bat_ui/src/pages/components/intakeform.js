@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoMdContact, IoIosPhonePortrait, IoIosCalendar, IoMdRefresh, IoMdPeople } from "react-icons/io";
 import SaveDataValues from "./data save/savedatavalues";
 
-let serviceUrl = "http://localhost:3000/interview/intake";
+let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'interview/intake';
 
 export default function IntakeForm() {
 
@@ -94,7 +94,7 @@ export default function IntakeForm() {
                 <p className="w-full text-black text-extrabold"> I accept the <a onClick={ privacyClick } className="text-blue-400 text-extrabold"> Privacy Agreement </a>. </p>
             </div>
             <div className="buttonDiv">
-                <button type="submit" onClick={ buttonClick } className="button"> Complete </button> <br />
+                <button name="Complete" type="submit" onClick={ buttonClick } className="button"> Complete </button> <br />
             </div>
         </form>;
 

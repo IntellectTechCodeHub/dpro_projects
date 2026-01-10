@@ -5,8 +5,6 @@ import { useState } from "react";
 import Workspace from "./workspace/workspace.js";
 import { ProgressBar } from "../../../../../app/components/ui/progress-indicators/progress-indicators.tsx";
 
-let serviceUrl = 'http://localhost:3000/interview';
-
 const InterviewModule = () => {
 
     let interviewContent = <div></div>;

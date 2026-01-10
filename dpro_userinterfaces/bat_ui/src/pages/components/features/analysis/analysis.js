@@ -7,7 +7,7 @@ import Button from "../../elements/button.js";
 import { MdTipsAndUpdates } from "react-icons/md";
 import SaveDataValues from "../../data save/savedatavalues.js";
 
-let serviceUrl = "http://localhost:3000/analysis";
+let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'analysis';
 
 const Analysis = () => {
     var httpReturnValue;
