@@ -15,15 +15,11 @@ const DbOperation = async (operation, db, model, schema, values) => {
     var returnValue;
 
     // connection string
-    const uri = '';
-
-    // credentials (remove file path before check-in) consider MongoDB profile or Azure Key Vault for storing credentials.
-    const certPath = '';
+    const uri = 'mongodb+srv://' + process.env.DbUsername + ':' + process.env.DbPassword +'@oasisdbcluster.xg80xyk.mongodb.net/?appName=OasisDBCluster';
 
     // connection options
     const optionsMongoDb = {
         tls: true,
-        tlsCertificateKeyFile: certPath,
         serverApi: { version: '1', strict: true, depreciationErrors: true }
     };
     
