@@ -18,10 +18,15 @@ import TelemetryRouter from './routers/telemetry/TelemetryEventRouter.js';
 import { logWebAPIServerAppStart, telemetryEvent, testDbName, testServerPort } from './config/constants.js';
 import { LogEvent } from './helpers/api/logger/logEvent.js';
 import { TelemetryEventSchema } from './models/telemetry/TelemetryEventModel.js';
+import { environmentPath } from './config/constants.js';
+import { checkDbCredentials } from './dboperation/DbOperation.js';
+import { PollingDelay } from './helpers/api/PollingDelay.js';
 
 async function main(){
 
     const app = express();
+    
+    process.loadEnvFile(environmentPath);
 
     app.use(cors({ credentials: true }));
     app.use(bodyParser.json());
@@ -42,15 +47,19 @@ async function main(){
     app.use(ComplianceRouter);
     app.use(TelemetryRouter);
     
-
     const server = http.createServer(app);
 
     server.listen(testServerPort, () => {
         console.log(logWebAPIServerAppStart.process);
     });
 
-    console.log(logWebAPIServerAppStart);
-    let log = LogEvent(testDbName, telemetryEvent, TelemetryEventSchema, logWebAPIServerAppStart);
+   checkDbCredentials().then(() => {
+        PollingDelay(100);
+        console.log('credential check complete');
+   });
 }
 
 main().catch(console.dir);
+
+console.log(logWebAPIServerAppStart);
+let log = LogEvent(testDbName, telemetryEvent, TelemetryEventSchema, logWebAPIServerAppStart);
