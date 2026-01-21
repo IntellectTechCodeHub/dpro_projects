@@ -19,8 +19,6 @@ import { logWebAPIServerAppStart, telemetryEvent, testDbName, testServerPort } f
 import { LogEvent } from './helpers/api/logger/logEvent.js';
 import { TelemetryEventSchema } from './models/telemetry/TelemetryEventModel.js';
 import { environmentPath } from './config/constants.js';
-import { checkDbCredentials } from './dboperation/DbOperation.js';
-import { PollingDelay } from './helpers/api/PollingDelay.js';
 
 async function main(){
 
@@ -52,14 +50,8 @@ async function main(){
     server.listen(testServerPort, () => {
         console.log(logWebAPIServerAppStart.process);
     });
-
-   checkDbCredentials().then(() => {
-        PollingDelay(100);
-        console.log('credential check complete');
-   });
 }
 
 main().catch(console.dir);
 
-console.log(logWebAPIServerAppStart);
 let log = LogEvent(testDbName, telemetryEvent, TelemetryEventSchema, logWebAPIServerAppStart);

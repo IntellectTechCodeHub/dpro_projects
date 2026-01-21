@@ -6,24 +6,62 @@ import fs from 'node:fs';
 import { env } from "node:process";
 import { PollingDelay } from "../helpers/api/PollingDelay.js";
 
+let appStart = Boolean(process.env.APP_START);
 let dataErr, retrieveSecretError, retrieveSecretTokenError;
 let hasSentSecretApiToken, hasSentSecretApi, hasSecretToken, hasSecret, hasError = false;
+let dataAppRoleCredentialErr, retrieveAppRoleCredentialError;
+let hasSentCredentialApi, hasAppRoleCredentialError = false;
+
+const getAppRoleCredential = async () => {
+    const secretManagerNamespace = process.env.SECRET_MANAGER_NAMESPACE;
+    
+    try {
+        hasSentCredentialApi = true;
+        
+        const myHeaders = new Headers();
+        myHeaders.append("X-Vault-Namespace", "admin");
+        myHeaders.append("Content-Type", "text/plain");
+        
+        const raw = "{\r\n    \"role_id\": \"" +  process.env.SECRET_MANAGER_APPROLE_ROLE_ID + "\",\r\n    \"secret_id\": \"" + process.env.SECRET_MANAGER_APPROLE_SECRET_ID + "\"\r\n}";
+        
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow"
+        };
+
+        let httpRequest = await fetch(process.env.SECRET_MANAGER_LOGIN_API, requestOptions)
+          .then((response) => response.json())
+          .then((result) => result.auth.client_token)
+          .then((final) => { process.env.SECRET_MANAGER_APP_TOKEN = final; return final;})
+          .catch((error) => console.error(error));
+
+    }
+    catch(error) {
+        hasAppRoleCredentialError = true;
+        dataAppRoleCredentialErr = error;
+        retrieveAppRoleCredentialError = error.message;
+    }
+}
 
 const retrieveSecret = async () => {
-    console.log('begin secret api');
+    const secretManagerNamespace = process.env.SECRET_MANAGER_NAMESPACE;
+    const secretManagerAppToken = process.env.SECRET_MANAGER_APP_TOKEN;
+    const secretManagerAuthUrl = process.env.SECRET_API;
+    
         try {
             hasSentSecretApi = true;
             const myHeaders = new Headers();
             
             myHeaders.append("X-Vault-Namespace", secretManagerNamespace);
-            myHeaders.append("X-Vault-Token", appToken ? appToken : secretManagerAppToken);
+            myHeaders.append("X-Vault-Token", secretManagerAppToken);
 
             const requestOptions = {
               method: "GET",
               headers: myHeaders,
               redirect: "follow"
             };
-            
             let httpRequest = await fetch(secretManagerAuthUrl, requestOptions)
                 .then((response) => response.json())
                 .then((result) => result.data.data)
@@ -40,39 +78,34 @@ const retrieveSecret = async () => {
 }
 
 export const getSecret = async () => {
-    console.log('retrieve secret');
     if(!hasSentSecretApi && process.env.SECRET_API){
         let secret = await retrieveSecret();
         return secret;
     }
 }
 
+let uri;
+
 export const checkDbCredentials = async () => {
-     // db auth credentials
-    let hasExpiredAppToken = false; //calculate the time duration since last secret refresh
+    // db auth credentials
+    let hasExpiredAppToken = true; //calculate the time duration since last secret refresh
     let hasAppToken = async () => {
         if(hasExpiredAppToken){
             if(process.env.SECRET_MANAGER_LOGIN_API){
-                await getAppRoleCredential().then(() => { console.log('token refresh'); });
+                let credential = await getAppRoleCredential();
+                await credential;
             }
         }
+        
+        appStart = true ? process.env.APP_START = false : appStart;
         return hasExpiredAppToken;
     }
     
-    await hasAppToken().then( () => console.log('app token in progress')).then( () => {console.log('app token complete'); hasExpiredAppToken = false;} );
+    await hasAppToken().then( () => { hasExpiredAppToken = false;} );
+
+    let secret = getSecret();
+    await secret;
 }
-
-const secretManagerNamespace = process.env.SECRET_MANAGER_NAMESPACE;
-const secretManagerAppToken = process.env.SECRET_MANAGER_APP_TOKEN;
-const secretManagerAuthUrl = process.env.SECRET_API;
-
-let appToken, uri;
-
-let secret = getSecret();
-await secret;
-secret.then(async () => {
-    console.log('secret complete');
-});
 
 // dbOperation
 
@@ -85,14 +118,17 @@ function readDataFile() {
 }
 
 const DbOperation = async (operation, db, model, schema, values) => {
-    
+    if(!appStart){
+        let dbCredential = await checkDbCredentials();
+        await dbCredential;
+    }
+
     let returnValue;
 
     while(uri === undefined || uri === null){
         PollingDelay(100);
         
         if(uri){
-            console.log('db operation 2');
             break;
         } 
     }
