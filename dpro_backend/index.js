@@ -31,7 +31,7 @@ async function main(){
     app.use(cookieParser());
     app.use(compression());
 
-    app.use('/', (req, res) => {
+    app.get('/', (req, res) => {
         res.send('<p>DiscoverPRO Web Services by Intellect Tech, LLC</p>');
     });
     app.use(UserRouter);
