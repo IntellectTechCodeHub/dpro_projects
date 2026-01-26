@@ -12,10 +12,14 @@ jobs:
     - uses: actions/setup-node@v4
       with: 
        node-version: lts/*
+    - name: Install Dependencies
+      run:
+        npm install
+      working-directory: dpro_userinterfaces/bat_ui/
     - name: Playwright tests
       run:
+       npm install @playwright/test@latest
        npx playwright install
-      working-directory: dpro_userinterfaces/bat_ui/
     - name: Playwright run
       run: 
         npx playwright test tests/interview.spec.ts
