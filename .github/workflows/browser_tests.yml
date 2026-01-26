@@ -19,6 +19,8 @@ jobs:
     - name: Playwright tests
       run:
        npm install @playwright/test@latest
+    - name: Playwright browsers
+      run:
        npx playwright install
     - name: Playwright run
       run: 
