@@ -24,7 +24,10 @@ jobs:
        npx playwright install
     - name: Build Express server
       run:
-        npm test
+        npm run build
+    - name: Start Express server
+      run:
+        npm start
     - name: Playwright run
       run: 
         npx playwright test tests/interview.spec.ts
