@@ -18,13 +18,10 @@ import TelemetryRouter from './routers/telemetry/TelemetryEventRouter.js';
 import { logWebAPIServerAppStart, telemetryEvent, testDbName, testServerPort } from './config/constants.js';
 import { LogEvent } from './helpers/api/logger/logEvent.js';
 import { TelemetryEventSchema } from './models/telemetry/TelemetryEventModel.js';
-import { environmentPath } from './config/constants.js';
 
 async function main(){
 
     const app = express();
-    
-    process.loadEnvFile(environmentPath);
 
     app.use(cors({ credentials: true }));
     app.use(bodyParser.json());
