@@ -15,7 +15,6 @@ jobs:
     - name: Playwright tests
       run:
        npm i -D @playwright/test@latest
-       npx playwright install
       working-directory: dpro_userinterfaces/bat_ui/
     - name: Playwright run
       run: 
