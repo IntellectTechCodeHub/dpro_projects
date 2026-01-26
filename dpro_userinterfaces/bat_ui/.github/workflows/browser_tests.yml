@@ -15,6 +15,7 @@ jobs:
     - name: Install Dependencies
       run: 
         npm install
+      working-directory: dpro_userinterfaces/bat_ui/
     - name: Playwright tests
       run:
        npm i -D @playwright/tests
