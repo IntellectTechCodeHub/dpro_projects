@@ -18,8 +18,8 @@ jobs:
       working-directory: dpro_userinterfaces/bat_ui/
     - name: Playwright tests
       run:
-       npm i -D @playwright/tests
-       npx playwright install --with-deps
+       npm i -D @playwright/test@latest
+       npx playwright install
     - name: Playwright run
       run: 
         npx Playwright test tests/interview.spec.ts  --project=chromium
