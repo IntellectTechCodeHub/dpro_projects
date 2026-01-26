@@ -1,3 +1,7 @@
+// Env file path
+
+export const environmentPath = './.env';
+
 // Db connection parameters
 
 export const testDbName = 'AGTest';
