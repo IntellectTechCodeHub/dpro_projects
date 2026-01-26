@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('analysis', async ({ page }) => {
   //await page.locator('body').click();
-  await page.goto('');
+  await page.goto('http://localhost:4000/');
   await page.getByRole('textbox', { name: 'Name for analysis' }).click();
   await page.getByRole('textbox', { name: 'Name for analysis' }).fill('Analysis 1');
   await page.getByRole('textbox', { name: 'Workflow Document Id' }).click();
@@ -41,7 +41,7 @@ test('analysis', async ({ page }) => {
 
 test('intake', async ({ page }) => {
   //await page.locator('body').click();
-  await page.goto('');
+  await page.goto('http://localhost:4000/');
   await expect(page.getByRole('radio', { name: 'analyst' })).toBeVisible();
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
@@ -77,7 +77,7 @@ test('intake', async ({ page }) => {
 
 test('analyst', async ({ page }) => {
   //await page.locator('body').click();
-  await page.goto('');
+  await page.goto('http://localhost:4000/');
   await expect(page.getByRole('radio', { name: 'schedule' })).toBeVisible();
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
@@ -114,7 +114,7 @@ test('analyst', async ({ page }) => {
 
 test('schedule', async ({ page }) => {
   //await page.locator('body').click();
-  await page.goto('');
+  await page.goto('http://localhost:4000/');
   await expect(page.getByRole('radio', { name: 'schedule' })).toBeVisible();
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
@@ -150,7 +150,7 @@ test('schedule', async ({ page }) => {
 
 test('interview', async ({ page }) => {
   //await page.locator('body').click();
-  await page.goto('');
+  await page.goto('http://localhost:4000/');
   await expect(page.getByRole('radio', { name: 'interview' })).toBeVisible();
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
@@ -208,7 +208,7 @@ test('interview', async ({ page }) => {
 
 test('review', async ({ page }) => {
   //await page.locator('body').click();
-  await page.goto('');
+  await page.goto('http://localhost:4000/');
   await expect(page.getByRole('radio', { name: 'review' })).toBeVisible();
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);

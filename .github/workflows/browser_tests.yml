@@ -22,6 +22,9 @@ jobs:
     - name: Playwright browsers
       run:
        npx playwright install
+    - name: Build Express server
+      run:
+        npm test
     - name: Playwright run
       run: 
         npx playwright test tests/interview.spec.ts
