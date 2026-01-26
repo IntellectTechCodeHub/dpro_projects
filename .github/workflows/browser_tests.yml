@@ -12,9 +12,11 @@ jobs:
     - uses: actions/setup-node@v4
       with: 
        node-version: lts/*
-    - name: Install Dependencies
-      run: 
+    - name: Navigate to ui project
+      run:
         cd dpro_userinterfaces/bat_ui
+    - name: Install Dependencies
+      run:
         npm install
     - name: Playwright tests
       run:
