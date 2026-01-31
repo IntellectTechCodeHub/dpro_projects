@@ -1,5 +1,5 @@
-import { ExampleInterviewVideoUrl } from '../../../../../../app/config/constants.js';
 const WorkspaceInfoPanel = () => {
+
     const infoPanel =
         <div className='flex flex-col w-full h-auto'>  
             <div className="m-[2.5%] text-bold text-lg text-center items-center">
@@ -13,10 +13,8 @@ const WorkspaceInfoPanel = () => {
                     recommendations provided in the GenAI inferencing tool. 
                 </p>
                 <div className='w-[320] h-auto m-[2.5%] bg-slate-700 items-center justify-center'>
-                    {/* <video src={ ExampleInterviewVideoUrl } title='' allowFullScreen /> */}
-                    <p className='text-center'> video here </p>
+                    <video src='/DiscoverPRO(IntellectTech,LLC).mp4' title='DiscoverPRO(Intellect Tech, LLC)' allowFullScreen />
                 </div>
-                
             </div>
             <p className='text-black m-[2.5%] text-sm font-semibold'> 
                 The analysis process is similar to
