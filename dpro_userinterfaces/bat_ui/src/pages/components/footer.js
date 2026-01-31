@@ -1,14 +1,35 @@
+import { FaTwitter, FaMedium, FaVimeo, FaGithub, FaDiscord } from "react-icons/fa6";
+import Image from "next/image";
+
 export default function Footer() {
     return(
-        <div className="my-[2.5%] bg-color-slate-400 w-full items-center">
-            <div className="h-full flex items-center justify-center">
-              <a href="#" className="text-mono text-xsm text-black"> Privacy </a>
-              <p className="text-black text-extrabold text-xsm mx-[2.5%] p-[2.5%]"> | </p>
-              <a href="#" className="text-mono text-xsm text-black"> Corporate </a>
-              <p className="text-black text-extrabold text-xsm mx-[2.5%] p-[2.5%]"> | </p>
-              <a href="#" className="text-mono text-xsm text-black" > Sponsors </a>
+        <div className="footerDiv">
+            <div className="footerLogoDiv">
+                <Image src="/logo.png" alt="Logo image" className="logo"/>
             </div>
-            <p className="m-[2.5%] items-center text-center text-xsm"> Disclaimer: All app activity is subject to data logging. All data privacy, safety, and security regulations are followed in the appropriate use and storage of user activity. No user information is sold for proprietary purposes.</p>
+            <div className="footerLinksDiv">
+                <div className='footerLinksSocialDiv'>
+                    <FaTwitter className='footerSocialIcons' />
+                    <FaMedium className='footerSocialIcons' />
+                    <FaVimeo className='footerSocialIcons' />
+                    <FaGithub className='footerSocialIcons' />
+                    <FaDiscord className='footerSocialIcons' />
+                </div>
+                <div className='footerLinksTextDiv'>
+                    <a href="#" className="footerLinkText"> Privacy </a>
+                    <p className="footerDivider"> | </p>
+                    <a href="#" className="footerLinkText"> Corporate </a>
+                    <p className="footerDivider"> | </p>
+                    <a href="#" className="footerLinkText" > Sponsors </a>
+                </div>
+            </div>
+            <div className='footerDisclaimerDiv'>
+                <p className="footerDisclaimerText"> 
+                    Disclaimer: All app activity is subject to data logging. In compliance with CCPA and GDPR all data privacy, safety, and security regulations are followed 
+                    in the appropriate use and storage of user activity. No user information is sold for proprietary purposes, the research information 
+                    is used for reporting analytics and compliance reports with aggregate data.
+                </p>
+            </div>
         </div>
     );
 }

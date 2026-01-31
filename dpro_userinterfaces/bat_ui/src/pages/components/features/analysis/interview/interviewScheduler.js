@@ -57,6 +57,7 @@ const InterviewScheduler = () => {
     );
     const [scheduleComplete, setScheduleComplete] = useState(false);
     const [interviewId, setInterviewId] = useState(['Interview Id']);
+    const [analysisInterviewStatus, setAnalysisInterviewStatus] = useState();
     
     const handleComplete = (e) => {
         alert('Add interview form complete');
@@ -91,6 +92,7 @@ const InterviewScheduler = () => {
         setInterviewScheduleFormData(dataObj);
         console.log(dataObj);
         setIsFormComplete(true);
+        setAnalysisInterviewStatus(3);
     }
 
     function buttonClick() {
@@ -140,7 +142,7 @@ const InterviewScheduler = () => {
         </div>;
 
     return(
-        <div className="bg-slate-100 m-[2.5%] w-full flex flex-col items-center justify-evenly">
+        <div className="bg-slate-100 w-full flex flex-col items-center justify-evenly">
             <div className="bg-slate-100 m-[2.5%] w-full flex flex-col items-center justify-evenly">
                 <MdCalendarToday className="color-gray-400 c w-[20%] h-[20%]"/>
                 <h1 className="text-2xl items-center"> Scheduler </h1>

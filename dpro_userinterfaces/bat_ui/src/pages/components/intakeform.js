@@ -11,7 +11,8 @@ export default function IntakeForm() {
     const [requests, setRequests] = useState([]);
     const [intakeFormData, setIntakeFormData] = useState();
     const [isFormComplete, setIsFormComplete] = useState(false);
-    const [intakeComplete, setIntakeComplete] = useState(false); 
+    const [intakeComplete, setIntakeComplete] = useState(false);
+    const [analysisInterviewStatus, setAnalysisInterviewStatus] = useState();
     
 
     function handleComplete(e) {
@@ -39,6 +40,7 @@ export default function IntakeForm() {
         setIntakeFormData(dataObj);
         console.log(dataObj);
         setIsFormComplete(true);
+        setAnalysisInterviewStatus(1);
     }
 
     const buttonClick = () => {

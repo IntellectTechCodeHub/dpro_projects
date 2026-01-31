@@ -9,7 +9,7 @@ import Review from "../../../../review.js";
 import { IoMdCreate, IoMdInformation, IoMdCalendar, IoMdGlasses, IoMdPersonAdd } from "react-icons/io";
 import { ButtonGroup, ButtonGroupItem } from "../../../../../../app/components/ui/button-group/button-group.tsx";
 import Analysis from "../../analysis.js";
-
+import WorkspaceInfoPanel from "../workspace/workspaceInfoPanel.js";
 
 const Workspace = () => {
 
@@ -39,12 +39,11 @@ const Workspace = () => {
         </div>;
     
     infoPanel1 = 
-        <div className="m-[2.5%] bg-slate-200 items-center justify-evenly">
-            <div className="m-[2.5%] text-bold text-lg text-center items-center"><h2> Information panel </h2></div>
-            <div className="w-full h-[300] bg-white items-center">
-                <p className="m-[2.5%] text-md text-center items-center justify-evenly"> Tip of the week: Prepare for updates to software features by reading the release notes before upgrading to the latest version. </p>
+        <div className="flex bg-slate-200 items-center justify-evenly">
+            <WorkspaceInfoPanel />
+            <div>
+                { analysisComplete ? <analysisInfo /> : "" }
             </div>
-            { analysisComplete ? <analysisInfo /> : "" }
         </div>;
     
     if(selectionType == "Analysis" || selectionType == undefined){
@@ -114,11 +113,11 @@ const Workspace = () => {
                 <div className="text-bold text-lg">
                     <div className="flex m-[2.5%] items-center justify-evenly">
                         <ButtonGroup selectedKeys={[]} selectionMode="single" onSelectionChange={ buttonClick_navGroup }>
-                            <ButtonGroupItem isSelected={ selectionType == 'Intake'} id="step1" iconLeading={ IoMdCreate } onClick={ intakeClicked }> intake </ButtonGroupItem>
-                            <ButtonGroupItem isSelected={ selectionType == 'Analyst'} id="step2" iconLeading={ IoMdPersonAdd } onClick={ analystClicked }> analyst </ButtonGroupItem>
-                            <ButtonGroupItem isSelected={ selectionType == 'Schedule' ? true : false } id="step3" iconLeading={ IoMdCalendar } onClick={ scheduleClicked }> schedule </ButtonGroupItem>
-                            <ButtonGroupItem isSelected={ selectionType == 'Interview' ? true : false } id="step4" iconLeading={ IoMdInformation } onClick={ interviewClicked }> interview </ButtonGroupItem>
-                            <ButtonGroupItem isSelected={ selectionType == 'Review' ? true : false } id="step5" iconLeading={ IoMdGlasses } onClick={ reviewClicked }> review </ButtonGroupItem>
+                            <ButtonGroupItem isSelected={ selectionType == 'Intake'} id="step1" name="Intake" iconLeading={ IoMdCreate } onClick={ intakeClicked }> intake </ButtonGroupItem>
+                            <ButtonGroupItem isSelected={ selectionType == 'Analyst'} id="step2" name="Analyst" iconLeading={ IoMdPersonAdd } onClick={ analystClicked }> analyst </ButtonGroupItem>
+                            <ButtonGroupItem isSelected={ selectionType == 'Schedule' ? true : false } id="step3" name="Schedule" iconLeading={ IoMdCalendar } onClick={ scheduleClicked }> schedule </ButtonGroupItem>
+                            <ButtonGroupItem isSelected={ selectionType == 'Interview' ? true : false } id="step4" name="Interview" iconLeading={ IoMdInformation } onClick={ interviewClicked }> interview </ButtonGroupItem>
+                            <ButtonGroupItem isSelected={ selectionType == 'Review' ? true : false } id="step5" name="Review" iconLeading={ IoMdGlasses } onClick={ reviewClicked }> review </ButtonGroupItem>
                         </ButtonGroup>
                     </div>
                     <div className="text-black text-bold text-md m-[2.5%]">

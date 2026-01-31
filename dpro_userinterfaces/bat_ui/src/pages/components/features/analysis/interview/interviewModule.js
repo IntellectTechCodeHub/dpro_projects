@@ -8,17 +8,24 @@ import { ProgressBar } from "../../../../../app/components/ui/progress-indicator
 const InterviewModule = () => {
 
     let interviewContent = <div></div>;
-    let analysisInterviewStatus = 1;
+    //let analysisInterviewStatus = 1;
     let interviewPageType = 'workspace';
 
     var [pageContentInterviewModule, setPageContentInterviewModule] = useState(<div></div>);
     var [userPriviledges, setUserPriviledges] = useState([]);
+    var [progressValue, setProgressValue] = useState(0);
+    var [analysisInterviewStatus, setAnalysisInterviewStatus] = useState(0);
 
     function getAccess() {
 
         // retrieve from state
         // var userAccess = state.userPriviledges;
         return true;
+    }
+
+    const updateProgress = () => {
+        var progress = analysisInterviewStatus === undefined ? 0 : analysisInterviewStatus * 2;
+        setProgressValue(progress);
     }
 
     // var isAnalystRole = getAccess();
@@ -61,7 +68,7 @@ const InterviewModule = () => {
                 
                 <div className="flex flex-col w-full m-[2.5%] items-center justify-evenly">
                     <h3 className="font-bold text-sm items-center"> Interview Progress </h3>
-                    <ProgressBar min={1} max={10} value={1} labelPosition="bottom-floating" className="items-center justify-evenly" />
+                    <ProgressBar min={0} max={10} value={ progressValue } labelPosition="bottom-floating" className="items-center justify-evenly" />
                 </div>
             </div>
             <div className="w-full">

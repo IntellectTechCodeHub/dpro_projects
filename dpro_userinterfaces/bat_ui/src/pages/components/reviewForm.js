@@ -14,6 +14,7 @@ export default function ReviewForm() {
     const [reviewComplete, setReviewComplete] = useState(false);
     const [reviewAnalyst, setReviewAnalyst] = useState(['Compliance Analyst']);
     const [interviewId, setInterviewId] = useState(['Interview Id']);
+    const [analysisInterviewStatus, setAnalysisInterviewStatus] = useState();
 
     console.log(reviewType[0]);
 
@@ -53,6 +54,7 @@ export default function ReviewForm() {
         setReviewFormData(dataObj);
         console.log(dataObj);
         setIsFormComplete(true);
+        setAnalysisInterviewStatus(5);
     }
 
     const buttonClick = () => {

@@ -21,7 +21,7 @@ const Header = () => {
     <div className="fixed bg-slate-700 w-full h-20 z-20 align-top top-0 left-0">
       <div className="flex w-[full] h-20 items-center">
         <a href="#hero" className='block w-[full] h-[70%] m-[2.5%] flex-col text-center items-center' alt="link to hero">
-          <Image src="/logo.png" className='w-[120] h-[60] m-[0.7%] p-[0.5] items-center justify-center' alt="logo"></Image>
+          <Image src="/logo.png" className='logo' alt="logo"></Image>
         </a>
         
         { isUserSignedIn ? <Navbar /> : "" }

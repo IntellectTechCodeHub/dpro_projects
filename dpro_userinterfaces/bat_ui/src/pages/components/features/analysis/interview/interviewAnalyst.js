@@ -17,6 +17,7 @@ const InterviewAnalyst = () => {
     const [analystComplete, setAnalystComplete] = useState(false);
     const [userId, setUserId] = useState(["000000"]);
     const [analysisId, setAnalysisId] = useState(["000000"]);
+    const [analysisInterviewStatus, setAnalysisInterviewStatus] = useState();
 
     const handleComplete = (e) => {
         // e.preventDefault();
@@ -50,6 +51,7 @@ const InterviewAnalyst = () => {
         setAnalystFormData(dataObj);
         console.log(dataObj);
         setIsFormComplete(true);
+        setAnalysisInterviewStatus(2);
     }
 
     const buttonClick = () => {
@@ -115,7 +117,7 @@ const InterviewAnalyst = () => {
         </form>;
     
     return(
-        <div className="bg-slate-100 m-[2.5%] w-full flex flex-col items-center justify-evenly">
+        <div className="bg-slate-100 w-full flex flex-col items-center justify-evenly">
             <div className="bg-slate-100 m-[2.5%] w-full flex flex-col items-center justify-evenly">
                 <MdPersonOutline className="color-gray-400 c w-[20%] h-[20%]"/>
                 <h1 className="text-2xl items-center"> Analyst Selection </h1>
