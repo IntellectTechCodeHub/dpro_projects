@@ -28,6 +28,29 @@ const HttpUtility = (urlDomainsList) => {
 
 }
 
+    function getWorkflowHttpUrl(domainUrlString, dataObject){
+        console.log(domainUrlString);
+        console.log(dataObject);
+
+        let urlString = domainUrlString + "?" +
+            "workflowId=" + dataObject.workflowId + "&" +
+            "workflowDocumentId=" + dataObject.workflowDocumentId + "&" +
+            "workflowName=" + dataObject.workflowName + "&" + 
+            "workflowDescription=" + dataObject.workflowDescription + "&" +
+            "processName=" + dataObject.processName + "&" +
+            "processDescription=" + dataObject.processDescription + "&" + 
+            "processData=" + dataObject.processData + "&" +
+            "processDecision=" + dataObject.processDecision + "&" +
+            "processMeeting=" + dataObject.processMeeting + "&" +
+            "processFiling=" + dataObject.processFiling + "&" +
+            "processPhone=" + dataObject.processPhone + "&" +
+            "processMessage=" + dataObject.processMessage + "&" +
+            "processCreatedDate=" + dataObject.processCreatedDate + "&" +
+            "processIsActive=" + dataObject.processIsActive;
+        
+        return urlString;
+    }
+
     function getAnalystHttpUrl(domainUrlString, dataObject){
         console.log(domainUrlString);
         console.log(dataObject);
@@ -178,8 +201,17 @@ export function formatUrl(domainObjectType, url, dataObject) {
 
         let httpUrl;
         switch(domainObjectType.type){
-            // 0 The interview feature starts analysis with problem and solution definitions.
+            
+            // The workflow feature diagrams the core process and action descriptions.
 
+            case 'Workflow':
+                if(domainObjectType.data.workflowId !== undefined)
+                    httpUrl = getWorkflowHttpUrl(domainObjectType.url, domainObjectType.data);
+                return httpUrl;
+                break; 
+
+            // 0 The interview feature starts analysis with problem and solution definitions.
+            
             case 'Analysis':
                 var urls = [];
                 if(domainObjectType.data.analysisId !== undefined)

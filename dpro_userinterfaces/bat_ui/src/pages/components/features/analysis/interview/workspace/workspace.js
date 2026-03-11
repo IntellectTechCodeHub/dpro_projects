@@ -11,7 +11,7 @@ import { ButtonGroup, ButtonGroupItem } from "../../../../../../app/components/u
 import Analysis from "../../analysis.js";
 import WorkspaceInfoPanel from "../workspace/workspaceInfoPanel.js";
 
-const Workspace = () => {
+const Workspace = ({onComplete}) => {
 
     let [interviewPageType, setInterviewPageType] = useState();
     let [analysisComplete, setAnalysisComplete] = useState(false);
@@ -62,7 +62,7 @@ const Workspace = () => {
         infoPanel2 = <InterviewForm />;
     }
     else if(selectionType == "Review"){
-        infoPanel2 = <Review  />;
+        infoPanel2 = <Review  onComplete={ onComplete } />;
     }
 
     function WorkspaceNavigation() {

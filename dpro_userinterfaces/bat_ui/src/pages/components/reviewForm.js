@@ -4,7 +4,7 @@ import SaveDataValues from "./data save/savedatavalues.js";
 
 let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'interview/review';
 
-export default function ReviewForm() {
+export default function ReviewForm({onComplete}) {
     
     let saveTypes = ["Review"];
 
@@ -55,6 +55,7 @@ export default function ReviewForm() {
         console.log(dataObj);
         setIsFormComplete(true);
         setAnalysisInterviewStatus(5);
+        onComplete();
     }
 
     const buttonClick = () => {

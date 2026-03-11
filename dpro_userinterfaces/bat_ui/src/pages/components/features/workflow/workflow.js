@@ -3,120 +3,124 @@
 import { useState } from "react";
 import { IoMdArrowDown, IoMdInformation, IoMdLaptop } from "react-icons/io";
 import ProcessDiagram from '../workflow/processDiagram.js';
-import { ProcessNodesContext } from '../workflow/processNodesContext.tsx';
+import { ProcessNodesContext, ProcessNodesProvider, useProcessNodes } from '../workflow/processNodesContext.tsx';
 import SaveDataValues from "../../data save/savedatavalues.js";
 
-let getActionInfo = (actionData, actionDecision, actionMeeting,
-                    actionFiling, actionPhone, actionMessage) => {
-    let actionInfoString = [];
-    if(actionData) 
-        actionInfoString.push('data');
-    if(actionDecision)
-        actionInfoString.push('decision');
-    if(actionMeeting)
-        actionInfoString.push('meeting');
-    if(actionFiling)
-        actionInfoString.push('filing');
-    if(actionPhone)
-        actionInfoString.push('phone');
-    if(actionMessage)
-        actionInfoString.push('message');
-    return actionInfoString;
-}
+    let getActionInfo = (actionData, actionDecision, actionMeeting,
+                        actionFiling, actionPhone, actionMessage) => {
+        let actionInfoString = [];
+        console.log('get action info');
+        if(actionData) 
+            actionInfoString.push('data');
+        if(actionDecision)
+            actionInfoString.push('decision');
+        if(actionMeeting)
+            actionInfoString.push('meeting');
+        if(actionFiling)
+            actionInfoString.push('filing');
+        if(actionPhone)
+            actionInfoString.push('phone');
+        if(actionMessage)
+            actionInfoString.push('message');
+        return actionInfoString;
+    }
 
-const arrow =
-    <div className='w-full h-20 m-[1%] shadow-green-500 shadow-sm'>
-        <IoMdArrowDown className='processArrow' />
-    </div>;
+    const arrow =
+        <div className='w-full h-20 m-[1%] shadow-green-500 shadow-sm'>
+            <IoMdArrowDown className='processArrow' />
+        </div>;
 
-const processDiv = (processName, processDescription, processDateCreated) => {
-    return(
-        <div className="w-full flex">
-            <div className='w-auto h-32 m-[1%] rounded-lg bg-gray-300 shadow-green-900 drop-shadow-sm'>
-                <p className='processInfo'> 
-                    { processName }
-                </p>
-                <p className='processInfo'>
-                    { processDescription }
-                </p>
-                <p className='processInfo'>
-                    { processDateCreated }
-                </p>
-            </div>
-            <div className='processArrow'>
-                { arrow }
-            </div>
-        </div>
-    );
-}
-
-const actionDiv = (actionData, actionDecision, actionMeeting, actionFiling, actionPhone, actionMessage) => {
-    return(
-        <div className='flex flex-col w-auto h-20 m-[1%] rounded-lg bg-slate-700 shadow-green-900 drop-shadow-sm'>
-            <p className="actionInfoText"> 
-                Actions include process tasks:
-            </p>
-            { 
-                getActionInfo(actionData, actionDecision, actionMeeting,
-                    actionFiling, actionPhone, actionMessage)
-                .map(info => { 
-                        return <p className='actionInfoText'> info </p> 
-                    })
-            }
-        </div>
-    );
-}
-
-let ProcessActionsInput = (inputNum) => {
-    return(
-        <div className='flex flex-col w-full items-center'>
-            <p className='text-lg text-slate-900 font-mono font-semibold'>Process: { inputNum }</p>
-            <div className='textInputDiv'>
-                <IoMdLaptop className='textInputImage' />
-                <input name={ 'Process Name ' + inputNum } type='text' placeholder='provide a process name' className='textInput' />
-            </div>
-            <div className='textInputDiv'>
-                <IoMdInformation className='textInputImage' />
-                <textarea name={ 'Process Description ' + inputNum} placeholder='describe the process' className='textInput' maxLength={500}/>
-            </div>
-            <div className='flex'>
-                <div className='flex flex-col p-2'>
-                    <p className='workflowInputPanelTitle'> Actions </p>
-                    <div className='checkboxDiv'>
-                        <input name={ 'Data ' + inputNum } type='checkbox' className='checkboxInput' />
-                        <p className='w-full text-sm'> data </p>
-                    </div>
-                    <div className='checkboxDiv'>
-                        <input name={ 'Decision ' + inputNum } type='checkbox' className='checkboxInput' />
-                        <p className='w-full text-sm'> decision </p>
-                    </div>
-                    <div className='checkboxDiv'>
-                        <input name={ 'Meeting ' + inputNum } type='checkbox' className='checkboxInput' />
-                        <p className='w-full text-sm'> meeting </p>
-                    </div>
+    const processDiv = (processName, processDescription, processDateCreated) => {
+        console.log('process div')
+        return(
+            <div className="w-full flex">
+                <div className='w-auto h-32 m-[1%] rounded-lg bg-gray-300 shadow-green-900 drop-shadow-sm'>
+                    <p className='processInfo'> 
+                        { processName }
+                    </p>
+                    <p className='processInfo'>
+                        { processDescription }
+                    </p>
+                    <p className='processInfo'>
+                        { processDateCreated }
+                    </p>
                 </div>
-                <div className='flex flex-col p-2'>
-                    <div className='checkboxDiv'>
-                        <input name={ 'Filing ' + inputNum } type='checkbox' className='checkboxInput' />
-                        <p className='w-full text-sm'> filing </p>
-                    </div>
-                    <div className='checkboxDiv'>
-                        <input name={ 'Phone ' + inputNum } type='checkbox' className='checkboxInput' />
-                        <p className='w-full text-sm'> phone </p>
-                    </div>
-                    <div className='checkboxDiv'>
-                        <input name= { 'Message ' + inputNum } type='checkbox' className='checkboxInput' />
-                        <p className='w-full text-sm'> message </p>
-                    </div>
+                <div className='processArrow'>
+                    { arrow }
                 </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
+
+    const actionDiv = (actionData, actionDecision, actionMeeting, actionFiling, actionPhone, actionMessage) => {
+        console.log('action div');
+        return(
+            <div className='flex flex-col w-auto h-20 m-[1%] rounded-lg bg-slate-700 shadow-green-900 drop-shadow-sm'>
+                <p className="actionInfoText"> 
+                    Actions include process tasks:
+                </p>
+                { 
+                    getActionInfo(actionData, actionDecision, actionMeeting,
+                        actionFiling, actionPhone, actionMessage)
+                    .map(info => { 
+                            return <p className='actionInfoText'> info </p> 
+                        })
+                }
+            </div>
+        );
+    }
+
+    let ProcessActionsInput = (inputNum) => {
+        return(
+            <div className='flex flex-col w-full items-center'>
+                <p className='text-lg text-slate-900 font-mono font-semibold'>Process: { inputNum }</p>
+                <div className='textInputDiv'>
+                    <IoMdLaptop className='textInputImage' />
+                    <input name={ 'Process Name ' + inputNum } type='text' placeholder='provide a process name' className='textInput' />
+                </div>
+                <div className='textInputDiv'>
+                    <IoMdInformation className='textInputImage' />
+                    <textarea name={ 'Process Description ' + inputNum} placeholder='describe the process' className='textInput' maxLength={500}/>
+                </div>
+                <div className='flex'>
+                    <div className='flex flex-col p-2'>
+                        <p className='workflowInputPanelTitle'> Actions </p>
+                        <div className='checkboxDiv'>
+                            <input name={ 'Data ' + inputNum } type='checkbox' className='checkboxInput' />
+                            <p className='w-full text-sm'> data </p>
+                        </div>
+                        <div className='checkboxDiv'>
+                            <input name={ 'Decision ' + inputNum } type='checkbox' className='checkboxInput' />
+                            <p className='w-full text-sm'> decision </p>
+                        </div>
+                        <div className='checkboxDiv'>
+                            <input name={ 'Meeting ' + inputNum } type='checkbox' className='checkboxInput' />
+                            <p className='w-full text-sm'> meeting </p>
+                        </div>
+                    </div>
+                    <div className='flex flex-col p-2'>
+                        <div className='checkboxDiv'>
+                            <input name={ 'Filing ' + inputNum } type='checkbox' className='checkboxInput' />
+                            <p className='w-full text-sm'> filing </p>
+                        </div>
+                        <div className='checkboxDiv'>
+                            <input name={ 'Phone ' + inputNum } type='checkbox' className='checkboxInput' />
+                            <p className='w-full text-sm'> phone </p>
+                        </div>
+                        <div className='checkboxDiv'>
+                            <input name= { 'Message ' + inputNum } type='checkbox' className='checkboxInput' />
+                            <p className='w-full text-sm'> message </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
 const serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'workflow';
 
-const Workflow = () => {
+const Workflow = ({onComplete}) => {
+    console.log('workflow');
 
     let saveTypes = ['Workflow'];
 
@@ -175,6 +179,7 @@ const Workflow = () => {
         
         let count = processes[0].processInputNumber;
         let processCount = processInputs.length;
+        console.log('count: ' + count + ' process count: ' + processCount );
         while(count <= processCount){
             const dataObject = {
                 workflowId: 'Workflow-' + crypto.randomUUID(),
@@ -194,6 +199,7 @@ const Workflow = () => {
             let newArray = workflowFormData;
             newArray.push(dataObject);
             setWorkflowFormData(newArray);
+            console.log('form data object: ' + newArray.length);
 
             let newNode = {
                 process: processDiv(dataObject.processName, 
@@ -204,6 +210,7 @@ const Workflow = () => {
 
             }
             
+            console.log(newNode);
             nodes.push(newNode);
 
             count++;
@@ -211,7 +218,9 @@ const Workflow = () => {
 
         setIsFormComplete(true);
         let newArray = nodes;
+        console.log('new array items: ' + newArray.length);
         setNodes(newArray);
+        onComplete();
     }
 
     let buttonClick = () => {

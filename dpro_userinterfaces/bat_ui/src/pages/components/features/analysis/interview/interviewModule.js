@@ -4,8 +4,8 @@
 import { useState } from "react";
 import Workspace from "./workspace/workspace.js";
 import { ProgressBar } from "../../../../../app/components/ui/progress-indicators/progress-indicators.tsx";
-
-const InterviewModule = () => {
+import { MdOutlineBusiness, MdOutlineBusinessCenter } from "react-icons/md";
+const InterviewModule = ({onComplete}) => {
 
     let interviewContent = <div></div>;
     //let analysisInterviewStatus = 1;
@@ -26,6 +26,7 @@ const InterviewModule = () => {
     const updateProgress = () => {
         var progress = analysisInterviewStatus === undefined ? 0 : analysisInterviewStatus * 2;
         setProgressValue(progress);
+        console.log(progress);
     }
 
     // var isAnalystRole = getAccess();
@@ -41,7 +42,7 @@ const InterviewModule = () => {
         interviewContent = 
             <div className="bg-slate-100 flex m-[2.5%] justify-center">
                     <div className="m-[2.5%] bg-slate-500"> 
-                        <div className="m-[2.5%]"><Workspace /></div>
+                        <div className="m-[2.5%]"><Workspace onComplete={onComplete} /></div>
                     </div>
             </div>;
     }

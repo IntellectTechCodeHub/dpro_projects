@@ -26,6 +26,10 @@ body {
 }
 
 @layer components {
+  .actionInfoText {
+    @apply text-white font-semibold font-mono text-xs text-center
+  }
+
   .addButton {
     @apply w-[50%] h-[50%] bg-green-200 border-3 text-black font-bold text-lg shadow-md hover:bg-green-100 rounded-full
   };
@@ -43,7 +47,7 @@ body {
   };
 
   .checkboxDiv {
-    @apply bg-slate-100 w-full m-[2.5%] flex shadow-md items-center justify-evenly
+    @apply bg-slate-100 w-full m-[2.5%] flex shadow-md items-center justify-evenly rounded-sm
   };
 
   .componentDiv {
@@ -105,6 +109,10 @@ body {
   .formDiv {
     @apply w-[90%] mx-[10%] items-center justify-evenly
   };
+
+  .form {
+    @apply w-full mx-[10%] items-center justify-evenly
+  }
   
   .logo {
     @apply sm:w-[90] sm:h-[50] md:w-[100] md:h-[55] w-[120] h-[60] m-[0.7%] p-[0.5] items-center justify-center
@@ -116,6 +124,14 @@ body {
   
   .pageTitle {
     @apply text-2xl items-center
+  };
+
+  .processArrow {
+    @apply items-center justify-center
+  };
+
+  .processInfo { 
+    @apply text-black font-semibold font-mono text-sm text-center
   };
 
   .selectInputDiv {
@@ -157,4 +173,28 @@ body {
   .imageFluid {
     @apply sm:w-[25%] md:w-[50%] lg:w-[75%] m-[2.5%] hover:bg-blue-200
   };
+
+  .workflowDiv {
+    @apply flex w-full bg-slate-100 h-full items-stretch justify-center rounded-sm
+  }
+
+  .workflowInfoDiv {
+    @apply flex flex-col w-auto h-auto m-[2.5%] items-center justify-center
+  }
+  
+  .workflowInputPanel {
+    @apply flex flex-col w-[25%] h-full bg-slate-500 items-center justify-center overflow-y-auto
+  }
+
+  .workflowInputPanelTitle {
+    @apply m-[2.5%] text-slate-700 text-xl text-center font-semibold font-mono items-center justify-evenly
+  }
+
+  .workflowModellingPanel {
+    @apply flex flex-col min-w-3/4 max-w-3xl h-full bg-slate-300 items-center justify-center overflow-x-auto
+  }
+
+  .workflowModellingPanelTitle {
+    @apply m-[2.5%] text-green-700 text-3xl text-center font-semibold font-mono items-center justify-evenly
+  }
 }

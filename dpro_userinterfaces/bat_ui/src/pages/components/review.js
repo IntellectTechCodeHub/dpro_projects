@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { MdOutlineReviews } from "react-icons/md";
 import ReviewForm from "./reviewForm.js";
 
-export default function Review () {
+export default function Review ({onComplete}) {
 
     const [requests, setRequests] = useState([]);
     const [reviews, setReviews] = useState([
@@ -40,7 +40,7 @@ export default function Review () {
             </div>
             <div className="subComponentDiv">
                 <p className="pageTitle"> Review process for existing interviews. </p>
-                <ReviewForm  />
+                <ReviewForm  onComplete={ onComplete } />
             </div>
         </div>
     );
