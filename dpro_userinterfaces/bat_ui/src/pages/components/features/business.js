@@ -93,7 +93,7 @@ const BusinessInfoForm = ({onComplete}) => {
                         </select>
                     </div>
                     <div>
-                        <button type='submit' className='button'>Complete: Next Page</button>
+                        <button name='Complete Business' type='submit' className='button'>Complete: Next Page</button>
                     </div>
                 </form>
             </div>
