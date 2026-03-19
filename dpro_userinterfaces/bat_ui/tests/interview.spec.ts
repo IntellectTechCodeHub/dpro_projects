@@ -2,7 +2,58 @@ import { test, expect } from '@playwright/test';
 
 test('analysis', async ({ page }) => {
   //await page.locator('body').click();
+  test.setTimeout(320_000);
   await page.goto('http://localhost:4000/');
+
+  //Business
+  await page.getByRole('checkbox').check();
+  await page.getByRole('textbox', { name: 'add business name' }).click();
+  await page.getByRole('textbox', { name: 'add business name' }).fill('Business 1');
+  await page.getByRole('textbox', { name: 'add business description' }).click();
+  await page.getByRole('textbox', { name: 'add business description' }).fill('Business Description 1');
+  await page.getByRole('textbox', { name: 'add business contact' }).click();
+  await page.getByRole('textbox', { name: 'add business contact' }).fill('Business Contact 1');
+  await page.getByRole('textbox', { name: 'add business phone' }).click();
+  await page.getByRole('textbox', { name: 'add business phone' }).fill('Business Phone 1');
+  await page.getByRole('textbox', { name: 'city' }).click();
+  await page.getByRole('textbox', { name: 'city' }).fill('City 1');
+  await page.getByRole('textbox', { name: 'state' }).click();
+  await page.getByRole('textbox', { name: 'state' }).fill('State 1');
+  page.once('dialog', dialog => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    dialog.dismiss().catch(() => {});
+  });
+  await page.getByRole('button', { name: 'Complete: Next Page' }).click();
+  await page.getByRole('button', { name: 'Complete' }).click();
+
+  //Workflow
+  await page.getByText('Got Processes? Now begin a research interview. Process Info Process: 1 Actions').click();
+  await page.locator('input[name="Process Name 1"]').click();
+  await page.locator('input[name="Process Name 1"]').fill('process 1');
+  await page.locator('textarea[name="Process Description 1"]').click();
+  await page.locator('textarea[name="Process Description 1"]').fill('process description 1');
+  await page.locator('input[name="Data 1"]').check();
+  await page.locator('input[name="Meeting 1"]').check();
+  await page.locator('input[name="Process Name 2"]').click();
+  await page.locator('input[name="Process Name 2"]').fill('process 2');
+  await page.locator('textarea[name="Process Description 2"]').click();
+  await page.locator('textarea[name="Process Description 2"]').fill('process description 2');
+  await page.getByText('data').nth(1).click();
+  await page.locator('input[name="Data 2"]').check();
+  await page.locator('input[name="Process Name 3"]').click();
+  await page.locator('input[name="Process Name 3"]').fill('process 3');
+  await page.locator('textarea[name="Process Description 3"]').click();
+  await page.locator('textarea[name="Process Description 3"]').fill('process description 3');
+  await page.getByText('data').nth(2).click();
+  await page.locator('input[name="Data 3"]').check();
+  page.once('dialog', dialog => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    dialog.dismiss().catch(() => {});
+  });
+  await page.getByRole('button', { name: 'Complete' }).click();
+  await page.locator('button[name="Complete"]').click();
+
+  //Interview
   await page.getByRole('textbox', { name: 'Name for analysis' }).click();
   await page.getByRole('textbox', { name: 'Name for analysis' }).fill('Analysis 1');
   await page.getByRole('textbox', { name: 'Workflow Document Id' }).click();
@@ -37,11 +88,8 @@ test('analysis', async ({ page }) => {
     dialog.dismiss().catch(() => {});
   });
   await page.getByRole('button', { name: 'Create Analysis' }).click();
-});
 
-test('intake', async ({ page }) => {
-  //await page.locator('body').click();
-  await page.goto('http://localhost:4000/');
+  //Intake
   await expect(page.getByRole('radio', { name: 'analyst' })).toBeVisible();
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
@@ -73,48 +121,8 @@ test('intake', async ({ page }) => {
     dialog.dismiss().catch(() => {});
   });
   await page.getByRole('button', { name: 'Add Analyst' }).click();
-});
 
-test('analyst', async ({ page }) => {
-  //await page.locator('body').click();
-  await page.goto('http://localhost:4000/');
-  await expect(page.getByRole('radio', { name: 'schedule' })).toBeVisible();
-  page.once('dialog', dialog => {
-    console.log(`Dialog message: ${dialog.message()}`);
-    dialog.dismiss().catch(() => {});
-  });
-  await page.getByRole('radio', { name: 'schedule' }).click();
-  await expect(page.getByRole('heading', { name: 'Scheduler' })).toBeVisible();
-  await page.locator('input[name="Analysis Interview Availability"]').click();
-  await page.locator('input[name="Analysis Interview Availability"]').press('ArrowLeft');
-  await page.locator('input[name="Analysis Interview Availability"]').press('ArrowRight');
-  await page.locator('input[name="Analysis Interview Availability"]').fill('2026-01-01T00:00');
-  await page.locator('input[name="Discovery Interview Availability"]').click();
-  await page.locator('input[name="Discovery Interview Availability"]').press('ArrowRight');
-  await page.locator('input[name="Discovery Interview Availability"]').fill('2026-01-01T00:00');
-  await page.locator('input[name="Review Interview Availability"]').click();
-  await page.locator('input[name="Review Interview Availability"]').press('ArrowRight');
-  await page.locator('input[name="Review Interview Availability"]').fill('2026-01-01T00:00');
-  await page.locator('input[name="Solutions Interview Availability"]').click();
-  await page.locator('input[name="Solutions Interview Availability"]').press('ArrowRight');
-  await page.locator('input[name="Solutions Interview Availability"]').fill('2026-01-01T00:00');
-  await page.locator('input[name="Requirements Interview Availability"]').click();
-  await page.locator('input[name="Requirements Interview Availability"]').press('ArrowRight');
-  await page.locator('input[name="Requirements Interview Availability"]').fill('2026-01-01T00:00');
-  await page.locator('input[name="Retrospective Interview Availability"]').click();
-  await page.locator('input[name="Retrospective Interview Availability"]').press('ArrowRight');
-  await page.locator('input[name="Retrospective Interview Availability"]').fill('2026-01-01T00:00');
-  await expect(page.getByRole('button', { name: 'Schedule' })).toBeVisible();
-  page.once('dialog', dialog => {
-    console.log(`Dialog message: ${dialog.message()}`);
-    dialog.dismiss().catch(() => {});
-  });
-  await page.getByRole('button', { name: 'Schedule' }).click();
-});
-
-test('schedule', async ({ page }) => {
-  //await page.locator('body').click();
-  await page.goto('http://localhost:4000/');
+  //Schedule
   await expect(page.getByRole('radio', { name: 'schedule' })).toBeVisible();
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
@@ -146,11 +154,8 @@ test('schedule', async ({ page }) => {
     dialog.dismiss().catch(() => {});
   });
   await page.getByRole('button', { name: 'Schedule' }).click();
-});
 
-test('interview', async ({ page }) => {
-  //await page.locator('body').click();
-  await page.goto('http://localhost:4000/');
+  //Interview
   await expect(page.getByRole('radio', { name: 'interview' })).toBeVisible();
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
@@ -204,11 +209,8 @@ test('interview', async ({ page }) => {
     dialog.dismiss().catch(() => {});
   });
   await page.getByRole('button', { name: 'Add interview' }).click();
-});
 
-test('review', async ({ page }) => {
-  //await page.locator('body').click();
-  await page.goto('http://localhost:4000/');
+  //Review
   await expect(page.getByRole('radio', { name: 'review' })).toBeVisible();
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
