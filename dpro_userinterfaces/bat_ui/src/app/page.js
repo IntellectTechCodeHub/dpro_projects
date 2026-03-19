@@ -8,8 +8,6 @@ export default function Home() {
 
   //const userPriviledges = {userId: "000-000", role: "analyst", processes: ["analysis", "architecture"] };
 
-  process.loadEnvFile('./.env');
-
   let user = 1;
   let discoverpro = 1;
   let pageContent, footerContent;
