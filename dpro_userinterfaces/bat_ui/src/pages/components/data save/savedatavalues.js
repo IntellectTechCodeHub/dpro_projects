@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { formatUrl } from '../../../app/helpers/httputility.js';
 
-export default function SaveDataValues(type, url, data) {
+const SaveDataValues = ({ type, url, data,  eventCallback }) => {
     const [saveDataValues, setSaveDataValues] = useState();
     const [saveDataError, setSaveDataError] = useState();
     const [saveHasData, setSaveHasData] = useState(false);
-
+    
     let isSaving = true;
     let isComplete, hasSent, hasReturnValue, hasError = false;
     
@@ -15,10 +15,18 @@ export default function SaveDataValues(type, url, data) {
 
     let dataObject = data;
 
+    console.log('type: ' + type);
+    console.log('url: ' + url);
+    console.log(eventCallback);
+
     function formatUrlString() {
-        let urlString = formatUrl(type, url, dataObject);
-        console.log("Formatter: " + urlString);
-        return urlString;    
+        if(type !== undefined && url !== undefined && data !== undefined) {
+            let urlString = formatUrl(type, url, dataObject);
+            console.log("Formatter: " + urlString);
+            return urlString;  
+        }
+
+        return 'invalid url';
     }
 
     async function saveData(apiUrl, dataObject) {
@@ -33,16 +41,22 @@ export default function SaveDataValues(type, url, data) {
                 body: JSON.stringify(dataObject)
             };
 
+            let dataComplete = false;
             dataReturn = await fetch(apiUrl, options)
                             .then((res) => res.json())
                             .catch((e) => e.message);
-            //setSaveDataValues(dataReturn);
+            
             setSaveHasData(dataReturn !== undefined && dataReturn !== null);
+            //setSaveDataValues(dataReturn);
+            
         }
         catch (error) {
             hasError = true;
             dataErr = error;
             setSaveDataError(error.message);
+            
+            if(eventCallback !== undefined)
+                eventCallback();
         }
     }
 
@@ -52,14 +66,24 @@ export default function SaveDataValues(type, url, data) {
         dataResults = saveData(serviceUrl, dataObject);
     }), ([!hasSent]);
 
+    let EventCallbackButton = (isActive) => {
+        return(
+            <div className="buttonDiv">
+                <button name="Complete" type="button" onClick={ eventCallback } className="button" hidden={ !isActive }> Complete </button> <br />
+            </div>
+        );
+    }
+
     function SaveData() {
         return(
-            <div className='flex w-full h-screen mt-[4.5%] p-10 items-center justify-evenly'>
-                <h1 className='text-2xl items-center'> Save Data: </h1>
+            <div className='flex w-full h-screen mt-[4.5%] p-10 items-center justify-evenly bg-slate-300 rounded-lg'>
+                <EventCallbackButton isActive={saveHasData} />
+                
                 <div className='flex flex-col text-lg items-center'>
-                    { saveHasData ? <div> complete... {saveDataValues} </div> : ""}
-                    { isSaving && !saveHasData && !hasError ? <div> saving... </div> : "" }
-                    { hasError ? <div> error... {dataErr} </div> : ""}
+                    <h1 className='text-2xl m-[2.5%] items-center semi-bold font-mono text-shadow-fuchsia-950'> Save Data </h1>
+                    { saveHasData ? <div> Complete... {saveDataValues} </div> : ""}
+                    { isSaving && !saveHasData && !hasError ? <div> Saving... </div> : "" }
+                    { hasError ? <div> Error... {dataErr} </div> : ""}
                 </div>
             </div>
         );
@@ -71,3 +95,4 @@ export default function SaveDataValues(type, url, data) {
         </div>
     );
 }
+export default SaveDataValues;

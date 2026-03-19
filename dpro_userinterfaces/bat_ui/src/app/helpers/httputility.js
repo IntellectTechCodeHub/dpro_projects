@@ -2,18 +2,6 @@ const HttpUtility = (urlDomainsList) => {
 
     let urlDomains;
 
-    function getBusinessHttpUrl(domainUrlString, dataObject){
-
-        let urlString = domainUrlString + "?" +
-            "businessId=" + dataObject.businessId + "&" +
-            "businessName=" + dataObject.name + "&" +
-            "businessDescription=" + dataObject.description + "&" +
-            "businessCreatedDate=" + dataObject.createdDate + "&" +
-            "businessIsActive=" + dataObject.isActive;
-
-            return urlString;  
-    }
-
     function getArchitectureHttpUrl(domainString){
 
     }
@@ -28,6 +16,33 @@ const HttpUtility = (urlDomainsList) => {
 
 }
 
+    function getBusinessHttpUrl(domainUrlString, dataObject) {
+        console.log(domainUrlString);
+        console.log(dataObject);
+
+        let businessIndustriesString, businessWorkflowsString = "";
+
+        // for(let index = 0; index < dataObject.businessIndustries.length; index++){
+        //     businessIndustriesString = "businessIndustry=" + dataObject.businessIndustries[index] + "&";
+        // }
+
+        // for(let index = 0; index < dataObject.businessWorkflows.length; index++){
+        //     businessWorkflowsString = "businessWorkflow=" + dataObject.businessWorkflow[index] + "&";
+        // }
+
+        let urlString = domainUrlString + "?" +
+            "businessId=" + dataObject.businessId + "&" +
+            "businessDocumentId=" + dataObject.businessDocumentId + "&" +
+            "businessName=" + dataObject.businessName + "&" +
+            "businessDescription=" + dataObject.businessDescription + "&" +
+            "businessCreatedDate=" + dataObject.businessCreatedDate + "&" +
+            "businessIsActive=" + dataObject.businessIsActive + "&" +
+            "businessIndustry=" + dataObject.businessIndustry;
+            //businessIndustriesString +
+            //businessWorkflowsString;
+            return urlString;
+    }
+
     function getWorkflowHttpUrl(domainUrlString, dataObject){
         console.log(domainUrlString);
         console.log(dataObject);
@@ -39,14 +54,15 @@ const HttpUtility = (urlDomainsList) => {
             "workflowDescription=" + dataObject.workflowDescription + "&" +
             "processName=" + dataObject.processName + "&" +
             "processDescription=" + dataObject.processDescription + "&" + 
-            "processData=" + dataObject.processData + "&" +
-            "processDecision=" + dataObject.processDecision + "&" +
-            "processMeeting=" + dataObject.processMeeting + "&" +
-            "processFiling=" + dataObject.processFiling + "&" +
-            "processPhone=" + dataObject.processPhone + "&" +
-            "processMessage=" + dataObject.processMessage + "&" +
             "processCreatedDate=" + dataObject.processCreatedDate + "&" +
-            "processIsActive=" + dataObject.processIsActive;
+            "processIsActive=" + dataObject.processIsActive + "&" +
+            "actionData=" + dataObject.actionData + "&" +
+            "actionDecision=" + dataObject.processDecision + "&" +
+            "actionMeeting=" + dataObject.processMeeting + "&" +
+            "actionFiling=" + dataObject.processFiling + "&" +
+            "actionPhone=" + dataObject.processPhone + "&" +
+            "actionMessage=" + dataObject.processMessage;
+            
         
         return urlString;
     }
@@ -202,6 +218,14 @@ export function formatUrl(domainObjectType, url, dataObject) {
         let httpUrl;
         switch(domainObjectType.type){
             
+            // The business feature highlights DiscoverPRO Anify and Verta with a business info input form.
+
+            case 'Business':
+                if(domainObjectType.data.businessId !== undefined)
+                    httpUrl = getBusinessHttpUrl(domainObjectType.url, domainObjectType.data)
+                return httpUrl;
+                break;
+            
             // The workflow feature diagrams the core process and action descriptions.
 
             case 'Workflow':
@@ -210,7 +234,7 @@ export function formatUrl(domainObjectType, url, dataObject) {
                 return httpUrl;
                 break; 
 
-            // 0 The interview feature starts analysis with problem and solution definitions.
+            // The interview feature starts analysis with problem and solution definitions.
             
             case 'Analysis':
                 var urls = [];
@@ -219,7 +243,7 @@ export function formatUrl(domainObjectType, url, dataObject) {
                 return httpUrl;
                 break;
             
-            // 1 The request to begin an analysis starts with the intake request.
+            // The request to begin an analysis starts with the intake request.
 
             case 'Intake Request':
                 var urls = [];
@@ -228,21 +252,21 @@ export function formatUrl(domainObjectType, url, dataObject) {
                 return httpUrl;
                 break;
 
-            // 2 Assign an analyst for the intake request.
+            // Assign an analyst for the intake request.
 
             case 'Analyst':
                 if(domainObjectType.data.analystId !== undefined)
                     httpUrl = getAnalystHttpUrl(domainObjectType.url, domainObjectType.data);
                 return httpUrl;
 
-            // 3 The analyst sets an interview schedule using the availibility from the intake request.
+            // The analyst sets an interview schedule using the availibility from the intake request.
 
             case 'Interview Schedule':
                 if(domainObjectType.data.interviewScheduleId !== undefined)
                     httpUrl = getInterviewScheduleUrlString(domainObjectType.url, domainObjectType.data);
                 return httpUrl;
 
-            // 4 The interview is completed with information gathering.
+            // The interview is completed with information gathering.
 
             case 'Interview':
                 if(domainObjectType.data.interviewId !== undefined)
@@ -250,7 +274,7 @@ export function formatUrl(domainObjectType, url, dataObject) {
                 return httpUrl;
                 break;
 
-            // 5 The analysis interview is reviewed then approved or declined.
+            // The analysis interview is reviewed then approved or declined.
 
             case 'Review':
                 if(domainObjectType.data.reviewId !== undefined)

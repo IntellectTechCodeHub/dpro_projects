@@ -184,9 +184,11 @@ const Workflow = ({onComplete}) => {
             const dataObject = {
                 workflowId: 'Workflow-' + crypto.randomUUID(),
                 workflowDocumentId: '000-000-000',
+                workflowName: dataJson['Workflow Name'],
+                workflowDescription: dataJson['Workflow Description'],
                 processName: dataJson['Process Name ' + count.toString() ],
                 processDescription: dataJson['Process Description ' + count.toString() ],
-                processDateCreated: '01-01-2026',
+                processCreatedDate: '01-01-2026',
                 processIsActive: true,
                 actionData: dataJson['Data ' + count.toString() ] == 'on' ? true : false,
                 actionDecision: dataJson['Decision ' + count.toString() ] == 'on' ? true : false,
@@ -220,7 +222,7 @@ const Workflow = ({onComplete}) => {
         let newArray = nodes;
         console.log('new array items: ' + newArray.length);
         setNodes(newArray);
-        onComplete();
+        //onComplete();
     }
 
     let buttonClick = () => {
@@ -238,10 +240,10 @@ const Workflow = ({onComplete}) => {
                             processInputs && !isFormComplete ? processInputs.map(processAction => <div className='w-full'> { processAction } </div>) 
                                 : <div><p> processes added </p></div> 
                         }
-                        {/* { 
+                        { 
                             !isFormComplete ? <p className='text-sm text-center font-semibold font-mono'> Add one or more process descriptions. </p> 
-                                : <SaveDataValues type={saveTypes[0]} url={serviceUrl} data={workflowFormData ?? workflowFormData[0] } /> 
-                        } */}
+                                : <SaveDataValues type={saveTypes[0]} url={serviceUrl} data={workflowFormData ?? workflowFormData[0] } eventCallback={ onComplete } /> 
+                        }
                         
                         <div className='buttonDiv'>
                             <button type='submit' onClick={buttonClick} className='button'> Complete </button> <br />

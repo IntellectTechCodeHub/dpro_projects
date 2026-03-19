@@ -3,9 +3,16 @@
 import { useState } from 'react';
 import { IoMdAnalytics, IoMdBulb, IoMdCloudOutline, IoMdGlobe, IoMdLaptop } from 'react-icons/io';
 import { MdInfo, MdOutlineBusiness, MdOutlineBusinessCenter, MdOutlineLocationCity, MdOutlinePhone, MdPersonOutline } from "react-icons/md";
+import SaveDataValues from '../data save/savedatavalues';
+
+let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + "business";
 
 const BusinessInfoForm = ({onComplete}) => {
-        const [businessFormData, setBusinessFormData] = useState();
+    const [isSaveComplete, setIsSaveComplete] = useState(false);
+    const [businessFormData, setBusinessFormData] = useState();
+    const [isFormComplete, setIsFormComplete] = useState(false);
+
+    let saveTypes = ["Business"];
 
     let handleComplete = (e) => {
         e.preventDefault();
@@ -21,11 +28,12 @@ const BusinessInfoForm = ({onComplete}) => {
             businessId: crypto.randomUUID(),
             businessDocumentId: '000-000-000',
             businessName: dataJson['Business Name'],
-            busisnessContact: dataJson['Business Contact'],
+            businessDescription: dataJson['Business Description'],
+            businessContact: dataJson['Business Contact'],
             businessPhone: dataJson['Business Phone'],
             businessCity: dataJson['City'],
             businessState: dataJson['State'],
-            businessIndustry: dataJson['Industry'],
+            businessIndustries: dataJson['Industry'],
             businessInfoProtection: dataJson['Information Protection'],
             businessCreatedDate: '01-01-2026',
             businessIsActive: true
@@ -33,11 +41,11 @@ const BusinessInfoForm = ({onComplete}) => {
 
         setBusinessFormData(dataObject);
         console.log(dataObject);
-
-        onComplete();
+        
+        setIsFormComplete(true);
     }
-    
-    return(
+
+    let pageContent = 
         <div className='w-[75%] h-auto m-[2.5%] bg-slate-500 rounded-lg shadow-green-900 shadow-lg '>
             <div className='componentDiv'>
                 <p className='text-3xl text-center font-semibold font-mono text-green-900'> Business Information </p>
@@ -51,6 +59,10 @@ const BusinessInfoForm = ({onComplete}) => {
                         <div className='textInputDiv'>
                             <MdOutlineBusiness className='textInputImage' />
                             <input name='Business Name' type='text' className='textInput' placeholder='add business name' />
+                        </div>
+                        <div className='textInputDiv'>
+                            <MdPersonOutline className='textInputImage' />
+                            <input name='Business Description' type='text' className='textInput' placeholder='add business description' />
                         </div>
                         <div className='textInputDiv'>
                             <MdPersonOutline className='textInputImage' />
@@ -71,7 +83,8 @@ const BusinessInfoForm = ({onComplete}) => {
                     </div>
                     <div className='selectInputDiv'>
                         <MdOutlineBusinessCenter className='textInputImage'/>
-                        <select name='Industry' type='text' className='selectInput' placeholder='industry' multiple >
+                        {/* <select name='Industry' className='selectInput' multiple> */}
+                        <select name='Industry' className='selectInput'>
                             <option value='Healthcare'> healthcare </option>
                             <option value='Finance'> finance </option>
                             <option value='Biometrics'> biometrics </option>
@@ -84,11 +97,26 @@ const BusinessInfoForm = ({onComplete}) => {
                     </div>
                 </form>
             </div>
+        </div>;
+
+    let saveComplete = () => {
+        console.log('save complete');
+        saveCompleted = true;
+        onComplete();
+    }
+
+    console.log('business info form');
+
+    return(
+        <div className="bg-slate-100 m-[2.5%] flex flex-col w-full h-auto items-center justify-evenly">
+            { !isFormComplete ? pageContent : <SaveDataValues type={ saveTypes[0] } url={ serviceUrl } data={ businessFormData } eventCallback={ onComplete } /> }
         </div>
     );
 }
 
-const BusinessInfo = ({onComplete}) => {
+const BusinessInfo = ({ hasBusiness, onComplete}) => {
+    console.log('hasBusiness: ' + hasBusiness);
+    console.log(onComplete);
     return(
         <div className='flex w-full h-auto m-[2.5%] bg-slate-900 items-center justify-evenly'>
             <div className='flex flex-col w-full h-auto m-[2.5%] items-center'>
