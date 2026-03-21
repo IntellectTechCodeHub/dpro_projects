@@ -35,8 +35,12 @@ const HttpUtility = (urlDomainsList) => {
             "businessDocumentId=" + dataObject.businessDocumentId + "&" +
             "businessName=" + dataObject.businessName + "&" +
             "businessDescription=" + dataObject.businessDescription + "&" +
+            "businessPhone=" + dataObject.businessPhone + "&" +
+            "businessCity=" + dataObject.businessCity + "&" + 
+            "businessState=" + dataObject.businessState + "&" +
             "businessCreatedDate=" + dataObject.businessCreatedDate + "&" +
             "businessIsActive=" + dataObject.businessIsActive + "&" +
+            "businessInfoProtection=" + dataObject.businessInfoProtection + "&" +
             "businessIndustry=" + dataObject.businessIndustry;
             //businessIndustriesString +
             //businessWorkflowsString;
@@ -49,7 +53,7 @@ const HttpUtility = (urlDomainsList) => {
 
         let urlString = domainUrlString + "?" +
             "workflowId=" + dataObject.workflowId + "&" +
-            "workflowDocumentId=" + dataObject.workflowDocumentId + "&" +
+            "businessDocumentId=" + dataObject.businessDocumentId + "&" +
             "workflowName=" + dataObject.workflowName + "&" + 
             "workflowDescription=" + dataObject.workflowDescription + "&" +
             "processName=" + dataObject.processName + "&" +
@@ -62,7 +66,6 @@ const HttpUtility = (urlDomainsList) => {
             "actionFiling=" + dataObject.processFiling + "&" +
             "actionPhone=" + dataObject.processPhone + "&" +
             "actionMessage=" + dataObject.processMessage;
-            
         
         return urlString;
     }

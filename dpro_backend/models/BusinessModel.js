@@ -6,30 +6,50 @@ export const BusinessSchema = mongoose.Schema({
         required: true,
         message: 'businessId is required.'
     },
-    name: {
+    businessName: {
         type: String,
         required: true,
-        message: 'name is required.'
+        message: 'businessName is required.'
     },
-    description: {
+    businessDescription: {
         type: String,
         required: true,
-        message: 'description is required.'
+        message: 'businessDescription is required.'
     },
-    createdDate: {
+    businessPhone: {
+        type: String,
+        required: true,
+        message: 'businessPhone is required.'
+    },
+    businessCity: {
+        type: String,
+        required: true,
+        message: 'businessCity is required.'
+    },
+    businessState: {
+        type: String,
+        required: true,
+        message: 'businessState is required.'
+    },    
+    businessCreatedDate: {
         type: Date,
         required: true,
-        message: 'createdDate is required.'
+        message: 'businessCreatedDate is required.'
     },
-    isActive: {
+    businessIsActive: {
         type: Boolean,
         required: true,
-        message: 'isActive is required.'
+        message: 'businessIsActive is required.'
     },
-    industries: {
-        type: Array,
+    businessInfoProtection: {
+        type: String,
         required: true,
-        message: 'industries is required.'
+        message: 'businessInfoProtection is required.'
+    },
+    businessIndustry: {
+        type: String,
+        required: true,
+        message: 'businessIndustry is required.'
     },
     workflows: Array,
     taxonomy: Object,

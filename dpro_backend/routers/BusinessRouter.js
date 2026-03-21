@@ -16,11 +16,15 @@ BusinessRouter.post('/business', (req, res) => {
 
         var obj = {
             "businessId": req.query.businessId,
-            "name": req.query.businessName,
-            "description": req.query.businessDescription,
-            "createdDate": req.query.businessCreatedDate,
-            "isActive": req.query.businessIsActive,
-            "industries": req.query.businessIndustry
+            "businessName": req.query.businessName,
+            "businessDescription": req.query.businessDescription,
+            "businessPhone": req.query.businessPhone,
+            "businessCity": req.query.businessCity,
+            "businessState": req.query.businessState,
+            "businessCreatedDate": req.query.businessCreatedDate,
+            "businessIsActive": req.query.businessIsActive,
+            "businessInfoProtection": req.query.businessInfoProtection,
+            "businessIndustry": req.query.businessIndustry
         }; 
 
         var business = DbOperation('New', dbName, modelName, schema, obj)
@@ -54,11 +58,15 @@ BusinessRouter.patch('/business', (req, res) => {
         searchRecordId: { "_id": req.query.businessDocumentId },
         updateObj: {
             "businessId": req.query.businessId,
-            "name": req.query.businessName,
-            "description": req.query.description,
-            "createdDate": req.query.businessCreatedDate,
-            "isActive": req.query.businessIsActive,
-            "industries": req.query.businessIndustry
+            "businessName": req.query.businessName,
+            "businessDescription": req.query.businessDescription,
+            "businessPhone": req.query.businessPhone,
+            "businessCity": req.query.businessCity,
+            "businessState": req.query.businessState,
+            "businessCreatedDate": req.query.businessCreatedDate,
+            "businessIsActive": req.query.businessIsActive,
+            "businessInfoProtection": req.query.businessInfoProtection,
+            "businessIndustry": req.query.businessIndustry
         }
     };
 

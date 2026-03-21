@@ -1,41 +1,75 @@
 import mongoose from "mongoose";
-
 export const WorkflowSchema = mongoose.Schema({
     workflowId: {
         type: String,
         required: true,
         message: 'workflowId is required.'
     },
-    businessId: {
+    businessDocumentId: {
         type: String,
         required: true,
-        message: 'businessId is required.'
+        message: 'businessDocumentId is required.'
     },
-    name: {
+    workflowName: {
         type: String,
         required: true,
-        message: 'name is required.'
+        message: 'workflowName is required.'
     },
-    description: {
+    workflowDescription: {
         type: String,
         required: true,
-        message: 'description is required.'
+        message: 'workflowDescription is required.'
     },
-    createdDate: {
+    processName: {
+        type: String,
+        required: true,
+        message: 'processName is required.'
+    },
+    processDescription: { 
+        type: String,
+        required: true,
+        message: 'processDescription is required.'
+    },
+    processCreatedDate: {
         type: Date,
         required: true,
-        message: 'createdDate is required.'
+        message: 'processCreatedDate is required.'
     },
-    isActive: {
+    processIsActive: {
         type: Boolean,
         required: true,
-        message: 'isActive is required.'
+        message: 'processIsActive is required.'
     },
-    policies: {
-        type: Array,
+    actionData: {
+        type: Boolean,
+        required: false
+    },
+    actionDecision: {
+        type: Boolean,
         required: true,
-        message: 'policies is required.'
-    }
+        message: 'actionDecision is required.'
+    },
+    actionMeeting: {
+        type: Boolean,
+        required: true,
+        message: 'actionMeeting is required.'
+    },
+    actionFiling: {
+        type: Boolean,
+        required: true,
+        message: 'actionFiling is required.'
+    },
+    actionPhone: {
+        type: Boolean,
+        required: true,
+        message: 'actionPhone is required.'
+    },
+    actionMessage: {
+        type: Boolean,
+        required: true,
+        message: 'actionMessage is required.'
+    },
+    policies: Array
 });
 
 const Workflow = mongoose.model('Workflow', WorkflowSchema);

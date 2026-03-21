@@ -15,11 +15,19 @@ WorkflowRouter.post('/workflow', (req, res) => {
 
     var obj = {
         "workflowId": req.query.workflowId,
-        "businessId": req.query.businessDocumentId,
-        "name": req.query.workflowName,
-        "description": req.query.workflowDescription,
-        "createdDate": req.query.workflowCreatedDate,
-        "isActive": req.query.workflowIsActive,
+        "businessDocumentId": req.query.businessDocumentId,
+        "workflowName": req.query.workflowName,
+        "workflowDescription": req.query.workflowDescription,
+        "processName": req.query.processName,
+        "processDescription": req.query.processDescription,
+        "processCreatedDate": req.query.processCreatedDate,
+        "processIsActive": req.query.workflowIsActive,
+        "actionData": req.query.actionData,
+        "actionDecision": req.query.actionDecision,
+        "actionMeeting": req.query.actionMeeting,
+        "actionFiling": req.query.actionFiling,
+        "actionPhone": req.query.actionPhone,
+        "actionMessage": req.query.actionMessage,
         "policies": req.query.workflowPolicy
     };
     console.log(obj);
@@ -46,13 +54,21 @@ WorkflowRouter.patch('/workflow', (req, res) => {
     var obj = {
         searchRecordId: { "_id": req.query.workflowDocumentId },
         updateObj: {
-            "workflowId": req.query.workflowId,
-            "businessId": req.query.businessDocumentId,
-            "name": req.query.workflowName,
-            "description": req.query.workflowDescription,
-            "createdDate": req.query.workflowCreatedDate,
-            "isActive": req.query.workflowIsActive,
-            "policies": req.query.workflowPolicy
+        "workflowId": req.query.workflowId,
+        "businessDocumentId": req.query.businessDocumentId,
+        "workflowName": req.query.workflowName,
+        "workflowDescription": req.query.workflowDescription,
+        "processName": req.query.processName,
+        "processDescription": req.query.processDescription,
+        "processCreatedDate": req.query.processCreatedDate,
+        "processIsActive": req.query.workflowIsActive,
+        "actionData": req.query.actionData,
+        "actionDecision": req.query.actionDecision,
+        "actionMeeting": req.query.actionMeeting,
+        "actionFiling": req.query.actionFiling,
+        "actionPhone": req.query.actionPhone,
+        "actionMessage": req.query.actionMessage,
+        "policies": req.query.workflowPolicy
         }
     };
 
