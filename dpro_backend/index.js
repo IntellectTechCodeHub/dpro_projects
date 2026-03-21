@@ -6,6 +6,7 @@ import compression from 'compression';
 import cors from 'cors';
 
 import UserRouter from './routers/UserRouter.js';
+import UserAuthenticationRouter from './routers/UserAuthenticationRouter.js';
 import BusinessRouter from './routers/BusinessRouter.js';
 import WorkflowRouter from './routers/WorkflowRouter.js';
 import AnalysisRouter from './routers/analysis routers/AnalysisRouter.js';
@@ -32,6 +33,7 @@ async function main(){
         res.send('<p>DiscoverPRO Web Services by Intellect Tech, LLC</p>');
     });
     app.use(UserRouter);
+    app.use(UserAuthenticationRouter);
     app.use(BusinessRouter);
     app.use(WorkflowRouter);
     app.use(AnalysisRouter);

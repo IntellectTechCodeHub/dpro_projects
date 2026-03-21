@@ -21,10 +21,10 @@ export const UserAuthenticationSchema = mongoose.Schema({
         required: true,
         message: 'userAuthenticationCreatedDate is required.'
     },
-    userAuthenticatedIsActive: {
+    userAuthenticationIsActive: {
         type: Boolean,
         required: true,
-        message: 'userAuthenticatedIsActive is required.'
+        message: 'userAuthenticationIsActive is required.'
     }
 });
 

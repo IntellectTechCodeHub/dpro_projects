@@ -69,7 +69,7 @@ export const WorkflowSchema = mongoose.Schema({
         required: true,
         message: 'actionMessage is required.'
     },
-    policies: Array
+    workflowPolicies: Array
 });
 
 const Workflow = mongoose.model('Workflow', WorkflowSchema);

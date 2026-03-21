@@ -28,7 +28,7 @@ WorkflowRouter.post('/workflow', (req, res) => {
         "actionFiling": req.query.actionFiling,
         "actionPhone": req.query.actionPhone,
         "actionMessage": req.query.actionMessage,
-        "policies": req.query.workflowPolicy
+        "workflowPolicies": req.query.workflowPolicies
     };
     console.log(obj);
     var workflow = DbOperation('New', dbName, modelName, schema, obj)

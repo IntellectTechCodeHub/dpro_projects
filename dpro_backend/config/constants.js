@@ -579,6 +579,42 @@ export const logUserAPIDeleteRequest = {
     "logTime": Date.now().toString(),
     "process": 'User application interface received a DELETE request.'
 };
+export const logUserAuthenticationAPIPostRequest = {
+    "logId": 'User-Authentication-POST-Request-' + crypto.randomUUID(),
+    "name": 'user authentication application interface',
+    "type": 'feature',
+    "subType": 'user API router',
+    "eventDate": Date.now().toString(),
+    "logTime": Date.now().toString(),
+    "process": 'User authentication application interface received a POST request.'
+};
+export const logUserAuthenticationAPIGetRequest = {
+    "logId": 'User-Authentication-GET-Request-'+ crypto.randomUUID(),
+    "name": 'user authentication application interface',
+    "type": 'feature',
+    "subType": 'user API router',
+    "eventDate": Date.now().toString(),
+    "logTime":  Date.now().toString(),
+    "process": 'User authentication application interface received a GET request.'
+};
+export const logUserAuthenticationAPIPatchRequest = {
+    "logId": 'User-Authentication-PATCH-Request-' + crypto.randomUUID(),
+    "name": 'user authentication application interface',
+    "type": 'feature',
+    "subType": 'user authentication API router',
+    "eventDate": Date.now().toString(),
+    "logTime":  Date.now().toString(),
+    "process": 'User authentication application interface recieved a PATCH request.'
+};
+export const logUserAuthenticationAPIDeleteRequest = {
+    "logId": 'User-Authentication-DELETE-Request-' + crypto.randomUUID(),
+    "name": 'user authentication application interface',
+    "type": 'feature',
+    "subType": 'user authentication API router',
+    "eventDate": Date.now().toString(),
+    "logTime": Date.now().toString(),
+    "process": 'User authentication application interface recieved a DELETE request.'
+};
 export const logWorkflowAPIPostRequest = {
     "logId": 'Workflow-Router-POST-Request-' + crypto.randomUUID(),
     "name": 'workflow application interface',
