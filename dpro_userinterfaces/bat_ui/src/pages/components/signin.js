@@ -19,7 +19,7 @@ export default function Signin ({onComplete}) {
         <div className="w-full h-screen flex items-center justify">
             <div className="w-[40%] p-10 bg-silver-900 flex-col flex items-center gap-x-4 gap-y-2 rounded-xl shadow-slate-100 shadow-md">
                 <Image src="/logo.png" alt="logo" classname="md-10 md:md-14" />
-                <h1 className="text-lg md:text-lg font-bold"> Signin </h1>
+                <h1 className="text-xl md:text-lg font-bold"> Sign-in to DiscoverPro </h1>
             </div>
             <div className="w-full flex flex-col gap-3 justify-around">
                 <div className="bg-slate-100 w-full flex items-center shadow-10 text-gray-700 justify-evenly rounded-sm">
