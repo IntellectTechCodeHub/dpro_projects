@@ -188,7 +188,7 @@ const Workflow = ({onComplete}) => {
                 workflowDescription: dataJson['Workflow Description'],
                 processName: dataJson['Process Name ' + count.toString() ],
                 processDescription: dataJson['Process Description ' + count.toString() ],
-                processCreatedDate: '01-01-2026',
+                processCreatedDate: '2026-01-01',
                 processIsActive: true,
                 actionData: dataJson['Data ' + count.toString() ] == 'on' ? true : false,
                 actionDecision: dataJson['Decision ' + count.toString() ] == 'on' ? true : false,

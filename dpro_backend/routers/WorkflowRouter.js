@@ -21,7 +21,7 @@ WorkflowRouter.post('/workflow', (req, res) => {
         "processName": req.query.processName,
         "processDescription": req.query.processDescription,
         "processCreatedDate": req.query.processCreatedDate,
-        "processIsActive": req.query.workflowIsActive,
+        "processIsActive": req.query.processIsActive,
         "actionData": req.query.actionData,
         "actionDecision": req.query.actionDecision,
         "actionMeeting": req.query.actionMeeting,
@@ -30,7 +30,7 @@ WorkflowRouter.post('/workflow', (req, res) => {
         "actionMessage": req.query.actionMessage,
         "workflowPolicies": req.query.workflowPolicies
     };
-    console.log(obj);
+    
     var workflow = DbOperation('New', dbName, modelName, schema, obj)
                         .then(newWorkflow => res.status(200).send({ "valid": true, "object": "workflow", "data": JSON.stringify(newWorkflow)} ))
                         .catch(e => res.status(400).send({ "valid": false, "object": "workflow", "data": e.toString() }));

@@ -34,8 +34,8 @@ const BusinessInfoForm = ({onComplete}) => {
             businessCity: dataJson['City'],
             businessState: dataJson['State'],
             businessIndustries: dataJson['Industry'],
-            businessInfoProtection: dataJson['Information Protection'],
-            businessCreatedDate: '01-01-2026',
+            businessInfoProtection: dataJson['Information Protection'] == 'on' ? true : false,
+            businessCreatedDate: '2026-01-01',
             businessIsActive: true
         }
 
