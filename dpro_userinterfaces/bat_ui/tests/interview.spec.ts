@@ -1,9 +1,21 @@
 import { test, expect } from '@playwright/test';
 
-test('analysis', async ({ page }) => {
+test('DiscoverPRO Anify feature preview testing.', async ({ page }) => {
   //await page.locator('body').click();
   test.setTimeout(320_000);
   await page.goto('http://localhost:4000/');
+
+  //Sign-in
+  await page.getByRole('textbox', { name: 'Email' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('admin@theintellecttech.com');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('anify');
+  page.once('dialog', dialog => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    dialog.dismiss().catch(() => {});
+  });
+  await page.getByRole('button', { name: 'Signin' }).click();
+  await page.getByRole('button', { name: 'Complete' }).click();
 
   //Business
   await page.getByRole('checkbox').check();
