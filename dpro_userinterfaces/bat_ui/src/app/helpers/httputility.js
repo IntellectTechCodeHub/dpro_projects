@@ -16,6 +16,25 @@ const HttpUtility = (urlDomainsList) => {
 
 }
 
+    function getSigninUserUrl(domainUrlString, dataObject) {
+        let urlString = domainUrlString + "?" +
+            "userEmail=" + dataObject.email + "&" +
+            "userPassword=" + dataObject.pass; 
+        return urlString;
+    }
+
+    function getSigninUserAuthenticationUrl(domainUrlString, dataObject) {
+        let urlString = domainUrlString + "?" +
+                    "userAuthenticationId=" + dataObject.userAuthenticationId + "&" +
+                    "userDocumentId=" + dataObject.userDocumentId + "&" +
+                    "signinEmail=" + dataObject.signinEmail + "&" +
+                    "signinPass=" + dataObject.signinPass + "&" +
+                    "userAuthenticated=" + dataObject.userAuthenticated + "&" +
+                    "userAuthenticationCreatedDate=" + dataObject.userAuthenticationCreatedDate + "&" +
+                    "userAuthenticationIsActive=" + dataObject.userAuthenticationIsActive;
+        return urlString;
+    }
+
     function getBusinessHttpUrl(domainUrlString, dataObject) {
         console.log(domainUrlString);
         console.log(dataObject);
@@ -44,6 +63,7 @@ const HttpUtility = (urlDomainsList) => {
             "businessIndustry=" + dataObject.businessIndustry;
             //businessIndustriesString +
             //businessWorkflowsString;
+            console.log(urlString);
             return urlString;
     }
 
@@ -61,11 +81,11 @@ const HttpUtility = (urlDomainsList) => {
             "processCreatedDate=" + dataObject.processCreatedDate + "&" +
             "processIsActive=" + dataObject.processIsActive + "&" +
             "actionData=" + dataObject.actionData + "&" +
-            "actionDecision=" + dataObject.processDecision + "&" +
-            "actionMeeting=" + dataObject.processMeeting + "&" +
-            "actionFiling=" + dataObject.processFiling + "&" +
-            "actionPhone=" + dataObject.processPhone + "&" +
-            "actionMessage=" + dataObject.processMessage;
+            "actionDecision=" + dataObject.actionDecision + "&" +
+            "actionMeeting=" + dataObject.actionMeeting + "&" +
+            "actionFiling=" + dataObject.actionFiling + "&" +
+            "actionPhone=" + dataObject.actionPhone + "&" +
+            "actionMessage=" + dataObject.actionMessage;
         
         return urlString;
     }
@@ -203,8 +223,8 @@ const HttpUtility = (urlDomainsList) => {
             "status=" + dataObject.status + "&" +
             "isActive=" + Boolean(dataObject.isActive);
 
-            if(domainObjectType.data.intakeId !== undefined)
-                urlString = getIntakeUrlString(domainObjectType.url, domainObjectType.data);
+            if(dataObject.intakeId !== undefined)
+                urlString = getIntakeUrlString(url, dataObject);
 
             if(dataObject.problemId !== undefined)
                 urlString = getProblemUrlString(urlString, dataObject);
@@ -216,24 +236,37 @@ const HttpUtility = (urlDomainsList) => {
     }
 
 export function formatUrl(domainObjectType, url, dataObject) {
-        console.log(domainObjectType);
 
         let httpUrl;
-        switch(domainObjectType.type){
+        switch(domainObjectType){
+
+            // The signin component verifies a user is the database and saves an auth document.
+
+            case 'Signin User':
+                if(dataObject.email !== undefined )
+                    httpUrl = getSigninUserUrl(url, dataObject);
+                return httpUrl;
+                break;
+
+            case 'Signin User Authentication':
+                if(dataObject.userAuthenticationId !== undefined)
+                    httpUrl = getSigninUserAuthenticationUrl(url, dataObject);
+                return httpUrl;
+                break;
             
             // The business feature highlights DiscoverPRO Anify and Verta with a business info input form.
 
             case 'Business':
-                if(domainObjectType.data.businessId !== undefined)
-                    httpUrl = getBusinessHttpUrl(domainObjectType.url, domainObjectType.data)
+                if(dataObject.businessId !== undefined)
+                    httpUrl = getBusinessHttpUrl(url, dataObject);
                 return httpUrl;
                 break;
             
             // The workflow feature diagrams the core process and action descriptions.
 
             case 'Workflow':
-                if(domainObjectType.data.workflowId !== undefined)
-                    httpUrl = getWorkflowHttpUrl(domainObjectType.url, domainObjectType.data);
+                if(dataObject[0].workflowId !== undefined)
+                    httpUrl = getWorkflowHttpUrl(url, dataObject[0]);
                 return httpUrl;
                 break; 
 
@@ -241,8 +274,8 @@ export function formatUrl(domainObjectType, url, dataObject) {
             
             case 'Analysis':
                 var urls = [];
-                if(domainObjectType.data.analysisId !== undefined)
-                    httpUrl = getAnalysisHttpUrl(domainObjectType.url, domainObjectType.data);
+                if(dataObject.analysisId !== undefined)
+                    httpUrl = getAnalysisHttpUrl(url, dataObject);
                 return httpUrl;
                 break;
             
@@ -250,38 +283,38 @@ export function formatUrl(domainObjectType, url, dataObject) {
 
             case 'Intake Request':
                 var urls = [];
-                if(domainObjectType.data.intakeRequestId !== undefined)
-                    httpUrl = getIntakeRequestHttpUrl(domainObjectType.url, domainObjectType.data);
+                if(dataObject.intakeRequestId !== undefined)
+                    httpUrl = getIntakeRequestHttpUrl(url, dataObject);
                 return httpUrl;
                 break;
 
             // Assign an analyst for the intake request.
 
             case 'Analyst':
-                if(domainObjectType.data.analystId !== undefined)
-                    httpUrl = getAnalystHttpUrl(domainObjectType.url, domainObjectType.data);
+                if(dataObject.analystId !== undefined)
+                    httpUrl = getAnalystHttpUrl(url, dataObject);
                 return httpUrl;
 
             // The analyst sets an interview schedule using the availibility from the intake request.
 
             case 'Interview Schedule':
-                if(domainObjectType.data.interviewScheduleId !== undefined)
-                    httpUrl = getInterviewScheduleUrlString(domainObjectType.url, domainObjectType.data);
+                if(dataObject.interviewScheduleId !== undefined)
+                    httpUrl = getInterviewScheduleUrlString(url, dataObject);
                 return httpUrl;
 
             // The interview is completed with information gathering.
 
             case 'Interview':
-                if(domainObjectType.data.interviewId !== undefined)
-                    httpUrl = getInterviewHttpUrl(domainObjectType.url, domainObjectType.data);
+                if(dataObject.interviewId !== undefined)
+                    httpUrl = getInterviewHttpUrl(url, dataObject);
                 return httpUrl;
                 break;
 
             // The analysis interview is reviewed then approved or declined.
 
             case 'Review':
-                if(domainObjectType.data.reviewId !== undefined)
-                    httpUrl = getReviewHttpUrl(domainObjectType.url, domainObjectType.data);
+                if(dataObject.reviewId !== undefined)
+                    httpUrl = getReviewHttpUrl(url, dataObject);
                 return httpUrl;
             default:
                 break;

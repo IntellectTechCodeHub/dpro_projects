@@ -15,10 +15,6 @@ const SaveDataValues = ({ type, url, data,  eventCallback }) => {
 
     let dataObject = data;
 
-    console.log('type: ' + type);
-    console.log('url: ' + url);
-    console.log(eventCallback);
-
     function formatUrlString() {
         if(type !== undefined && url !== undefined && data !== undefined) {
             let urlString = formatUrl(type, url, dataObject);
@@ -48,7 +44,6 @@ const SaveDataValues = ({ type, url, data,  eventCallback }) => {
             
             setSaveHasData(dataReturn !== undefined && dataReturn !== null);
             //setSaveDataValues(dataReturn);
-            
         }
         catch (error) {
             hasError = true;

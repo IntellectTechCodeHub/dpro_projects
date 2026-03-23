@@ -2,14 +2,14 @@ import Header from "../pages/components/header.js";
 import Register from "../pages/components/register.js";
 import Section from "../pages/components/elements/section.js"
 import Footer from "../pages/components/footer.js";
-import DiscoverPro from '../pages/components/features/discover pro/discoverpro.js';
+import Signin from "../pages/components/signin.js";
 
 export default function Home() {
 
   //const userPriviledges = {userId: "000-000", role: "analyst", processes: ["analysis", "architecture"] };
-
+  
   let user = 1;
-  let discoverpro = 1;
+  let discoverpro = null;
   let pageContent, footerContent;
 
   // User types represent three roles: business analyst (reviewer, interviewer), requestor (team member or lead), workflow designer (process diagram creator)  
@@ -25,8 +25,8 @@ export default function Home() {
     pageContent = <Register />;
     footerContent = <p> Disclaimer: User information is used responsibly according with all privacy, safety, and security regulations. </p>;
   }
-  else if(discoverpro != null) {
-    pageContent = <DiscoverPro />;
+  else if(user === 1) {
+    pageContent = <Signin />;
     footerContent = <Footer />;
   }
 

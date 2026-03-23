@@ -20,7 +20,7 @@ export default function Register ({onComplete}) {
         <div className="w-full h-screen flex items-center justify">
             <div className="w-[40%] p-10 bg-silver-900 flex-col flex items-center gap-x-4 gap-y-2 rounded-xl shadow-slate-100 shadow-md">
                 <Image src="/logo.png" alt="logo" classname="md-10 md:md-14" />
-                <h1 className="text-lg md:text-lg font-bold"> Register </h1>
+                <h1 className="text-xl md:text-lg font-bold"> Register for a DiscoverPro subscription </h1>
                 <p className="text-md md:txt-sm text-black-400 text-center"> Complete user sign-up as a <span className="text-silver"> business rep, team, or analyst. </span></p>    
             </div>
             <div className="w-full flex flex-col gap-3 justify-around">
