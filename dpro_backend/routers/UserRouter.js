@@ -10,7 +10,7 @@ var dbName = testDbName;
 var modelName = 'User';
 var schema = UserSchema;
 
-UserRouter.post('/users/:userId/:name/:email/:password/:phone/:isValid', (req, res) => { 
+UserRouter.post('/users/:userId/:name/:email/:password/:phone/:isActive', (req, res) => { 
     let log = LogEvent(dbName, telemetryEvent, schema, logUserAPIPostRequest);
     
     var obj = {
@@ -19,7 +19,7 @@ UserRouter.post('/users/:userId/:name/:email/:password/:phone/:isValid', (req, r
             "email": req.params.email,
             "password": req.params.password,
             "phone": req.params.phone,
-            "isValid": req.params.isValid
+            "isActive": req.params.isActive
     };
 
     var result = DbOperation('New', dbName, modelName, schema, obj)
@@ -30,19 +30,19 @@ UserRouter.post('/users/:userId/:name/:email/:password/:phone/:isValid', (req, r
 UserRouter.get('/users', (req, res) => { 
     let log = LogEvent(dbName, telemetryEvent, schema, logUserAPIGetRequest);
 
-    var obj = { "isValid": true };
+    var obj = { "isActive": true };
 
     var result = DbOperation('Get All', dbName, modelName, schema, obj)
                             .then(users => res.status(200).send({ 'valid': true, 'object': 'user', 'data': JSON.stringify({users})}))
                             .catch(e => res.status(400).send({ 'valid': false, 'object': "user", 'data': e.toString()}));
 });
 
-UserRouter.get('/userByEmail/:email', (req, res) => {
+UserRouter.get('/userByEmail', (req, res) => {
     let log = LogEvent(dbName, telemetryEvent, schema, logUserByValueAPIGetRequest);
 
     var obj = { 
-        "email": req.params.email,
-        "isValid": true
+        "email": req.query.email,
+        "isActive": true
      };
     
     var result = DbOperation('Get All By Value', dbName, modelName, schema, obj)
@@ -56,7 +56,7 @@ UserRouter.get('/userByName/:name', (req, res) => {
 
     var obj = { 
         "name": req.params.name,
-        "isValid": true
+        "isActive": true
      };
     
     var result = DbOperation('Get All By Value', dbName, modelName, schema, obj)
@@ -74,7 +74,7 @@ UserRouter.patch('/userUpdateById', (req, res) => {
             "email": req.query.email,
             "password": req.query.password,
             "phone": req.query.phone,
-            "isValid": req.query.isValid
+            "isActive": req.query.isActive
         } 
     };
 

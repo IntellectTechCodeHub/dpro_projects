@@ -18,8 +18,7 @@ const HttpUtility = (urlDomainsList) => {
 
     function getSigninUserUrl(domainUrlString, dataObject) {
         let urlString = domainUrlString + "?" +
-            "userEmail=" + dataObject.email + "&" +
-            "userPassword=" + dataObject.pass; 
+            "email=" + dataObject.email;
         return urlString;
     }
 

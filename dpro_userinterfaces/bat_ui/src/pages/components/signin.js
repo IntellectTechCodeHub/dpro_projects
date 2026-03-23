@@ -10,7 +10,7 @@ import { formatUrl } from "../../app/helpers/httputility.js";
 import DiscoverPro from "./features/discover pro/discoverpro.js";
 
 let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'UserAuthentication';
-let serviceUrl_Users = process.env.NEXT_PUBLIC_SERVICE_URL + 'Users';
+let serviceUrl_Users = process.env.NEXT_PUBLIC_SERVICE_URL + 'userByEmail';
 
 export default function Signin() {
     
@@ -23,9 +23,9 @@ export default function Signin() {
 
     let saveType = ['Signin User Authentication'];
 
-    let retrieveUser = async (email, password) => {
+    let retrieveUser = async (email) => {
 
-            let dataObj = {email: email, pass: password};
+            let dataObj = {email: email};
 
             let url = formatUrl('Signin User', serviceUrl_Users, dataObj);
 
