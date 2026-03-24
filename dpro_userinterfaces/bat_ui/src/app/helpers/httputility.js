@@ -16,6 +16,17 @@ const HttpUtility = (urlDomainsList) => {
 
 }
 
+    function getUserRegistrationEmail(domainUrlString, dataObject) {
+        let urlString = domainUrlString + "/" +
+            dataObject.userId + "/" +
+            dataObject.name + "/" +
+            dataObject.email + "/" +
+            dataObject.password + "/" +
+            dataObject.phone + "/" +
+            dataObject.isActive;
+        return urlString;
+    }
+
     function getSigninUserUrl(domainUrlString, dataObject) {
         let urlString = domainUrlString + "?" +
             "email=" + dataObject.email;
@@ -241,6 +252,11 @@ export function formatUrl(domainObjectType, url, dataObject) {
 
             // The signin component verifies a user is the database and saves an auth document.
 
+            case 'Register':
+                if(dataObject.userId !== undefined)
+                    httpUrl = getUserRegistrationEmail(url, dataObject);
+                return httpUrl;
+                break;
             case 'Signin User':
                 if(dataObject.email !== undefined )
                     httpUrl = getSigninUserUrl(url, dataObject);

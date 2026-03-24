@@ -5,11 +5,27 @@ test('DiscoverPRO Anify feature preview testing.', async ({ page }) => {
   test.setTimeout(320_000);
   await page.goto('http://localhost:4000/');
 
+  //Register
+  await page.getByRole('textbox', { name: 'Name' }).click();
+  await page.getByRole('textbox', { name: 'Name' }).fill('User 1');
+  await page.getByRole('textbox', { name: 'Email' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('user@user.com');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('userpassword');
+  await page.getByRole('textbox', { name: 'Phone' }).click();
+  await page.getByRole('textbox', { name: 'Phone' }).fill('000-000-0000');
+  page.once('dialog', dialog => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    dialog.dismiss().catch(() => {});
+  });
+  await page.getByRole('button', { name: 'Complete Registration' }).click();
+  await page.getByRole('button', { name: 'Complete' }).click();
+
   //Sign-in
   await page.getByRole('textbox', { name: 'Email' }).click();
-  await page.getByRole('textbox', { name: 'Email' }).fill('admin@theintellecttech.com');
+  await page.getByRole('textbox', { name: 'Email' }).fill('user@user.com');
   await page.getByRole('textbox', { name: 'Password' }).click();
-  await page.getByRole('textbox', { name: 'Password' }).fill('anify');
+  await page.getByRole('textbox', { name: 'Password' }).fill('userpassword');
   page.once('dialog', dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
     dialog.dismiss().catch(() => {});

@@ -8,7 +8,7 @@ export default function Home() {
 
   //const userPriviledges = {userId: "000-000", role: "analyst", processes: ["analysis", "architecture"] };
   
-  let user = 1;
+  let user = null;
   let discoverpro = null;
   let pageContent, footerContent;
 
@@ -23,10 +23,6 @@ export default function Home() {
 
   if (user == null) {  
     pageContent = <Register />;
-    footerContent = <p> Disclaimer: User information is used responsibly according with all privacy, safety, and security regulations. </p>;
-  }
-  else if(user === 1) {
-    pageContent = <Signin />;
     footerContent = <Footer />;
   }
 
