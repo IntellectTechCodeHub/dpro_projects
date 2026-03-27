@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 
-const Navbar = () => {  
+let discoverProUrl = process.env.DISCOVERPRO_URL; 
+
+const Navbar = ({ onLinkClick }) => {  
     
     let [navClickMain, setNavClickMain] = useState(false);
     let [navClickUser, setNavClickUser] = useState(false);
@@ -13,6 +15,7 @@ const Navbar = () => {
         setNavClickUser(false);
         setNavClickWorkflow(false); 
         setNavClickSettings(false);
+        onLinkClick('business');
       }
     
     const onUserClick = () => {
@@ -20,6 +23,7 @@ const Navbar = () => {
         setNavClickUser(true);
         setNavClickWorkflow(false);
         setNavClickSettings(false);
+        onLinkClick('userprofile');
       }
     
     const onWorkflowClick = () => {
@@ -27,6 +31,7 @@ const Navbar = () => {
         setNavClickUser(false);
         setNavClickWorkflow(true);
         setNavClickSettings(false);
+        onLinkClick('workflow');
       }
     
     const onSettingsClick = () => {
@@ -34,6 +39,7 @@ const Navbar = () => {
         setNavClickUser(false);
         setNavClickWorkflow(false);
         setNavClickSettings(true);
+        onLinkClick('usersetting');
       }
 
     let unSelectedClass = 'm-[1%] z-20 font-mono font-light sm:text-md md:text-lg lg:text-xl';

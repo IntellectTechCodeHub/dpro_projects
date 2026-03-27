@@ -262,5 +262,5 @@ test('DiscoverPRO Anify feature preview testing.', async ({ page }) => {
     console.log(`Dialog message: ${dialog.message()}`);
     dialog.dismiss().catch(() => {});
   });
-  await page.getByRole('button', { name: 'Complete' }).click();
+  await page.getByText('Main Page').click();
 });

@@ -1,91 +1,87 @@
 'use client';
 
-import { useState } from 'react';
-import Register from '../../register.js';
-import Signin from '../../signin.js';
-import Business from '../business.js';
-import Workflow from '../workflow/workflow.js';
-import InterviewModule from '../analysis/interview/interviewModule.js';
-
+import React, { useState } from "react";
+import Header from "../../header";
+import Section from "../../elements/section"
+import Footer from "../../footer";
+import Register from "../../register";
+import Signin from "../../signin";
+import Business from "../business";
+import Workflow from "../workflow/workflow";
+import InterviewModule from "../analysis/interview/interviewModule";
+//import UserSetting from "../../usersetting";
 
 const DiscoverPro = () => {
-    let [user, setUser] = useState();
-    let [isUserSignedIn, setIsUserSignedIn] = useState(true);
-    let [isUserRegisterComplete, setIsUserRegisterComplete] = useState(true);
-    let [hasSavedBusiness, setHasSavedBusiness] = useState(false);
-    let [hasWorkflowProcess , setHasWorkflowProcess] = useState(false);
-    let [addBusinessRequest, setAddBusinessRequest] = useState(false);
-    let [addProcessRequest, setAddProcessRequest] = useState(false);
-    let [hasResearchInterview, setHasResearchInterview] = useState(false);
-    let [addResearchInterviewRequest, setResearchInterviewRequest] = useState(false);
-    
+    let [appPage, setAppPage] = useState('register');
+    let [headerInteraction, setHeaderInteraction] = useState('');
+    let [authenticateduSER, setAuthenticateduSER] = useState(false);
 
-    
-    let DpContent = () => {
 
-        let contentButtonClick = () => {
-            alert('content button clicked');
-            console.log(isUserRegisterComplete);
-            console.log(isUserSignedIn);
-            console.log(hasSavedBusiness);
-            console.log(hasWorkflowProcess);
-        }
+    let pageContent = <div>Welcome to DiscoverPro.</div>;
 
-        
-        let dpContentButton = (dpContentString) => {
-        
-            return(
-                <button className='button' onClick={contentButtonClick}> { dpContentString } </button>
-            );
-        }
-
-        let dpContent =
-            <div className='w-full h-auto'>
-                { 
-                    !isUserSignedIn && !isUserRegisterComplete ? 
-                            <div className='componentDiv'> {dpContentButton('Complete registration? Now sign-in.')} 
-                                <div> <Register onComplete={ () => setIsUserRegisterComplete(true) } /> </div>
-                            </div>
-                            : <div></div>
-                }
-                {
-                    !isUserSignedIn && isUserRegisterComplete ?
-                            <div className='componentDiv'> {dpContentButton('Signed-in? Now add a business.')} 
-                                <div> <Signin onComplete={ () => setIsUserSignedIn(true) } /> </div>
-                            </div>
-                            : <div></div>
-                }
-                {
-                    (!hasSavedBusiness && isUserSignedIn) || addBusinessRequest ?
-                            <div className='componentDiv'> {dpContentButton('Use the workflow diagram tool.')} 
-                                <div> <Business hasBusiness={hasSavedBusiness === true} onComplete={ () => setHasSavedBusiness(true) }/> </div>
-                            </div>
-                            : <div></div>
-                }
-                {
-                    (!hasWorkflowProcess && hasSavedBusiness) || addProcessRequest ?
-                            <div className='componentDiv'> {dpContentButton('Got Processes? Now begin a research interview.')} 
-                                <div> <Workflow onComplete={ () => setHasWorkflowProcess(true) } /> </div>
-                            </div>
-                            : <div></div>
-                }
-                {
-                    (!hasResearchInterview && hasWorkflowProcess) || addResearchInterviewRequest ?
-                            <div className='componentDiv'> {dpContentButton('Finished the interview? Now begin an assessment.')} 
-                                <div> <InterviewModule onComplete={ () => setHasResearchInterview(true) } /> </div>
-                            </div>
-                            : <div></div>
-                }
-
-            </div>;
-        
-
-        return (dpContent);
+    switch(appPage){
+        case 'register':
+            pageContent = <Register onComplete = { () => { setAppPage('signin') } } />;
+            break;
+        case 'signin':
+            pageContent = <Signin onComplete = { () => { setAppPage('business') }} />;
+            break;
+        case 'business':
+            pageContent = <Business onComplete = { () => { setAppPage('workflow') }} />;
+            break;
+        case 'workflow':
+            pageContent = <Workflow onComplete = { () => { setAppPage('analysis') }} />;
+            break;
+        case 'analysis':
+            pageContent = <InterviewModule onComplete = { () => { setAppPage('business')}} />;
+            break;
+        default:
+            break;
     }
 
-    return(
-      <DpContent />  
-    );
+    let headerNavBar = (navBarClick) => {
+        console.log(navBarClick);
+        setAppPage(navBarClick);
+    }
+
+    let signinButtonClick = () => {
+        setAppPage('signin');
+    }
+
+    let signedinFeatures = ['business', 'workflow', 'analysis'];
+    let arrayFunction = (value, index, array) => {
+        return value === appPage ? value : undefined;
+    }
+    let isSignedInFeature = signedinFeatures.find(arrayFunction);
+    
+    let PageUI = () => {
+        return(
+            <div className="block flex flex-col">
+              <div className="flex flex-col w-full">
+                <Header isUserSignedIn={ isSignedInFeature !== undefined ? true : false } onComplete={ (navBarClick) => headerNavBar(navBarClick) } />
+                <div className="flex flex-col mt-[90] w-full items-center justify-evenly">
+                    { 
+                        appPage === 'register' ? 
+                            <div className='w-full h-auto m-[2.5%]'>
+                                <button name="register" onClick={ signinButtonClick } className="w-full h-[50px] text-black border-3 outline-none hover:bg-green-100 p-2 rounded-sm">Already Registered? Sign-in</button>
+                            </div> : ''
+                    }  
+                    {
+                      pageContent
+                    }
+                </div>
+              </div>
+              <div className="flex flex-col w-full"> 
+                <footer className="flex flex-col w-full my-[2.5%] gap-[1px] text-xs font-bold items-center justify-center">
+                    <Section className="m-[2.5%] opacity-50 shadow-cyan-600" ></Section>
+                      <Footer />
+                  </footer>
+              </div>
+            </div>
+        );
+    }
+
+  return (<PageUI />);
 }
 
 export default DiscoverPro;

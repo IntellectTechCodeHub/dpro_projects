@@ -6,14 +6,12 @@ import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { useState } from "react";
 import Image from "next/image";
 import SaveDataValues from "./data save/savedatavalues";
-import Signin from "./signin";
 
 let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'users';
 
-export default function Register () {
+export default function Register ({onComplete}) {
     
     const [isPassVisible, setIsPassVisible] = useState(false);
-    const [userRegistered, setUserRegistered] = useState(false);
     const [isUserRegisterComplete, setIsUserRegisterComplete] = useState(false);
     const [isFormComplete, setIsFormComplete] = useState(false);
     const [formData, setFormData] = useState();
@@ -21,7 +19,6 @@ export default function Register () {
     const changeViewPass = () => { setIsPassVisible(!isPassVisible) };
     const onCompleteButton = () => { 
         alert('user registered');
-        onComplete();
     };
 
     let saveTypes = ['Register'];
@@ -49,19 +46,8 @@ export default function Register () {
         setFormData(dataObj);
     }
 
-    let onRegisterComplete = () => {
-        setIsUserRegisterComplete(true);
-    }
-
-    let signinButtonClick = () => {
-        setUserRegistered(true);
-    }
-
     let registerContent =
         <form action onSubmit={onFormComplete} class=''>
-            <div className='w-full h-auto m-[2.5%]'>
-                <button name="register" onClick={ signinButtonClick } className="w-full h-[50px] text-black border-3 outline-none hover:bg-green-100 p-2 rounded-sm">Already Registered? Sign-in</button>
-            </div>
             <div className="w-full h-screen flex items-center justify">
                 <div className="w-[40%] p-10 bg-silver-900 flex-col flex items-center gap-x-4 gap-y-2 rounded-xl shadow-slate-100 shadow-md">
                     <Image src="/logo.png" alt="logo" classname="md-10 md:md-14" />
@@ -110,10 +96,7 @@ export default function Register () {
         pageContent = registerContent;
     
     if(isFormComplete && formData !== undefined)
-        pageContent = <SaveDataValues type={saveTypes[0]} url={serviceUrl} data={formData} eventCallback={onRegisterComplete} />;
-    
-    if(userRegistered || isUserRegisterComplete) 
-        pageContent = <Signin />;
+        pageContent = <SaveDataValues type={saveTypes[0]} url={serviceUrl} data={formData} eventCallback={onComplete} />;
     
     return(pageContent);
 }

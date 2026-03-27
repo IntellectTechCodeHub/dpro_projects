@@ -7,12 +7,11 @@ import Image from "next/image";
 import SaveDataValues from "./data save/savedatavalues";
 import retreiveData from "./data retrieval/retrievedata.js";
 import { formatUrl } from "../../app/helpers/httputility.js";
-import DiscoverPro from "./features/discover pro/discoverpro.js";
 
 let serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL + 'UserAuthentication';
 let serviceUrl_Users = process.env.NEXT_PUBLIC_SERVICE_URL + 'userByEmail';
 
-export default function Signin() {
+export default function Signin({onComplete}) {
     
     const [isPassVisible, setIsPassVisible] = useState(false);
     const [isActiveUser, setIsActiveUser] = useState(true);
@@ -61,6 +60,7 @@ export default function Signin() {
 
         let user = retrieveUser(obj.signinEmail, obj.signinPass);
         let isActiveUser = obj.signinEmail === user.email && obj.signinPass === user.pass;
+        console.log('verified: ' + isActiveUser);
         if(isActiveUser){
             setIsActiveUser(true);
             obj.userAuthenticated = true;
@@ -75,10 +75,6 @@ export default function Signin() {
     const onCompleteButton = () => {
         alert('sign-in button click');
     };
-
-    const onSigninComplete = () => {
-        setIsUserSignedin(true);
-    }
 
     let SigninForm = () => {
         return (
@@ -105,16 +101,10 @@ export default function Signin() {
         );
     };
 
-    let pageContent;
-    if(isSigninFormComplete && isActiveUser && !isUserSignedIn){
+    let pageContent = <div className="w-full h-screen flex items-center justify"><SigninForm /></div>;
+    if(isSigninFormComplete && isActiveUser){
         pageContent = 
-            <SaveDataValues type={saveType[0]} url={serviceUrl} data={signinFormData} eventCallback={onSigninComplete}/>;
-    }
-    else if(isUserSignedIn){
-        pageContent = <DiscoverPro />;
-    }
-    else {
-        pageContent = <div className="w-full h-screen flex items-center justify"><SigninForm /></div>;
+            <SaveDataValues type={saveType[0]} url={serviceUrl} data={signinFormData} eventCallback={onComplete}/>;
     }
 
     return(pageContent);
